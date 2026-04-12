@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #B8964A;
-    --gold-light: #D4AF6A;
+    --gold: #9B7E4F;
+    --gold-light: #B8964A;
     --gold-pale: #F5EDD8;
-    --ink: #1A1612;
-    --ink-mid: #3D3630;
-    --ink-soft: #6B5F55;
-    --cream: #FAF7F2;
-    --warm-white: #FFFDF9;
-    --accent-red: #8B3A2F;
+    --ink: #FDFBF8;
+    --ink-mid: #F5F0E8;
+    --ink-soft: #8C8078;
+    --cream: #3D3630;
+    --warm-white: #2A2420;
+    --accent-red: #C4735E;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,8 +47,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(184,150,74,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(139,58,47,0.06) 0%, transparent 60%);
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(184,150,74,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(196,115,94,0.04) 0%, transparent 60%);
     pointer-events: none;
   }
 
@@ -93,14 +93,14 @@
   .hero-subtitle {
     font-size: clamp(12px, 2vw, 15px);
     letter-spacing: 0.2em;
-    color: rgba(250,247,242,0.55);
+    color: rgba(61,54,48,0.55);
     margin-bottom: 48px;
     opacity: 0;
     animation: fadeUp 1s ease 0.8s forwards;
   }
 
   .hero-date-block {
-    border: 1px solid rgba(184,150,74,0.3);
+    border: 1px solid rgba(155,126,79,0.25);
     padding: 28px 48px;
     margin-bottom: 40px;
     position: relative;
@@ -131,7 +131,7 @@
   .date-sub {
     font-size: 12px;
     letter-spacing: 0.3em;
-    color: rgba(250,247,242,0.5);
+    color: rgba(61,54,48,0.45);
     margin-top: 8px;
   }
 
@@ -158,10 +158,10 @@
     opacity: 0;
     animation: fadeUp 1s ease 1.6s forwards;
   }
-  .scroll-hint span { font-size: 10px; letter-spacing: 0.3em; color: rgba(250,247,242,0.3); }
+  .scroll-hint span { font-size: 10px; letter-spacing: 0.3em; color: rgba(61,54,48,0.25); }
   .scroll-line {
     width: 1px; height: 40px;
-    background: linear-gradient(to bottom, rgba(184,150,74,0.5), transparent);
+    background: linear-gradient(to bottom, rgba(155,126,79,0.4), transparent);
     animation: scrollPulse 2s ease-in-out infinite;
   }
 
@@ -201,8 +201,8 @@
   .concept-text {
     font-size: 15px;
     line-height: 2;
-    color: rgba(250,247,242,0.75);
-    border-left: 1px solid rgba(184,150,74,0.3);
+    color: rgba(61,54,48,0.75);
+    border-left: 1px solid rgba(155,126,79,0.25);
     padding-left: 24px;
   }
 
@@ -220,10 +220,10 @@
     display: grid;
     grid-template-columns: 80px 1fr;
     gap: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
   }
 
-  .program-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .program-item:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
 
   .program-time {
     font-family: 'Cormorant Garamond', serif;
@@ -231,7 +231,7 @@
     color: var(--gold);
     letter-spacing: 0.05em;
     padding: 20px 0;
-    border-right: 1px solid rgba(184,150,74,0.2);
+    border-right: 1px solid rgba(155,126,79,0.2);
   }
 
   .program-content {
@@ -248,13 +248,13 @@
 
   .program-content p {
     font-size: 13px;
-    color: rgba(250,247,242,0.5);
+    color: rgba(61,54,48,0.45);
     line-height: 1.7;
   }
 
   .highlight-box {
-    background: rgba(184,150,74,0.05);
-    border: 1px solid rgba(184,150,74,0.2);
+    background: rgba(155,126,79,0.04);
+    border: 1px solid rgba(155,126,79,0.2);
     padding: 32px;
     margin: 40px 0;
     position: relative;
@@ -275,7 +275,7 @@
   .highlight-box p {
     font-size: 14px;
     line-height: 2;
-    color: rgba(250,247,242,0.8);
+    color: rgba(61,54,48,0.8);
   }
 
   .info-list {
@@ -286,11 +286,11 @@
     display: flex;
     gap: 24px;
     padding: 18px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     font-size: 14px;
   }
 
-  .info-list li:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .info-list li:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
 
   .info-list .info-key {
     font-size: 11px;
@@ -301,7 +301,7 @@
   }
 
   .info-list .info-val {
-    color: rgba(250,247,242,0.8);
+    color: rgba(61,54,48,0.8);
     line-height: 1.8;
   }
 
@@ -311,7 +311,7 @@
 
   .notes-list li {
     font-size: 13px;
-    color: rgba(250,247,242,0.55);
+    color: rgba(61,54,48,0.55);
     padding: 8px 0;
     padding-left: 16px;
     position: relative;
@@ -329,7 +329,7 @@
   .cta-section {
     text-align: center;
     padding: 80px 24px 100px;
-    background: linear-gradient(to bottom, var(--ink), #120F0C);
+    background: linear-gradient(to bottom, var(--ink), #F5F0E8);
   }
 
   .cta-section .section-label { margin-bottom: 20px; }
@@ -345,7 +345,7 @@
 
   .cta-sub {
     font-size: 13px;
-    color: rgba(250,247,242,0.45);
+    color: rgba(61,54,48,0.4);
     letter-spacing: 0.15em;
     margin-bottom: 40px;
   }
@@ -379,22 +379,22 @@
   .cta-note {
     margin-top: 20px;
     font-size: 11px;
-    color: rgba(250,247,242,0.3);
+    color: rgba(61,54,48,0.25);
     letter-spacing: 0.2em;
   }
 
   footer {
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(0,0,0,0.06);
     text-align: center;
     padding: 32px 24px;
     font-size: 11px;
     letter-spacing: 0.2em;
-    color: rgba(250,247,242,0.2);
+    color: rgba(61,54,48,0.2);
   }
 
   .full-divider {
     border: none;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(0,0,0,0.06);
     margin: 0;
   }
 
@@ -529,7 +529,7 @@
       <span class="info-key">場　所</span>
       <span class="info-val">
         成竹鍼灸整骨院 東砂店<br>
-        <span style="font-size:12px; color:rgba(250,247,242,0.4);">東京都江東区東砂（詳細はお申し込み後にご案内します）</span>
+        <span style="font-size:12px; color:rgba(61,54,48,0.4);">東京都江東区東砂（詳細はお申し込み後にご案内します）</span>
       </span>
     </li>
     <li>
