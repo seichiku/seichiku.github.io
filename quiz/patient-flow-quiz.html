@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提案ポイント付き患者動線マップ クイズ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e9e9e9 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .start-screen {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .start-screen p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .quiz-container {
+            display: none;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: right;
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            margin-right: 8px;
+        }
+
+        .category-badge.flow {
+            background-color: #e6f7f0;
+            color: #1a6644;
+        }
+
+        .category-badge.proposal {
+            background-color: #fef3e2;
+            color: #8a5a00;
+        }
+
+        .category-badge.retention {
+            background-color: #fde8e2;
+            color: #9b2e14;
+        }
+
+        .category-badge.transition {
+            background-color: #e6f0fb;
+            color: #1a4a8a;
+        }
+
+        .category-badge.philosophy {
+            background-color: #f0e6fb;
+            color: #5a1a8a;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            background: #f0f0f0;
+            color: #666;
+            margin-right: 8px;
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .choice {
+            border: 2px solid #ecf0f1;
+            padding: 14px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .choice:hover:not(.disabled) {
+            border-color: #bdc3c7;
+            background: #f9f9f9;
+        }
+
+        .choice input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .choice label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        .choice.selected {
+            border-color: #667eea;
+            background: #f0f3ff;
+        }
+
+        .choice.correct {
+            border-color: #27ae60;
+            background: #eafaf1;
+        }
+
+        .choice.incorrect {
+            border-color: #e74c3c;
+            background: #fadbd8;
+        }
+
+        .choice.disabled {
+            opacity: 0.6;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback-header {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .feedback-correct {
+            color: #27ae60;
+        }
+
+        .feedback-incorrect {
+            color: #e74c3c;
+        }
+
+        .feedback-content {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #ecf0f1;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+
+        .results-screen {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .results-screen.show {
+            display: block;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .score-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .results-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .results-message {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .results-breakdown {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .breakdown-row:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-label {
+            color: #555;
+        }
+
+        .breakdown-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .review-section {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .review-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .review-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .review-filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #ecf0f1;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .review-filter-btn:hover {
+            border-color: #667eea;
+        }
+
+        .review-filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .review-item {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 14px;
+            border-left: 4px solid #ecf0f1;
+        }
+
+        .review-item.correct {
+            border-left-color: #27ae60;
+            background: #f2fbf6;
+        }
+
+        .review-item.incorrect {
+            border-left-color: #e74c3c;
+            background: #fdf3f2;
+        }
+
+        .review-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .review-item-number {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .review-result-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .review-result-badge.correct {
+            background: #d5f5e3;
+            color: #196f3d;
+        }
+
+        .review-result-badge.incorrect {
+            background: #fadbd8;
+            color: #922b21;
+        }
+
+        .review-question {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .review-answer-row {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 6px;
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+
+        .review-answer-row.user-answer {
+            background: #fff;
+            border: 1px solid #ecf0f1;
+        }
+
+        .review-answer-row.user-answer.wrong {
+            background: #fadbd8;
+            border-color: #e74c3c;
+            color: #922b21;
+        }
+
+        .review-answer-row.correct-answer {
+            background: #d5f5e3;
+            border: 1px solid #27ae60;
+            color: #196f3d;
+            font-weight: 600;
+        }
+
+        .review-explanation {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: #fff;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 30px 15px;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+
+            .question-card {
+                padding: 20px;
+            }
+
+            .question-text {
+                font-size: 16px;
+            }
+
+            .choice label {
+                font-size: 14px;
+            }
+
+            .score-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title">「提案ポイント付き患者動線マップ」クイズ</div>
+            <div class="subtitle">来院フロー / 提案トラック / 離反防止 / 商品移行</div>
+        </header>
+
+        <div id="startScreen" class="start-screen">
+            <p>患者動線マップの内容から出題します。</p>
+            <p>20問が出題されます。来院フロー、提案タイミング、離反防止プロトコルについて、細部の知識が問われます。</p>
+            <p style="font-weight: 600; color: #2c3e50;">正確な数字・タイミング・設計思想を理解しているか確認しましょう。</p>
+            <button class="start-btn" onclick="startQuiz()">クイズ開始</button>
+        </div>
+
+        <div id="quizContainer" class="quiz-container">
+            <div class="progress-text"><span id="currentQuestion">1</span> / 20</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div id="questionCard" class="question-card"></div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" onclick="previousQuestion()" disabled>← 前へ</button>
+                <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>次へ →</button>
+            </div>
+        </div>
+
+        <div id="resultsScreen" class="results-screen">
+            <div class="score-circle">
+                <span id="scoreValue">0</span>
+                <span class="score-label">/ 20</span>
+            </div>
+            <div class="results-title">クイズ完了</div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-breakdown">
+                <div class="breakdown-row">
+                    <span class="breakdown-label">正解率</span>
+                    <span class="breakdown-value" id="scorePercentage">0%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="breakdown-label">来院フロー</span>
+                    <span class="breakdown-value" id="flowScore">0/6</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="breakdown-label">提案トラック</span>
+                    <span class="breakdown-value" id="proposalScore">0/5</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="breakdown-label">離反防止</span>
+                    <span class="breakdown-value" id="retentionScore">0/4</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="breakdown-label">商品移行</span>
+                    <span class="breakdown-value" id="transitionScore">0/3</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="breakdown-label">設計思想</span>
+                    <span class="breakdown-value" id="philosophyScore">0/2</span>
+                </div>
+            </div>
+
+            <div class="review-section" id="reviewSection">
+                <div class="review-title">全問振り返り</div>
+                <div class="review-filter">
+                    <button class="review-filter-btn active" data-filter="all" onclick="filterReview('all')">全問表示</button>
+                    <button class="review-filter-btn" data-filter="incorrect" onclick="filterReview('incorrect')">間違えた問題のみ</button>
+                    <button class="review-filter-btn" data-filter="correct" onclick="filterReview('correct')">正解した問題のみ</button>
+                </div>
+                <div id="reviewList"></div>
+            </div>
+
+            <button class="restart-btn" onclick="restartQuiz()">もう一度受ける</button>
+        </div>
+
+        <footer>
+            成竹鍼灸整骨院グループ　スタッフ研修ツール
+        </footer>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                cat: "来院フロー",
+                sym: "初診",
+                diff: "detail",
+                q: "初診時のベッド占有時間と会計内容で、正しい組み合わせは次のうちどれですか？",
+                choices: [
+                    "ベッド占有48分、会計は支払と保険サイン、合計金額は¥4,900",
+                    "ベッド占有50分、会計は支払のみ、合計金額は¥4,900",
+                    "ベッド占有48分、会計は支払と保険サイン、合計金額は¥5,000",
+                    "ベッド占有46分、会計は支払と保険サイン、合計金額は¥4,900"
+                ],
+                ans: 0,
+                explanation: "初診フローは総ベッド占有時間48分で、金額は¥4,900です。会計処理は「支払処理・保険サイン」（3分）として設計されています。47分ではなく48分、¥4,900であることが重要です。"
+            },
+            {
+                cat: "来院フロー",
+                sym: "初診の電気工程",
+                diff: "detail",
+                q: "初診フローの#8「電気（動画視聴）」（15分）で、患者に視聴させる動画の内容は何ですか？",
+                choices: [
+                    "院のスタンスと治療アプローチについての説明動画",
+                    "保険についての理解を深める動画",
+                    "施術前の症状緩和運動についての動画",
+                    "次回以降の治療計画についての動画"
+                ],
+                ans: 1,
+                explanation: "初診フロー#8では15分かけて『保険についての理解を深める動画』を視聴させます。このタイミングで保険に関する理解を醸成することで、後の提案に繋げる設計になっています。"
+            },
+            {
+                cat: "来院フロー",
+                sym: "3回目フロー",
+                diff: "sequence",
+                q: "3回目フロー（ベッド占有25分）のミッションは『口コミ回収』です。この際、口コミ記入に充てられている時間はどのくらいですか？",
+                choices: [
+                    "2分（施術後に記入完了が想定）",
+                    "3分（クロージング後に記入）",
+                    "5分（クロージング後の専用時間）",
+                    "10分（来院時間の一部として確保）"
+                ],
+                ans: 2,
+                explanation: "3回目フローでは合計25分のうち、口コミ記入専用に5分を確保する設計になっています。これは単なる要望ではなく、スケジュールに組み込まれた時間です。"
+            },
+            {
+                cat: "来院フロー",
+                sym: "4回目フロー",
+                diff: "sequence",
+                q: "4回目フロー（ベッド占有20分）でのミッション『種まき①』の内容として、最も正確な説明はどれですか？",
+                choices: [
+                    "慢性的な悩みには鍼灸保険が使える可能性があることを『軽く触れて』存在認知させ、クロージングで次回のサブスク無料体験を案内する",
+                    "鍼灸保険の詳細を説明し、すぐに同意書の署名を取得する",
+                    "オーダーメイドの施術が慢性症状に有効であることを伝える",
+                    "整体サブスクと鍼灸保険どちらが適しているかを患者に選ばせる"
+                ],
+                ans: 0,
+                explanation: "4回目の『種まき①』は『慢性的なお悩みには別の保険も使えますよ』と『軽く触れて』存在認知させることが重要です。この段階では詳細説明ではなく、認知がゴール。クロージングで次回のサブスク無料体験の布石も入ります。"
+            },
+            {
+                cat: "来院フロー",
+                sym: "5回目フロー",
+                diff: "detail",
+                q: "5回目フロー（ベッド占有34分）の『種まき②』で行うべき提案・説明は、次のうちどれですか？",
+                choices: [
+                    "サブスク無料体験10分、オーダー存在認知、鍼灸保険の深掘り説明",
+                    "サブスク本契約への即提案、整体と鍼灸の比較説明",
+                    "オーダーメイドコース本契約、鍼灸保険の同意書取得",
+                    "美容鍼サブスクの案内、次回以降の治療計画の見直し"
+                ],
+                ans: 0,
+                explanation: "5回目は『種まき②』として、①『サブスク無料体験10分』の実施、②『オーダー存在認知』（保険では対応しにくい領域がある伝え）、③『鍼灸保険の深掘り』（慢性部分にも使える、オンライン同意書でOKという説明）を全て行う設計です。"
+            },
+            {
+                cat: "来院フロー",
+                sym: "6回目フロー",
+                diff: "why",
+                q: "6回目フロー（ベッド占有20分）のミッションが『リファラル（紹介依頼）』に設計されている根本的な理由は何ですか？",
+                choices: [
+                    "6回目で治療効果が最大化するため",
+                    "サブスク未購入患者にも『出口』があるため、6回目が無駄にならない。やめることだけでなく、紹介という形で価値を提供できる設計",
+                    "6回目時点で患者の友人ネットワークが開拓できるタイミングだから",
+                    "保険診療の上限回数が近づいているから"
+                ],
+                ans: 1,
+                explanation: "設計思想として重要なのは『サブスクを購入しない患者にも『リファラル』という出口がある』という点です。つまり、全患者に対して『続ける/続けない』ではなく『どう続けるか/どう貢献するか』という選択肢を用意する設計になっています。"
+            },
+            {
+                cat: "提案トラック",
+                sym: "オプチケ",
+                diff: "detail",
+                q: "初診#11『クロージング』での『オプチケ』即提案の正確なセリフは次のうちどれですか？",
+                choices: [
+                    "「4回券が人気です。単回¥2,500ですが、4回券なら¥9,000で10%お得です」",
+                    "「単回¥2,500ですが、4回券なら¥8,800で1回あたり¥300お得です」",
+                    "「単回¥2,500ですが、4回券なら¥8,000で20%割引になります」",
+                    "「4回通うなら、4回券¥10,000の購入がお得です」"
+                ],
+                ans: 1,
+                explanation: "テキストに記載されている正確なセリフは『単回¥2,500ですが、4回券なら¥8,800で1回あたり¥300お得です』です。金額（¥8,800）と割引の伝え方（1回あたり¥300お得）の両方が重要です。"
+            },
+            {
+                cat: "提案トラック",
+                sym: "種まき①と②の違い",
+                diff: "sequence",
+                q: "『種まき①』（4回目）と『種まき②』（5回目）の最大の違いは何ですか？",
+                choices: [
+                    "種まき①は鍼灸保険、種まき②は美容鍼サブスクを提案するタイミング",
+                    "種まき①は『存在認知』（軽く触れる）、種まき②は『無料体験』と『深掘り説明』が含まれる",
+                    "種まき①は4回目のみ、種まき②は5回目以降継続",
+                    "種まき①はスタッフ説明、種まき②は動画視聴"
+                ],
+                ans: 1,
+                explanation: "種まき①（4回目）は『軽く触れて存在認知』が目的。対して種まき②（5回目）は『サブスク無料体験10分実施』『オーダー存在認知』『鍼灸保険の詳しい説明』と、複数の提案と実体験が含まれる大きなステップです。"
+            },
+            {
+                cat: "提案トラック",
+                sym: "美容鍼サブスク",
+                diff: "detail",
+                q: "美容鍼サブスクの提案設計について、正しい説明はどれですか？",
+                choices: [
+                    "『プル型』で、院内掲示→興味→無料体験10分という流れで、いつでも提案可能",
+                    "『プッシュ型』で、4回目に全患者に同一メッセージで提案する",
+                    "『プル型』だが、7回目以降に限定提案する",
+                    "『プッシュ型』で、オーダーメイド提案と同時に案内する"
+                ],
+                ans: 0,
+                explanation: "美容鍼サブスクは『プル型』で設計されており、院内掲示→患者の興味→無料体験10分という流れです。『いつでも』提案可能なため、タイミングに制限がなく、患者の自発的なニーズを拾う方針です。"
+            },
+            {
+                cat: "提案トラック",
+                sym: "オーダーメイド提案",
+                diff: "sequence",
+                q: "『オーダーメイド』（複数の悩みに対応する商品）の提案タイミングについて、最も正確な説明はどれですか？",
+                choices: [
+                    "初診時に全患者に提案する",
+                    "5回目で『前回おっしゃっていた○○、保険では対応しにくいですが、オーダーメイドという方法もあります』と『存在認知』し、7回目で『複数の悩みあり』の場合に『具体提案』する",
+                    "3回目に『種まき』として提案し、5回目で実施",
+                    "10回目以降のサブスク継続患者のみに提案"
+                ],
+                ans: 1,
+                explanation: "オーダーメイドの提案は『段階的』に設計されています。5回目で『存在認知』（軽い触れ）→7回目以降で『主訴改善+複数悩みあり』という条件が揃った場合に『具体提案』するステップがあります。"
+            },
+            {
+                cat: "提案トラック",
+                sym: "サブスク提案",
+                diff: "detail",
+                q: "美容鍼サブスクと整体サブスクでは提案の方法が異なります。正しい組み合わせはどれですか？",
+                choices: [
+                    "美容鍼＝プッシュ型（5回目で積極提案）、整体＝プル型（院内掲示で興味を待つ）",
+                    "美容鍼＝プル型（院内掲示→興味→無料体験）、整体＝プッシュ型（#7説明で予防の重要性→痛み改善後に切替）",
+                    "どちらもプッシュ型で、美容鍼は4回目、整体は5回目に提案する",
+                    "どちらもプル型で、患者から申し出があった場合にのみ説明する"
+                ],
+                ans: 1,
+                explanation: "美容鍼サブスクは『プル型』で院内掲示→患者の興味→無料体験10分という流れです。一方、整体サブスクは『プッシュ型』で#7説明（再診時）に予防の重要性を伝え、痛み改善後に切替を提案します。美容は痛みとは別軸で誰にでも提案可能なためプル型、整体は主訴改善後の切替なのでタイミングを見てプッシュする設計です。"
+            },
+            {
+                cat: "離反防止",
+                sym: "統一プロトコル",
+                diff: "detail",
+                q: "離反防止の『統一プロトコル』3ステップのうち、②『リスク提示』で伝えるべき内容は次のうちどれですか？",
+                choices: [
+                    "今までの治療成果をデータで見せる",
+                    "やめた場合の未来を伝える（『このまま何もしないと、戻る可能性があります』）",
+                    "患者の希望と院のメニューの相性を確認する",
+                    "他の患者の成功事例を紹介する"
+                ],
+                ans: 1,
+                explanation: "統一プロトコルの②『リスク提示』は『やめた場合の未来を伝える』ステップです。『このまま何もしないと、戻る可能性があります』というメッセージで、継続の必要性を認識させる設計です。"
+            },
+            {
+                cat: "離反防止",
+                sym: "統一プロトコル",
+                diff: "why",
+                q: "離反防止プロトコルで『A vs B』の選択肢を提示する設計になっている理由は何ですか？",
+                choices: [
+                    "患者の満足度を高めるため",
+                    "『やめる』が選択肢に入らない設計。『続ける』が当たり前の状態を作る",
+                    "複数の商品を同時販売するため",
+                    "スタッフの判断負荷を増やさないため"
+                ],
+                ans: 1,
+                explanation: "設計の核心は『やめる vs 続ける』ではなく『A vs B』の選択肢を出すこと。『やめる』が選択肢に入らない状態を作る設計です。これにより月間離反率10%未満を実現しています。"
+            },
+            {
+                cat: "離反防止",
+                sym: "離反ポイント",
+                diff: "detail",
+                q: "『回数券の消化完了』時の離反防止で提示する代替プランは次のうちどれですか？",
+                choices: [
+                    "A: 回数券の継続購入 / B: 保険診療への移行",
+                    "A: 回数券の継続購入 / B: サブスクへの切替",
+                    "A: サブスクへの切替 / B: オーダーメイドの提案",
+                    "A: 保険診療の継続 / B: 鍼灸保険への移行"
+                ],
+                ans: 1,
+                explanation: "回数券消化完了時の『買い直すほど？』という離反ポイントに対しては、『A: 回数券の継続購入』『B: サブスクへの切替』という2つの選択肢が設計されています。"
+            },
+            {
+                cat: "離反防止",
+                sym: "治癒時の対応",
+                diff: "sequence",
+                q: "患者の『症状が落ち着いた』（治癒）という離反ポイントで提示する代替プランAは何ですか？",
+                choices: [
+                    "3ヶ月後の定期検診を提案する",
+                    "気になる症状が出たら早めに相談するよう案内する",
+                    "サブスク継続で予防医学に切り替える",
+                    "整体サブスクのメンテナンスコース案内"
+                ],
+                ans: 0,
+                explanation: "治癒時の離反対策で提示するA案は『3ヶ月後の定期検診をご提案』です。B案は『気になる症状が出たら早めに相談』。定期的なチェックポイントを作ることで、継続的な関係を保つ設計です。"
+            },
+            {
+                cat: "商品移行",
+                sym: "保険から他商品への移行",
+                diff: "detail",
+                q: "『柔整保険→急性が落ち着いた場合』の商品移行先として設計されているのは何ですか？",
+                choices: [
+                    "鍼灸保険（長期管理用）",
+                    "整体サブスク（再発防止・メンテナンス）",
+                    "美容鍼サブスク（審美目的）",
+                    "オーダーメイド（複合ニーズ対応）"
+                ],
+                ans: 1,
+                explanation: "急性症状が落ち着いた患者は『整体サブスク（再発防止・メンテナンス）』へ移行する設計です。これは『予防医学への切り替え』というビジネスロジック上の重要なポイントです。"
+            },
+            {
+                cat: "商品移行",
+                sym: "鍼灸保険への移行",
+                diff: "detail",
+                q: "柔整保険から鍼灸保険への移行が適している患者層で、移行に必要な手続きについて正しいのはどれですか？",
+                choices: [
+                    "高齢者・慢性化患者で、医師の同意書（¥4,870〜5,580）が必要。4〜6回通院しないと元が取れない",
+                    "高齢者・慢性化患者で、患者署名のみで即転換可能",
+                    "急性症状患者で、同意書なしで転換可能",
+                    "環境不変患者で、2回通院で元が取れるプラン"
+                ],
+                ans: 0,
+                explanation: "鍼灸保険への移行は『慢性化・高齢・環境不変』の患者が対象です。医師の同意書が必要（オンライン発行¥4,870〜5,580）で、『4〜6回通院しないと元が取れない』という経済性を患者に説明する必要があります。"
+            },
+            {
+                cat: "商品移行",
+                sym: "複数ニーズへの対応",
+                diff: "why",
+                q: "商品移行マップで『どの患者でも→美容ニーズがある→美容鍼サブスク』と記載されている理由は何ですか？",
+                choices: [
+                    "美容鍼の需要が他のメニューより高いから",
+                    "『痛みとは別軸』のニーズとして、全患者層にアプローチできる",
+                    "美容鍼の利益率が最も高いから",
+                    "高齢患者の離反を防ぐため"
+                ],
+                ans: 1,
+                explanation: "美容鍼サブスクの位置づけが重要です。『痛みとは別軸』のニーズとして捉えることで、主訴とは独立したUpsellポイントになります。つまり、誰にでも提案できる普遍的なニーズという設計思想です。"
+            },
+            {
+                cat: "設計思想",
+                sym: "全体設計",
+                diff: "why",
+                q: "患者タイムラインで『初診：信頼構築＋オプチケ提案』『2回目：効果確認』『3回目：口コミ回収』と段階化されている根本的な設計意図は何ですか？",
+                choices: [
+                    "単に収益を最大化するため",
+                    "スタッフの売上ノルマを達成するため",
+                    "信頼→確認→拡散という『患者心理の段階』に合わせて、段階ごとに異なるオペレーションを設計している",
+                    "保険診療の回数制限に合わせるため"
+                ],
+                ans: 2,
+                explanation: "設計の根本は患者心理の段階です。初診で信頼を構築→2回目で効果を確認（継続判断）→3回目で満足度が高まり口コミに繋がる。各段階でスタッフが『何をすべきか』が明確に設計されている点が重要です。"
+            },
+            {
+                cat: "設計思想",
+                sym: "提案トラックの分離",
+                diff: "sequence",
+                q: "『提案トラックの分離』で『オプチケ』『オーダー』『美容鍼サブスク』『整体サブスク』『鍼灸保険』を分離している設計の最大のメリットは何ですか？",
+                choices: [
+                    "複雑性を減らし、各患者に『その時点で最適な提案』を『その時点で』『その形式で』提供できる",
+                    "販売目標を分散させるため",
+                    "スタッフの売上コミッションを複数商品で計算するため",
+                    "患者に選択肢が多いと感じさせるため"
+                ],
+                ans: 0,
+                explanation: "提案トラック分離の狙いは『複雑性を最小化』しながら『複数の商品を段階的に提案』することです。スタッフは『今この患者は何を言うべきか』が一目瞭然になり、患者は過度な提案を受けずに済む。効率と体験の両立を実現しています。"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let categoryScores = {
+            "来院フロー": { correct: 0, total: 0 },
+            "提案トラック": { correct: 0, total: 0 },
+            "離反防止": { correct: 0, total: 0 },
+            "商品移行": { correct: 0, total: 0 },
+            "設計思想": { correct: 0, total: 0 }
+        };
+
+        function getCategoryClass(cat) {
+            const map = {
+                "来院フロー": "flow",
+                "提案トラック": "proposal",
+                "離反防止": "retention",
+                "商品移行": "transition",
+                "設計思想": "philosophy"
+            };
+            return map[cat] || "";
+        }
+
+        function getDifficultyLabel(diff) {
+            const map = {
+                "detail": "数字・詳細",
+                "sequence": "順序・タイミング",
+                "why": "設計思想"
+            };
+            return map[diff] || diff;
+        }
+
+        function startQuiz() {
+            document.getElementById("startScreen").style.display = "none";
+            document.getElementById("quizContainer").style.display = "block";
+            userAnswers = new Array(questions.length).fill(null);
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            const q = questions[currentQuestionIndex];
+            const catClass = getCategoryClass(q.cat);
+
+            let html = `
+                <div style="margin-bottom: 20px;">
+                    <span class="category-badge ${catClass}">${q.cat}</span>
+                    <span class="difficulty-badge">${getDifficultyLabel(q.diff)}</span>
+                </div>
+                <div class="question-number">Q${currentQuestionIndex + 1}</div>
+                <div class="question-text">${q.q}</div>
+                <div class="choices">
+            `;
+
+            q.choices.forEach((choice, idx) => {
+                const checked = userAnswers[currentQuestionIndex] === idx ? "checked" : "";
+                const selectedClass = userAnswers[currentQuestionIndex] === idx ? "selected" : "";
+                html += `
+                    <div class="choice ${selectedClass}" onclick="selectChoice(${idx})">
+                        <label>
+                            <input type="radio" name="choice" value="${idx}" ${checked} onchange="selectChoice(${idx})">
+                            ${choice}
+                        </label>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+
+            document.getElementById("questionCard").innerHTML = html;
+            updateProgress();
+            updateNavButtons();
+        }
+
+        function selectChoice(idx) {
+            userAnswers[currentQuestionIndex] = idx;
+            document.querySelectorAll(".choice").forEach(el => el.classList.remove("selected"));
+            document.querySelectorAll(".choice")[idx].classList.add("selected");
+            updateNavButtons();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById("progressFill").style.width = progress + "%";
+            document.getElementById("currentQuestion").textContent = currentQuestionIndex + 1;
+        }
+
+        function updateNavButtons() {
+            const isAnswered = userAnswers[currentQuestionIndex] !== null;
+            document.getElementById("prevBtn").disabled = currentQuestionIndex === 0;
+            document.getElementById("nextBtn").disabled = !isAnswered;
+
+            if (currentQuestionIndex === questions.length - 1 && isAnswered) {
+                document.getElementById("nextBtn").innerHTML = "結果を表示 →";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "次へ →";
+            }
+        }
+
+        function calculateScores() {
+            categoryScores = {
+                "来院フロー": { correct: 0, total: 0 },
+                "提案トラック": { correct: 0, total: 0 },
+                "離反防止": { correct: 0, total: 0 },
+                "商品移行": { correct: 0, total: 0 },
+                "設計思想": { correct: 0, total: 0 }
+            };
+            questions.forEach((q, i) => {
+                categoryScores[q.cat].total++;
+                if (userAnswers[i] === q.ans) {
+                    categoryScores[q.cat].correct++;
+                }
+            });
+        }
+
+        function showResults() {
+            document.getElementById("quizContainer").style.display = "none";
+            document.getElementById("resultsScreen").classList.add("show");
+
+            calculateScores();
+
+            const totalCorrect = Object.values(categoryScores).reduce((sum, cat) => sum + cat.correct, 0);
+            const percentage = Math.round((totalCorrect / questions.length) * 100);
+
+            document.getElementById("scoreValue").textContent = totalCorrect;
+            document.getElementById("scorePercentage").textContent = percentage + "%";
+
+            document.getElementById("flowScore").textContent = `${categoryScores["来院フロー"].correct}/${categoryScores["来院フロー"].total}`;
+            document.getElementById("proposalScore").textContent = `${categoryScores["提案トラック"].correct}/${categoryScores["提案トラック"].total}`;
+            document.getElementById("retentionScore").textContent = `${categoryScores["離反防止"].correct}/${categoryScores["離反防止"].total}`;
+            document.getElementById("transitionScore").textContent = `${categoryScores["商品移行"].correct}/${categoryScores["商品移行"].total}`;
+            document.getElementById("philosophyScore").textContent = `${categoryScores["設計思想"].correct}/${categoryScores["設計思想"].total}`;
+
+            let message = "";
+            if (percentage >= 90) {
+                message = "完璧です！動線マップを完全に理解しています。現場で即実践できるレベルです。";
+            } else if (percentage >= 70) {
+                message = "よくできました。いくつかの細部を再確認しましょう。特に間違えた箇所のマニュアルを読み直してください。";
+            } else if (percentage >= 50) {
+                message = "基礎はありますが、提案タイミングと離反防止プロトコルの復習が必要です。";
+            } else {
+                message = "マニュアルをもう一度しっかり読み込みましょう。特に来院回数別フローの詳細を確認してください。";
+            }
+
+            document.getElementById("resultsMessage").textContent = message;
+
+            renderReview("all");
+        }
+
+        function renderReview(filter) {
+            const listEl = document.getElementById("reviewList");
+            let html = "";
+            questions.forEach((q, i) => {
+                const selected = userAnswers[i];
+                const isCorrect = selected === q.ans;
+                if (filter === "incorrect" && isCorrect) return;
+                if (filter === "correct" && !isCorrect) return;
+
+                const catClass = getCategoryClass(q.cat);
+                const itemClass = isCorrect ? "correct" : "incorrect";
+                const badgeClass = isCorrect ? "correct" : "incorrect";
+                const badgeText = isCorrect ? "✓ 正解" : "✗ 不正解";
+
+                html += `<div class="review-item ${itemClass}">`;
+                html += `<div class="review-item-header">`;
+                html += `<span class="review-item-number">Q${i + 1}　<span class="category-badge ${catClass}">${q.cat}</span></span>`;
+                html += `<span class="review-result-badge ${badgeClass}">${badgeText}</span>`;
+                html += `</div>`;
+                html += `<div class="review-question">${q.q}</div>`;
+
+                if (selected !== null && selected !== undefined) {
+                    const userChoice = q.choices[selected];
+                    const userLetter = String.fromCharCode(65 + selected);
+                    const userRowClass = isCorrect ? "user-answer" : "user-answer wrong";
+                    html += `<div class="review-answer-row ${userRowClass}">あなたの回答：${userLetter}. ${userChoice}</div>`;
+                } else {
+                    html += `<div class="review-answer-row user-answer wrong">あなたの回答：未回答</div>`;
+                }
+
+                if (!isCorrect) {
+                    const correctLetter = String.fromCharCode(65 + q.ans);
+                    html += `<div class="review-answer-row correct-answer">正解：${correctLetter}. ${q.choices[q.ans]}</div>`;
+                }
+
+                html += `<div class="review-explanation"><strong>解説：</strong>${q.explanation}</div>`;
+                html += `</div>`;
+            });
+
+            if (html === "") {
+                html = `<div style="text-align:center; color:#7f8c8d; padding:20px;">該当する問題はありません。</div>`;
+            }
+
+            listEl.innerHTML = html;
+        }
+
+        function filterReview(filter) {
+            document.querySelectorAll(".review-filter-btn").forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+            renderReview(filter);
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            categoryScores = {
+                "来院フロー": { correct: 0, total: 0 },
+                "提案トラック": { correct: 0, total: 0 },
+                "離反防止": { correct: 0, total: 0 },
+                "商品移行": { correct: 0, total: 0 },
+                "設計思想": { correct: 0, total: 0 }
+            };
+            document.getElementById("reviewList").innerHTML = "";
+            document.getElementById("resultsScreen").classList.remove("show");
+            document.getElementById("startScreen").style.display = "block";
+        }
+    </script>
+</body>
+</html>
