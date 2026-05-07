@@ -231,6 +231,30 @@
   .seat-meter .note{font-size:12.5px;color:var(--muted);margin-top:18px;line-height:1.85}
   .seat-meter .note strong{color:var(--vermilion-deep);font-weight:600}
 
+  /* ===== Lecturer ===== */
+  .lecturer{background:var(--paper);border-bottom:1px solid var(--line);padding:80px 0}
+  .lecturer-inner{
+    max-width:880px;margin:0 auto;padding:0 28px;
+    display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:center;
+  }
+  .lecturer-photo{
+    width:240px;height:240px;border-radius:50%;
+    object-fit:cover;border:1px solid var(--line);
+    box-shadow:0 24px 50px -28px rgba(0,0,0,.35);
+  }
+  .lecturer-text .label{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    font-size:15px;color:var(--vermilion);letter-spacing:.1em;margin-bottom:8px;
+  }
+  .lecturer-text h3{
+    font-family:"Shippori Mincho",serif;font-weight:600;
+    font-size:26px;letter-spacing:.06em;color:var(--sumi);
+    margin-bottom:6px;line-height:1.4;
+  }
+  .lecturer-text .role{font-size:13px;color:var(--muted);letter-spacing:.15em;margin-bottom:18px}
+  .lecturer-text p{font-size:14.5px;color:#3d342a;line-height:1.95;margin-bottom:.9em}
+  .lecturer-text p:last-child{margin-bottom:0}
+
   /* ===== Notes ===== */
   .notes-list{list-style:none;max-width:760px;margin:0 auto}
   .notes-list li{
@@ -250,7 +274,12 @@
     font-family:"Shippori Mincho",serif;font-size:clamp(28px,3.6vw,42px);
     margin-bottom:18px;line-height:1.5;font-weight:600;letter-spacing:.04em;
   }
-  .cta .lede{font-size:14.5px;opacity:.75;margin-bottom:46px;max-width:48ch;margin-inline:auto;line-height:1.95}
+  .cta .lede{font-size:14.5px;opacity:.75;margin-bottom:36px;max-width:48ch;margin-inline:auto;line-height:1.95}
+  .cta-img{
+    display:block;width:100%;max-width:720px;aspect-ratio:16/9;
+    object-fit:cover;margin:0 auto 44px;border-radius:4px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.55);
+  }
   .cta-btn{
     display:inline-flex;align-items:center;gap:18px;
     padding:22px 56px;background:var(--vermilion);color:var(--paper);
@@ -275,6 +304,10 @@
     .hero-meta .m:nth-child(2){border-right:none}
     .hero-meta .m:nth-child(3),.hero-meta .m:nth-child(4){border-bottom:none}
     .gogyo-wrap,.program-grid,.info-grid{grid-template-columns:1fr;gap:40px}
+    .lecturer{padding:60px 0}
+    .lecturer-inner{grid-template-columns:1fr;gap:24px;text-align:center}
+    .lecturer-photo{width:180px;height:180px;margin:0 auto}
+    .lecturer-text{text-align:left}
     .day-card,.seat-meter{position:static}
     .info-list li{grid-template-columns:90px 1fr;gap:14px}
     .topbar{padding:14px 18px}
@@ -339,6 +372,20 @@
   </div>
 </section>
 
+<!-- LECTURER -->
+<section class="lecturer">
+  <div class="lecturer-inner">
+    <img src="ueda.jpg" alt="講師 植田 祐司" class="lecturer-photo" loading="lazy">
+    <div class="lecturer-text">
+      <div class="label">Lecturer</div>
+      <h3 class="mincho">植田 祐司</h3>
+      <div class="role">成竹鍼灸整骨院グループ ／ 鍼灸師・柔道整復師</div>
+      <p>成竹鍼灸整骨院グループ所属の鍼灸師・柔道整復師。臨床現場で多くの自律神経症状の患者と向き合い、五行分類と現代医学を結び合わせた見立てを実践している。</p>
+      <p>本勉強会では、教科書だけでは伝えきれない<strong style="color:var(--vermilion-deep);font-weight:600">「現場で活きる選穴の根拠」</strong>と、お灸の据え方の基本を、丁寧に紐解いていきます。</p>
+    </div>
+  </div>
+</section>
+
 <!-- CONCEPT -->
 <section class="concept">
   <div class="wrap">
@@ -353,7 +400,7 @@
       <p>教科書だけでは学べない、現場の臨床家の視点と技術を、成竹グループから直接お伝えする勉強会です。</p>
 
       <div class="concept-aside">
-        <p>「なぜ怒りっぽい人は肝を痃みやすいのか」「不眠は心の問題か、それとも腎の問題か」——自律神経というひとつの主訴も、肝鬱・心火・脾虚・肺虚・腎虚…と五行で分けると見立ててぜ立体的になります。<br>古典の枠組みを現代の言葉で結び直すと、臨床での判断力と患者さんへの説明力が格段に変わります。</p>
+        <p>「なぜ怒りっぽい人は肝を病みやすいのか」「不眠は心の問題か、それとも腎の問題か」——自律神経というひとつの主訴も、肝鬱・心火・脾虚・肺虚・腎虚…と五行で分けると見立てが立体的になります。<br>古典の枠組みを現代の言葉で結び直すと、臨床での判断力と患者さんへの説明力が格段に変わります。</p>
       </div>
     </div>
 
@@ -499,6 +546,7 @@
     <div class="sec-eyebrow">Apply</div>
     <h2 class="mincho">参 加 申 し 込 み</h2>
     <p class="lede">Googleフォームよりお申し込みください<br>※ フォーム回答をもって受付完了となります</p>
+    <img src="自律神経の乱れ２.png" alt="自律神経の不調を抱える朝のひととき" class="cta-img" loading="lazy">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPYAy4PbAC1MJ_N6nwC3hVSZMyrwgQ3N-VUHfp3YpYD7hhog/viewform" class="cta-btn" target="_blank" rel="noopener">申 し 込 む<span class="arr">→</span></a>
     <div class="cta-foot serif-en">First 30 applicants only — 先着30名様限定</div>
   </div>
