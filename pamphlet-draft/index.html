@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用パンフレット 16P ラフ案 ビジュアル</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+  
+  * { box-sizing: border-box; }
+  
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: #2a2a2a;
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    color: #ccc;
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #fff;
+  }
+  
+  header h1 {
+    font-family: "Noto Serif JP", serif;
+    font-weight: 700;
+    font-size: 28px;
+    margin: 0 0 8px;
+    color: #c9a961;
+  }
+  
+  header p {
+    color: #888;
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  
+  .page-label {
+    color: #c9a961;
+    text-align: center;
+    margin: 50px 0 16px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+  
+  .page-note {
+    color: #888;
+    text-align: center;
+    margin: 12px 0 0;
+    font-size: 12px;
+    font-style: italic;
+  }
+  
+  .page-group {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+  
+  .page {
+    background: #f5efe6;
+    color: #2a2a2a;
+    width: 480px;
+    aspect-ratio: 210 / 297;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    padding: 28px;
+    font-family: "Noto Serif JP", serif;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .photo-ph {
+    background: linear-gradient(135deg, #d4c8a8, #b8a880);
+    color: #6b5640;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    padding: 8px;
+    border: 1px dashed #8b6f47;
+  }
+  
+  /* ============ P1 表紙（B案＋黄金比） ============ */
+  .p1 { padding: 0; }
+  .p1 .face-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38.2%;
+    height: 100%;
+  }
+  .p1 .vertical-copy {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.15em;
+    position: absolute;
+    top: 60px;
+    right: 50px;
+    height: 480px;
+    color: #2a2a2a;
+  }
+  .p1 .logo-area {
+    position: absolute;
+    bottom: 32px;
+    right: 28px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    color: #2a2a2a;
+    line-height: 1.8;
+    border-top: 2px solid #c9a961;
+    padding-top: 8px;
+    text-align: right;
+  }
+  .p1 .sub-top {
+    position: absolute;
+    top: 32px;
+    right: 28px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    color: #c9a961;
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+  
+  /* ============ P2-3 共感（黄金比適用） ============ */
+  .p2 .lead {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #333;
+    height: 38.2%;
+    display: flex;
+    align-items: center;
+  }
+  .p2 .back-photo {
+    width: calc(100% + 56px);
+    margin-left: -28px;
+    height: 61.8%;
+  }
+  .p3 .worries {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 30px 10px;
+  }
+  .p3 .worry {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #444;
+    padding: 0 12px;
+  }
+  .p3 .worry:nth-child(1) { margin-left: 8px; }
+  .p3 .worry:nth-child(2) { margin-left: 40px; }
+  .p3 .worry:nth-child(3) { margin-left: 16px; }
+  .p3 .worry:nth-child(4) { margin-left: 50px; }
+  .p3 .worry:nth-child(5) { margin-left: 24px; }
+  .p3 .closing {
+    position: absolute;
+    bottom: 30px;
+    right: 28px;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.6;
+    text-align: right;
+  }
+  
+  /* ============ P4-5 反転（黄金比適用） ============ */
+  .p4 { padding: 0; }
+  .p4 .main-copy {
+    writing-mode: vertical-rl;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    height: calc(38.2% - 32px);
+  }
+  .p4 .treatment-photo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 61.8%;
+  }
+  .p5 .reversal {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .p5 .reversal-item {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #333;
+  }
+  .p5 .reversal-item .neg {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 10px;
+  }
+  .p5 .reversal-item .pos {
+    font-weight: 700;
+    color: #2a2a2a;
+  }
+  .p5 .closing-statement {
+    position: absolute;
+    bottom: 32px;
+    left: 28px;
+    right: 28px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.7;
+    padding-top: 16px;
+    border-top: 1px solid #c9a961;
+  }
+  
+  /* ============ P6 解1 働き方 ============ */
+  .p6 .title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .p6 .lead {
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: #444;
+  }
+  .p6 .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .p6 .card {
+    background: #ede4d0;
+    padding: 12px;
+    border-radius: 4px;
+  }
+  .p6 .card .name {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .p6 .card .desc {
+    font-size: 10px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .p6 .closing {
+    position: absolute;
+    bottom: 32px;
+    left: 28px;
+    right: 28px;
+    text-align: center;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+  }
+  
+  /* ============ P7 解2 数字 ============ */
+  .p7 .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .p7 .lead {
+    font-size: 11px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  .p7 .numbers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .p7 .num-box {
+    text-align: center;
+  }
+  .p7 .num-box.gold .num {
+    color: #c9a961;
+  }
+  .p7 .num {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    color: #2a2a2a;
+  }
+  .p7 .unit {
+    font-size: 10px;
+    color: #666;
+    margin-top: 4px;
+  }
+  .p7 .num-label {
+    font-size: 10px;
+    color: #555;
+    margin-top: 6px;
+  }
+  .p7 .note {
+    font-size: 9px;
+    text-align: center;
+    color: #777;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .p7 .evaluation {
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #2a2a2a;
+  }
+  .p7 .three-method {
+    background: #ede4d0;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    line-height: 1.6;
+    color: #444;
+    text-align: center;
+  }
+  .p7 .three-method strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: #2a2a2a;
+  }
+  
+  /* ============ P8 解3 キャリア ============ */
+  .p8 .title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .p8 .lead {
+    font-size: 11px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+  .p8 .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .p8 .col {
+    text-align: center;
+  }
+  .p8 .col-label {
+    font-size: 10px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .p8 .col-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .p8 .arrow-up {
+    height: 100px;
+    background: linear-gradient(to top right, transparent 0%, transparent 48%, #aaa 49%, #aaa 51%, transparent 52%);
+    position: relative;
+  }
+  .p8 .arrow-up::after {
+    content: "▲";
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    color: #aaa;
+    font-size: 14px;
+  }
+  .p8 .spread {
+    height: 100px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .p8 .spread-item {
+    position: absolute;
+    background: #ede4d0;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 9px;
+    color: #444;
+  }
+  .p8 .closing {
+    position: absolute;
+    bottom: 32px;
+    left: 28px;
+    right: 28px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+    border-top: 1px solid #c9a961;
+    padding-top: 16px;
+  }
+  
+  /* ============ P9 解4 江東区 ============ */
+  .p9 .title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .p9 .lead {
+    font-size: 12px;
+    text-align: center;
+    color: #444;
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+  .p9 .map {
+    width: 100%;
+    height: 380px;
+    margin-bottom: 16px;
+  }
+  .p9 .clinic-list {
+    font-size: 10px;
+    line-height: 1.7;
+    color: #444;
+    text-align: center;
+  }
+  .p9 .closing {
+    position: absolute;
+    bottom: 32px;
+    left: 28px;
+    right: 28px;
+    text-align: center;
+    font-size: 13px;
+    color: #2a2a2a;
+    font-weight: 700;
+  }
+  
+  /* ============ P10-11 人 ============ */
+  .p10 .opening {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .p10 .staff-cards, .p11 .staff-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .staff-card {
+    display: grid;
+    grid-template-columns: 38.2fr 61.8fr;
+    gap: 10px;
+    background: #ede4d0;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  .staff-card .face {
+    height: 100px;
+  }
+  .staff-card .info {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #444;
+  }
+  .staff-card .name {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #2a2a2a;
+  }
+  .p11 .closing {
+    position: absolute;
+    bottom: 32px;
+    left: 28px;
+    right: 28px;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    color: #444;
+  }
+  
+  /* ============ P12 環境 ============ */
+  .p12 .title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .p12 .lead {
+    font-size: 11px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  .p12 .photo-grid {
+    display: grid;
+    grid-template-columns: 1.618fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 6px;
+    height: 460px;
+  }
+  .p12 .photo-grid .big {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  
+  /* ============ P13 代表 ============ */
+  .p13 .layout {
+    display: grid;
+    grid-template-columns: 38.2fr 61.8fr;
+    gap: 18px;
+    height: 100%;
+  }
+  .p13 .left .face {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 8px;
+  }
+  .p13 .left .signature {
+    font-family: "Noto Serif JP", serif;
+    font-size: 11px;
+    color: #555;
+    margin-top: 8px;
+  }
+  .p13 .letter {
+    font-family: "Noto Serif JP", serif;
+    font-size: 10px;
+    line-height: 1.9;
+    color: #333;
+  }
+  .p13 .letter p {
+    margin: 0 0 8px;
+  }
+  .p13 .letter .promises {
+    background: #ede4d0;
+    padding: 8px 10px;
+    margin: 10px 0;
+    font-size: 9px;
+  }
+  .p13 .letter .promises strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  /* ============ P14 行動 ============ */
+  .p14 .title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .p14 .lead {
+    font-size: 11px;
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+  }
+  .p14 .stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .p14 .stage {
+    background: #ede4d0;
+    padding: 12px;
+    border-radius: 4px;
+  }
+  .p14 .stage-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #c9a961;
+    margin-bottom: 4px;
+  }
+  .p14 .stage-name {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .p14 .stage-action {
+    font-size: 10px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .p14 .closing {
+    position: absolute;
+    bottom: 32px;
+    left: 28px;
+    right: 28px;
+    text-align: center;
+    font-size: 11px;
+    color: #444;
+    line-height: 1.7;
+    border-top: 1px solid #c9a961;
+    padding-top: 12px;
+  }
+  
+  /* ============ P15 LINE ============ */
+  .p15 .title {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin: 16px 0 16px;
+    letter-spacing: 0.05em;
+  }
+  .p15 .sub {
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .p15 .qr-area {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 14px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    position: relative;
+  }
+  .p15 .qr-pattern {
+    width: 150px;
+    height: 150px;
+    background-image:
+      linear-gradient(90deg, #2a2a2a 50%, transparent 50%),
+      linear-gradient(#2a2a2a 50%, transparent 50%);
+    background-size: 14px 14px, 14px 14px;
+    opacity: 0.8;
+  }
+  .p15 .qr-info {
+    text-align: center;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    color: #555;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .p15 .features {
+    background: #ede4d0;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 10px;
+    line-height: 1.8;
+    color: #444;
+  }
+  .p15 .features-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #2a2a2a;
+  }
+  .p15 .closing {
+    position: absolute;
+    bottom: 32px;
+    left: 28px;
+    right: 28px;
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    font-style: italic;
+  }
+  
+  /* ============ P16 裏表紙 ============ */
+  .p16 .main {
+    writing-mode: vertical-rl;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.8;
+    letter-spacing: 0.15em;
+    position: absolute;
+    top: 70px;
+    right: 100px;
+    height: 350px;
+    color: #2a2a2a;
+  }
+  .p16 .contact {
+    position: absolute;
+    bottom: 50px;
+    left: 32px;
+    right: 32px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 9px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .p16 .contact .group {
+    font-weight: 700;
+    color: #2a2a2a;
+    margin-bottom: 6px;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  
+  <header>
+    <h1>採用パンフレット 16P ラフ案</h1>
+    <p>成竹鍼灸整骨院グループ ／ ターゲット：40代未経験の明るい女性</p>
+    <p>※ 写真はすべてプレースホルダー（実際のスタッフ撮影 or AI生成で差し替え）</p>
+  </header>
+  
+  <!-- P1 表紙 -->
+  <div class="page-label">P1 ｜ 表紙</div>
+  <div class="page-group">
+    <div class="page p1">
+      <div class="sub-top">採用パンフレット 2026</div>
+      <div class="vertical-copy">年齢を、不利だと言われてきた。</div>
+      <div class="photo-ph face-photo">40代女性<br>横顔<br>（伏し目・思案）<br>紺スクラブ</div>
+      <div class="logo-area">
+        成竹鍼灸整骨院グループ<br>江東区
+      </div>
+    </div>
+  </div>
+  <div class="page-note">棚で50〜60冊と並ぶとき、唯一の「和書」として立つ</div>
+  
+  <!-- P2-3 共感 -->
+  <div class="page-label">P2-3 ｜ 共感（5つの不安）</div>
+  <div class="page-group">
+    <div class="page p2">
+      <div class="lead">
+        鍼灸学校に通うと決めたとき、<br>
+        心のどこかでこんな声が<br>
+        聞こえていませんでしたか。
+      </div>
+      <div class="photo-ph back-photo">40代女性の手元<br>教科書とノート<br>朝の窓辺・自然光</div>
+    </div>
+    <div class="page p3">
+      <div class="worries">
+        <div class="worry">「年齢で雇ってもらえないんじゃないか」</div>
+        <div class="worry">「20代の同期みたいに、覚えが早くないかも」</div>
+        <div class="worry">「立ち仕事、夜まで、体力もつかな」</div>
+        <div class="worry">「若い同僚に馴染めるだろうか」</div>
+        <div class="worry">「家庭と両立できる職場、あるのかな」</div>
+      </div>
+      <div class="closing">
+        私たちは、その不安を、<br>
+        一人ひとりから聞いてきました。
+      </div>
+    </div>
+  </div>
+  <div class="page-note">読み手主語に切り替わる瞬間。「これは私の本だ」が成立する</div>
+  
+  <!-- P4-5 反転 -->
+  <div class="page-label">P4-5 ｜ 反転（でも、現場では真逆）</div>
+  <div class="page-group">
+    <div class="page p4">
+      <div class="main-copy">でも、現場では<br>真逆のことが<br>起きている。</div>
+      <div class="photo-ph treatment-photo">40代女性スタッフが施術中<br>紺のスクラブ・真剣な眼差し<br>横長・自然光</div>
+    </div>
+    <div class="page p5">
+      <div class="reversal">
+        <div class="reversal-item">
+          <span class="neg">「40代だから雇わない」ではなく、</span><br>
+          <span class="pos">「40代だから採用する」</span>と決めた院があります。
+        </div>
+        <div class="reversal-item">
+          <span class="neg">「覚えが遅い」ではなく、</span><br>
+          <span class="pos">「丁寧に向き合える」</span>が評価される現場があります。
+        </div>
+        <div class="reversal-item">
+          <span class="neg">「体力で続けられない」ではなく、</span><br>
+          <span class="pos">「働き方を選べる」</span>職場があります。
+        </div>
+        <div class="reversal-item">
+          <span class="neg">「若い同僚と合わない」ではなく、</span><br>
+          <span class="pos">「同年代の先輩がいる」</span>環境があります。
+        </div>
+        <div class="reversal-item">
+          <span class="neg">「家庭と両立できない」ではなく、</span><br>
+          <span class="pos">「地元で働ける」</span>選択肢があります。
+        </div>
+      </div>
+      <div class="closing-statement">
+        成竹鍼灸整骨院グループは、<br>
+        40代を、本気で採用しています。
+      </div>
+    </div>
+  </div>
+  <div class="page-note">ネガ→ポジへの反転装置。ここで読み手が「他社と違う」を確信する</div>
+  
+  <!-- P6 解1 働き方 -->
+  <div class="page-label">P6 ｜ 解1（働き方は選べる）</div>
+  <div class="page-group">
+    <div class="page p6">
+      <div class="title">体力・家庭に合わせて、働き方は選べる。</div>
+      <div class="lead">
+        成竹では、ライフステージに合わせて<br>
+        働き方を選べます。
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="name">正社員（フルタイム）</div>
+          <div class="desc">キャリアを積み上げたい方</div>
+        </div>
+        <div class="card">
+          <div class="name">時短勤務</div>
+          <div class="desc">家庭・育児と両立したい方</div>
+        </div>
+        <div class="card">
+          <div class="name">パート・アルバイト</div>
+          <div class="desc">週2〜3日からスタートしたい方</div>
+        </div>
+        <div class="card">
+          <div class="name">業務委託 <span style="font-size:8px;color:#999;">（将来導入予定）</span></div>
+          <div class="desc">経験を積んだ後、独立志向のある方</div>
+        </div>
+      </div>
+      <div class="closing">
+        キャリアの始まりも、続け方も、<br>
+        あなたが選べます。
+      </div>
+    </div>
+  </div>
+  
+  <!-- P7 解2 数字 -->
+  <div class="page-label">P7 ｜ 解2（月80本の鍼が打てる現場）</div>
+  <div class="page-group">
+    <div class="page p7">
+      <div class="title">月80本の鍼が打てる現場。</div>
+      <div class="lead">未経験から技術を身につけるには、量が必要です。</div>
+      <div class="numbers">
+        <div class="num-box">
+          <div class="num">40</div>
+          <div class="unit">人以上／日／院</div>
+          <div class="num-label">患者数</div>
+        </div>
+        <div class="num-box gold">
+          <div class="num">4.2</div>
+          <div class="unit">回／月</div>
+          <div class="num-label">来院頻度</div>
+        </div>
+        <div class="num-box">
+          <div class="num">80</div>
+          <div class="unit">本以上／月／人</div>
+          <div class="num-label">鍼施術</div>
+        </div>
+      </div>
+      <div class="note">※ 保険診療をベースにこの数字を達成している院は、業界では稀です。</div>
+      <div class="evaluation">
+        成竹では、覚えの速さよりも、<br>
+        患者さんと向き合う姿勢を評価します。
+      </div>
+      <div class="three-method">
+        <strong>成竹独自「3類法」診断フレーム</strong>
+        症状を構造化して学べる ── 教科書では学べない、現場で使える東洋医学を。
+      </div>
+    </div>
+  </div>
+  
+  <!-- P8 解3 キャリア -->
+  <div class="page-label">P8 ｜ 解3（上昇しないキャリアという答え）</div>
+  <div class="page-group">
+    <div class="page p8">
+      <div class="title">上昇しないキャリアという答え。</div>
+      <div class="lead">
+        役職を上げて、給料を上げる。<br>
+        ── それだけがキャリアではない。
+      </div>
+      <div class="compare">
+        <div class="col">
+          <div class="col-label">よくあるキャリアパス</div>
+          <div class="col-title" style="color:#888;">縦に上がる</div>
+          <div class="arrow-up"></div>
+          <div style="font-size:9px;color:#888;margin-top:8px;line-height:1.5;">
+            新人 → 主任 → 院長 → 役員<br>
+            25万 → 30万 → 40万 → 60万
+          </div>
+        </div>
+        <div class="col">
+          <div class="col-label">成竹のキャリア</div>
+          <div class="col-title">横に広がる</div>
+          <div class="spread">
+            <div class="spread-item" style="top:0;left:30%;">技術を極める</div>
+            <div class="spread-item" style="top:30%;right:5%;">教育担当</div>
+            <div class="spread-item" style="bottom:30%;left:5%;">業務委託</div>
+            <div class="spread-item" style="bottom:0;left:30%;">院長候補</div>
+          </div>
+          <div style="font-size:9px;color:#555;margin-top:8px;line-height:1.5;">
+            志向に合わせて<br>
+            道を選べる
+          </div>
+        </div>
+      </div>
+      <div class="closing">
+        人生のフェーズに合わせて、<br>
+        働き方を変えていける場所です。
+      </div>
+    </div>
+  </div>
+  <div class="page-note">競合4社の縦上昇キャリアに対する構造的アンチテーゼ</div>
+  
+  <!-- P9 解4 江東区 -->
+  <div class="page-label">P9 ｜ 解4（江東区に根を張る）</div>
+  <div class="page-group">
+    <div class="page p9">
+      <div class="title">江東区に根を張る。</div>
+      <div class="lead">
+        成竹は、江東区で33年。<br>
+        地域に根を張り続けています。
+      </div>
+      <div class="photo-ph map">江東区 地図<br>南砂院・塩浜院・東砂院<br>+ 4院目（2027予定）<br>下町情緒のある街並み</div>
+      <div class="clinic-list">
+        <strong>南砂院</strong>（南砂町駅）　
+        <strong>塩浜院</strong>（木場駅）<br>
+        <strong>東砂院</strong>（南砂町駅）　
+        <strong>4院目</strong>（2027年開院予定）
+      </div>
+      <div class="closing">あなたも、江東区に根を張れます。</div>
+    </div>
+  </div>
+  
+  <!-- P10-11 人 -->
+  <div class="page-label">P10-11 ｜ 人（先輩たちのリアル）</div>
+  <div class="page-group">
+    <div class="page p10">
+      <div class="opening">彼女たちも、最初は<br>不安からでした。</div>
+      <div class="staff-cards">
+        <div class="staff-card">
+          <div class="photo-ph face">スタッフA<br>40代女性<br>顔写真</div>
+          <div class="info">
+            <div class="name">◯◯ ◯◯さん（45歳・南砂院・勤続2年）</div>
+            入社のきっかけ：子育てが一段落して、手に職を...<br>
+            不安だったこと：正直、年齢で採用されないと...<br>
+            今、思うこと：年齢が強みになる現場がある...
+          </div>
+        </div>
+        <div class="staff-card">
+          <div class="photo-ph face">スタッフB<br>40代女性<br>顔写真</div>
+          <div class="info">
+            <div class="name">◯◯ ◯◯さん（48歳・塩浜院・勤続3年）</div>
+            入社のきっかけ：◯◯◯◯◯◯◯◯◯◯◯<br>
+            不安だったこと：◯◯◯◯◯◯◯◯◯◯◯<br>
+            今、思うこと：◯◯◯◯◯◯◯◯◯◯◯
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page p11">
+      <div class="staff-cards">
+        <div class="staff-card">
+          <div class="photo-ph face">スタッフC<br>40代女性<br>顔写真</div>
+          <div class="info">
+            <div class="name">◯◯ ◯◯さん（42歳・東砂院・勤続1年）</div>
+            入社のきっかけ：◯◯◯◯◯◯◯◯◯◯◯<br>
+            不安だったこと：◯◯◯◯◯◯◯◯◯◯◯<br>
+            今、思うこと：◯◯◯◯◯◯◯◯◯◯◯
+          </div>
+        </div>
+        <div class="staff-card">
+          <div class="photo-ph face">スタッフD<br>40代女性<br>顔写真</div>
+          <div class="info">
+            <div class="name">◯◯ ◯◯さん（46歳・南砂院・勤続4年）</div>
+            入社のきっかけ：◯◯◯◯◯◯◯◯◯◯◯<br>
+            不安だったこと：◯◯◯◯◯◯◯◯◯◯◯<br>
+            今、思うこと：◯◯◯◯◯◯◯◯◯◯◯
+          </div>
+        </div>
+      </div>
+      <div class="closing">不安だったのは、あなただけじゃない。</div>
+    </div>
+  </div>
+  <div class="page-note">良い4社の必須装備「複数スタッフ顔写真＋正直インタビュー」を押さえる ／ 実写撮影必須</div>
+  
+  <!-- P12 環境 -->
+  <div class="page-label">P12 ｜ 環境（わたしたちが働く場所）</div>
+  <div class="page-group">
+    <div class="page p12">
+      <div class="title">わたしたちが働く場所。</div>
+      <div class="lead">
+        南砂院・塩浜院・東砂院 ──<br>
+        それぞれの空気感を見てください。
+      </div>
+      <div class="photo-grid">
+        <div class="photo-ph big">施術室の<br>自然光<br>（メイン）</div>
+        <div class="photo-ph">朝の受付</div>
+        <div class="photo-ph">休憩室</div>
+        <div class="photo-ph">待合室</div>
+        <div class="photo-ph">ロッカー</div>
+        <div class="photo-ph">街並み</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- P13 代表 -->
+  <div class="page-label">P13 ｜ 代表からのメッセージ</div>
+  <div class="page-group">
+    <div class="page p13">
+      <div class="layout">
+        <div class="left">
+          <div class="photo-ph face">竹中浩 代表<br>顔写真<br>誠実・温かい</div>
+          <div class="signature">
+            成竹鍼灸整骨院<br>
+            グループ 代表<br>
+            竹中 浩
+          </div>
+        </div>
+        <div class="letter">
+          <p>成竹鍼灸整骨院は、私の母が始めた院でした。</p>
+          <p>母が現役だったころ、患者さんが信頼を寄せていたのは、いつも年齢を重ねた女性鍼灸師でした。経験・気遣い・人間力 ── それらは年齢を重ねた人にしか出せないものでした。</p>
+          <p>業界では、20代の若手採用が当たり前です。私たちも、そうしてきた時期がありました。でも、ある時から気づきました。</p>
+          <p>患者さんが本当に求めているのは、若さではなく、人としての成熟だと。</p>
+          <p>だから、私たちは40代を本気で採用します。</p>
+          <div class="promises">
+            <strong>入社後の3つの約束：</strong>
+            ① 教育に時間をかける ── 覚えの速さで評価しません<br>
+            ② 働き方を選べる ── 体力・家庭に合わせて<br>
+            ③ 長く働ける場所をつくる ── 江東区に根を張って
+          </div>
+          <p>院見学・個別相談、いつでもお待ちしています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-note">※ 母の話を公開していいかは別途要確認</div>
+  
+  <!-- P14 行動 -->
+  <div class="page-label">P14 ｜ 行動（あなたの状況に合わせた、次の一歩）</div>
+  <div class="page-group">
+    <div class="page p14">
+      <div class="title">あなたの状況に合わせた、次の一歩。</div>
+      <div class="lead">どのステージにいる方も、歓迎します。</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="stage-label">A</div>
+          <div class="stage-name">まだ学校に通っている方</div>
+          <div class="stage-action">▶ 院見学<br>（在学中でもOK・授業の空き時間で可）</div>
+        </div>
+        <div class="stage">
+          <div class="stage-label">B</div>
+          <div class="stage-name">話を聞いてみたい方</div>
+          <div class="stage-action">▶ 個別相談<br>（私服OK・1時間・オンライン可）</div>
+        </div>
+        <div class="stage">
+          <div class="stage-label">C</div>
+          <div class="stage-name">他社も検討中の方</div>
+          <div class="stage-action">▶ 比較資料あり<br>（公平に他社情報もお渡しします）</div>
+        </div>
+        <div class="stage">
+          <div class="stage-label">D</div>
+          <div class="stage-name">勉強会に参加したい方</div>
+          <div class="stage-action">▶ 学生向け勉強会<br>（月1回・参加無料）</div>
+        </div>
+      </div>
+      <div class="closing">
+        どのステージでも、全員歓迎です。
+      </div>
+    </div>
+  </div>
+  
+  <!-- P15 LINE -->
+  <div class="page-label">P15 ｜ LINE QR（採用導線の終着点）</div>
+  <div class="page-group">
+    <div class="page p15">
+      <div class="title">最初の一歩は、LINEから。</div>
+      <div class="sub">
+        友だち追加だけでもOK。<br>
+        匿名で質問もできます。
+      </div>
+      <div class="qr-area"><div class="qr-pattern"></div></div>
+      <div class="qr-info">
+        ID：@seichiku<br>
+        URL：lin.ee/9v0N0e7
+      </div>
+      <div class="features">
+        <div class="features-title">LINEで聞けること</div>
+        ・院見学の予約　・個別相談の日程調整<br>
+        ・給与・待遇の質問　・働き方の相談<br>
+        ・寮の情報（検討中）　・そのほか、なんでも
+      </div>
+      <div class="closing">返信は、代表の竹中が直接お返ししています。</div>
+    </div>
+  </div>
+  
+  <!-- P16 裏表紙 -->
+  <div class="page-label">P16 ｜ 裏表紙</div>
+  <div class="page-group">
+    <div class="page p16">
+      <div class="main">気になったら、<br>まず一歩だけ。</div>
+      <div class="contact">
+        <div class="group">成竹鍼灸整骨院グループ</div>
+        東京都江東区<br><br>
+        南砂院｜TEL ◯◯◯-◯◯◯◯-◯◯◯◯<br>
+        塩浜院｜TEL ◯◯◯-◯◯◯◯-◯◯◯◯<br>
+        東砂院｜TEL ◯◯◯-◯◯◯◯-◯◯◯◯<br><br>
+        採用LP：seichiku.github.io/recruit/<br>
+        LINE：@seichiku（lin.ee/9v0N0e7）
+      </div>
+    </div>
+  </div>
+  <div class="page-note">表紙と対の「和書」の佇まい</div>
+  
+  <div style="margin-top:80px;text-align:center;color:#666;font-size:11px;line-height:1.7;">
+    以上、16ページ ／ A4中綴じ仕様<br>
+    写真はすべてプレースホルダー（実写撮影 or AI生成で差し替え）
+  </div>
+  
+</div>
+</body>
+</html>
