@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>目的休暇シミュレーター｜成竹グループ</title>
+<style>
+:root {
+  --navy:      #1B2A4A;
+  --navy2:     #2D4A7A;
+  --tc:        #C0654A;
+  --tc2:       #D4845C;
+  --cream:     #F5EEE1;
+  --cream2:    #E2D8CA;
+  --orange:    #E08860;
+  --blue:      #7A9CC0;
+  --muted:     #8A9BA8;
+  --white:     #FFFFFF;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  color: var(--navy);
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ─── HEADER ─── */
+.hdr {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 32px 20px 28px;
+}
+.hdr h1 {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  margin-bottom: 8px;
+}
+.hdr p {
+  font-size: 12px;
+  opacity: .65;
+  line-height: 2;
+}
+
+/* ─── LAYOUT ─── */
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 18px 14px 60px;
+}
+
+/* ─── CARD ─── */
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 14px rgba(27,42,74,.07);
+}
+.lbl {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* ─── INPUT CARD ─── */
+.rev-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.rev-top .title { font-size: 15px; font-weight: 600; }
+
+.rev-big {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--tc);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+.rev-big small { font-size: 19px; font-weight: 700; }
+
+/* Slider */
+.slider-area { position: relative; margin: 6px 0 0; }
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: var(--cream2);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--tc);
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(192,101,74,.45);
+  transition: transform .1s;
+}
+input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
+input[type=range]::-moz-range-thumb {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--tc);
+  border: none;
+  cursor: pointer;
+}
+
+/* Threshold marker on slider track */
+.t-marker {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 8px;
+  background: var(--navy);
+  border-radius: 2px;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+.t-marker::after {
+  content: '▲ 120万（発火点）';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.slider-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 26px;
+}
+
+/* Numeric input */
+.inp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cream);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 12px;
+}
+.inp-row span { font-size: 13px; flex: 1; color: var(--muted); }
+.inp-row input[type=number] {
+  width: 80px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  border: 2px solid var(--cream2);
+  border-radius: 8px;
+  padding: 5px;
+  background: white;
+  color: var(--navy);
+  -moz-appearance: textfield;
+}
+.inp-row input[type=number]::-webkit-inner-spin-button { opacity: 1; }
+.inp-row input[type=number]:focus { outline: none; border-color: var(--tc); }
+.inp-row .unit { font-size: 13px; color: var(--muted); }
+
+/* Days row */
+.days-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--cream2);
+  margin-top: 14px;
+  padding-top: 14px;
+}
+.days-row label { font-size: 13px; color: var(--muted); flex: 1; }
+.days-row input {
+  width: 52px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  border: 2px solid var(--cream2);
+  border-radius: 8px;
+  padding: 5px;
+  background: white;
+  color: var(--navy);
+}
+.days-row input:focus { outline: none; border-color: var(--tc); }
+.days-row .unit { font-size: 13px; color: var(--muted); }
+
+/* ─── REVENUE STRUCTURE BAR ─── */
+.bar-wrap {
+  height: 58px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 8px;
+}
+.bar-cost {
+  background: var(--navy);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: flex-basis .28s ease;
+}
+.bar-surplus {
+  background: linear-gradient(90deg, var(--tc), var(--tc2));
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity .28s;
+}
+.bar-foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* FIRE MESSAGE */
+.fire-box {
+  background: linear-gradient(135deg, #fff8f5, #ffeee8);
+  border: 2px solid var(--tc);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  margin-top: 12px;
+  display: none;
+}
+.fire-main {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--tc);
+  margin-bottom: 4px;
+}
+.fire-sub { font-size: 12px; color: var(--muted); }
+
+/* ─── DISTRIBUTION SECTION ─── */
+.surplus-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.surplus-banner .s-label { font-size: 14px; font-weight: 600; }
+.surplus-banner .s-amount {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--tc);
+  letter-spacing: -.02em;
+}
+.surplus-banner .s-amount small { font-size: 16px; font-weight: 700; }
+
+.dist-bar {
+  display: flex;
+  height: 46px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.dist-seg {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow: hidden;
+}
+.ds0 { background: var(--navy); flex: 50; }
+.ds1 { background: var(--tc); flex: 20; }
+.ds2 { background: var(--orange); flex: 20; }
+.ds3 { background: var(--blue); flex: 10; }
+
+.legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 14px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.leg-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.legend-item .pct { margin-left: auto; font-size: 11px; color: var(--muted); }
+
+/* ─── RESULT CARDS ─── */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.rc {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 15px 13px;
+}
+.rc.full { grid-column: 1 / -1; }
+.rc.star {
+  background: linear-gradient(135deg, #fff6f3, #ffe8e0);
+  border: 2px solid var(--tc);
+}
+.rc-lbl {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.rc-val {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.rc.star .rc-val {
+  color: var(--tc);
+  font-size: 34px;
+}
+.rc-sub {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.rc-sub strong { color: var(--navy); font-weight: 700; }
+
+/* ─── MESSAGE BLOCKS ─── */
+.msg {
+  background: white;
+  border-left: 4px solid var(--navy);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.85;
+  box-shadow: 0 1px 8px rgba(27,42,74,.05);
+}
+.msg.priv {
+  border-left-color: var(--tc);
+  background: linear-gradient(135deg, #fff8f5, #ffeee8);
+}
+
+/* ─── FOOTER ─── */
+.ftr {
+  text-align: center;
+  padding: 20px 16px 30px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 2.2;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 420px) {
+  .rev-big { font-size: 38px; }
+  .rev-big small { font-size: 16px; }
+  .surplus-banner .s-amount { font-size: 28px; }
+  .rc-val { font-size: 22px; }
+  .rc.star .rc-val { font-size: 28px; }
+  .hdr h1 { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <h1>目的休暇シミュレーター</h1>
+  <p>成竹鍼灸整骨院グループ｜全社総会 2026<br>月商を入れると、あなたへの配分がリアルタイムでわかります</p>
+</header>
+
+<div class="wrap">
+
+  <!-- ① INPUT -->
+  <div class="card">
+    <div class="lbl">月商を入力</div>
+
+    <div class="rev-top">
+      <span class="title">平均月商</span>
+    </div>
+    <div class="rev-big" id="revBig">150<small>万円</small></div>
+
+    <div class="slider-area">
+      <input type="range" id="revSlider" min="80" max="300" value="150" step="5">
+      <!-- 120万の位置マーカー: (120-80)/(300-80)*100 = 18.18% -->
+      <div class="t-marker" id="tMarker"></div>
+    </div>
+    <div class="slider-ends">
+      <span>80万</span>
+      <span>300万</span>
+    </div>
+
+    <div class="inp-row">
+      <span>数値で直接入力</span>
+      <input type="number" id="revInput" value="150" min="80" max="300">
+      <span class="unit">万円</span>
+    </div>
+
+    <div class="days-row">
+      <label for="daysInp">稼働日数（月）</label>
+      <input type="number" id="daysInp" value="20" min="1" max="31">
+      <span class="unit">日</span>
+    </div>
+  </div>
+
+  <!-- ② STRUCTURE BAR -->
+  <div class="card">
+    <div class="lbl">月商の構造</div>
+    <div class="bar-wrap">
+      <div class="bar-cost" id="barCost">120万まで＝自分のコスト（配分なし）</div>
+      <div class="bar-surplus" id="barSurplus">超えた分＝余剰（配分対象）</div>
+    </div>
+    <div class="bar-foot">
+      <span>0</span>
+      <span>120万（発火点）</span>
+      <span id="barRight"></span>
+    </div>
+
+    <div class="fire-box" id="fireBox">
+      <div class="fire-main">🔥 あと <span id="fireAmt">—</span> 万円で発火します</div>
+      <div class="fire-sub">月商120万を超えると余剰の配分がスタートします</div>
+    </div>
+  </div>
+
+  <!-- ③ RESULTS（120万超のときだけ表示） -->
+  <div id="resultsSection" style="display:none">
+
+    <!-- Surplus + Distribution -->
+    <div class="card">
+      <div class="surplus-banner">
+        <div class="s-label">年間余剰（配分対象）</div>
+        <div class="s-amount" id="surplusAmt">—<small>万円</small></div>
+      </div>
+
+      <div class="lbl">内訳（固定ルール 50 / 20 / 20 / 10）</div>
+      <div class="dist-bar">
+        <div class="dist-seg ds0">会社留保<br>50%</div>
+        <div class="dist-seg ds1">目的休暇<br>20%</div>
+        <div class="dist-seg ds2">賞与<br>20%</div>
+        <div class="dist-seg ds3">昇給<br>10%</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="leg-dot" style="background:var(--navy)"></div>
+          <span>会社留保</span>
+          <span class="pct">50%</span>
+        </div>
+        <div class="legend-item">
+          <div class="leg-dot" style="background:var(--tc)"></div>
+          <span>目的休暇</span>
+          <span class="pct">20%</span>
+        </div>
+        <div class="legend-item">
+          <div class="leg-dot" style="background:var(--orange)"></div>
+          <span>賞与</span>
+          <span class="pct">20%</span>
+        </div>
+        <div class="legend-item">
+          <div class="leg-dot" style="background:var(--blue)"></div>
+          <span>昇給</span>
+          <span class="pct">10%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result numbers -->
+    <div class="card">
+      <div class="lbl">あなたへの配分</div>
+      <div class="results-grid">
+
+        <!-- 目的休暇 (featured) -->
+        <div class="rc full star">
+          <div class="rc-lbl">🏖️ 目的休暇（20%）</div>
+          <div class="rc-val" id="vacDaysVal">—</div>
+          <div class="rc-sub">
+            <strong id="vacAmt">—</strong> ／ 日当 <span id="dailyWage">—</span> 万円
+          </div>
+        </div>
+
+        <!-- 賞与 -->
+        <div class="rc">
+          <div class="rc-lbl">🎉 賞与（20%）</div>
+          <div class="rc-val" id="bonusAmt">—</div>
+        </div>
+
+        <!-- 昇給 -->
+        <div class="rc">
+          <div class="rc-lbl">📈 昇給（10%）</div>
+          <div class="rc-val" id="raiseAmt">—</div>
+          <div class="rc-sub">月額 +<strong id="monthlyRaise">—</strong> 万円</div>
+        </div>
+
+        <!-- 会社留保 -->
+        <div class="rc full">
+          <div class="rc-lbl">🏢 会社留保（50%）</div>
+          <div class="rc-val" id="reserveAmt">—</div>
+          <div class="rc-sub">設備投資・採用・経営バッファとして使用</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /resultsSection -->
+
+  <!-- ④ FIXED MESSAGES -->
+  <div class="msg">
+    自分が生んだ分の半分が、自分に返る固定ルールです
+  </div>
+<div class="msg priv">
+    🔒 ここで出る数字はあなた個人用。金額は本人と竹中だけが見ます
+  </div>
+
+</div><!-- /wrap -->
+
+<footer class="ftr">
+  成竹鍼灸整骨院グループ｜全社総会 2026<br>
+  他人との比較・ランキングはありません。個人計算のみ。
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── CONSTANTS ─────────────────────────────── */
+  var THRESHOLD = 1200000;   // 120万
+  var RATIO     = 0.98;
+  var SLIDER_MIN = 80;
+  var SLIDER_MAX = 300;
+
+  /* ── DOM refs ───────────────────────────────── */
+  var revSlider   = document.getElementById('revSlider');
+  var revInput    = document.getElementById('revInput');
+  var daysInp     = document.getElementById('daysInp');
+  var revBig      = document.getElementById('revBig');
+  var tMarker     = document.getElementById('tMarker');
+  var barCost     = document.getElementById('barCost');
+  var barSurplus  = document.getElementById('barSurplus');
+  var barRight    = document.getElementById('barRight');
+  var fireBox     = document.getElementById('fireBox');
+  var fireAmt     = document.getElementById('fireAmt');
+  var resultsSection = document.getElementById('resultsSection');
+  var surplusAmt  = document.getElementById('surplusAmt');
+  var vacDaysVal  = document.getElementById('vacDaysVal');
+  var vacAmt      = document.getElementById('vacAmt');
+  var dailyWage   = document.getElementById('dailyWage');
+  var bonusAmt    = document.getElementById('bonusAmt');
+  var raiseAmt    = document.getElementById('raiseAmt');
+  var monthlyRaise = document.getElementById('monthlyRaise');
+  var reserveAmt  = document.getElementById('reserveAmt');
+
+  /* ── Position threshold marker ──────────────── */
+  var threshPct = (120 - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN) * 100;
+  // The actual thumb travel is narrower than container due to thumb radius.
+  // Approximate compensation for 30px thumb in unknown-width container:
+  // We'll handle it with a JS resize observer for accuracy.
+  function positionMarker() {
+    var thumbW = 30;
+    var w = revSlider.offsetWidth;
+    if (w === 0) return;
+    var trackW = w - thumbW;
+    var left = thumbW / 2 + trackW * threshPct / 100;
+    tMarker.style.left = left + 'px';
+  }
+  positionMarker();
+  window.addEventListener('resize', positionMarker);
+
+  /* ── Format helpers ─────────────────────────── */
+  function fmtMain(yen) {
+    // For amounts ≥ 10万: round to nearest integer 万
+    var man = yen / 10000;
+    if (man >= 10) return Math.round(man) + '万円';
+    return man.toFixed(1) + '万円';
+  }
+  function fmtSmall(yen) {
+    // One decimal
+    return (yen / 10000).toFixed(1);
+  }
+
+  /* ── Main calculation ───────────────────────── */
+  function calc() {
+    var revMan = parseFloat(revSlider.value);
+    var revY   = revMan * 10000;
+    var days   = Math.max(1, parseInt(daysInp.value) || 20);
+
+    /* Update big display & numeric input */
+    revBig.innerHTML = revMan + '<small>万円</small>';
+    revInput.value   = revMan;
+
+    /* Bar right label */
+    barRight.textContent = revMan + '万';
+
+    if (revY <= THRESHOLD) {
+      /* ── BELOW THRESHOLD ── */
+      barCost.style.flexBasis  = '100%';
+      barCost.style.flexShrink = '0';
+      barSurplus.style.display = 'none';
+
+      var gap = (THRESHOLD - revY) / 10000;
+      fireAmt.textContent  = gap.toFixed(0);
+      fireBox.style.display = 'block';
+      resultsSection.style.display = 'none';
+
+    } else {
+      /* ── ABOVE THRESHOLD ── */
+      var costPct = (THRESHOLD / revY * 100).toFixed(2);
+      barCost.style.flexBasis  = costPct + '%';
+      barCost.style.flexShrink = '0';
+      barSurplus.style.display = 'flex';
+
+      fireBox.style.display      = 'none';
+      resultsSection.style.display = 'block';
+
+      /* ── Calculations ── */
+      var surplus  = (revY - THRESHOLD) * RATIO * 12;
+      var reserve  = surplus * 0.50;
+      var vacation = surplus * 0.20;
+      var bonus    = surplus * 0.20;
+      var raise    = surplus * 0.10;
+
+      var daily  = revY / days;
+      var vDays  = vacation / daily;
+      var raiseM = raise / 12;
+
+      /* ── Update DOM ── */
+      surplusAmt.innerHTML    = Math.round(surplus / 10000) + '<small>万円</small>';
+      vacDaysVal.innerHTML    = vDays.toFixed(1) + '<small style="font-size:0.52em;font-weight:700;margin-left:4px">日間</small>';
+      vacAmt.textContent      = fmtMain(vacation);
+      dailyWage.textContent   = fmtSmall(daily);
+      bonusAmt.textContent    = fmtMain(bonus);
+      raiseAmt.textContent    = fmtMain(raise);
+      monthlyRaise.textContent = fmtSmall(raiseM);
+      reserveAmt.textContent  = fmtMain(reserve);
+    }
+  }
+
+  /* ── Event: slider → sync input ──────────────── */
+  revSlider.addEventListener('input', calc);
+
+  /* ── Event: number input → sync slider ────────── */
+  function syncFromInput() {
+    var v = parseFloat(revInput.value);
+    if (isNaN(v)) return;
+    v = Math.max(SLIDER_MIN, Math.min(SLIDER_MAX, v));
+    // Snap to step=5
+    v = Math.round(v / 5) * 5;
+    revSlider.value = v;
+    revInput.value  = v;
+    calc();
+  }
+  revInput.addEventListener('change', syncFromInput);
+  revInput.addEventListener('input', function () {
+    var v = parseFloat(this.value);
+    if (!isNaN(v) && v >= SLIDER_MIN && v <= SLIDER_MAX) {
+      revSlider.value = v;
+      calc();
+    }
+  });
+
+  /* ── Event: days ────────────────────────────── */
+  daysInp.addEventListener('input',  calc);
+  daysInp.addEventListener('change', calc);
+
+  /* ── Init ───────────────────────────────────── */
+  calc();
+})();
+</script>
+</body>
+</html>
