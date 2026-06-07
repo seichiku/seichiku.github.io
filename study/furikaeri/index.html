@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>学生勉強会 第1回×第2回 振り返り｜成竹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#B8964A; --gold-light:#D4AF6A; --ink:#1A1612; --ink-2:#221D17;
+  --cream:#FAF7F2; --cream-dim:#C9C0B2; --accent-red:#8B3A2F; --line:rgba(184,150,74,.22);
+  --up:#7BA05B; --down:#C96A4E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink); color:var(--cream);
+  font-family:"Noto Sans JP",sans-serif; font-weight:300;
+  line-height:1.85; letter-spacing:.02em; overflow-x:hidden;
+  background-image:radial-gradient(circle at 20% 0%,rgba(184,150,74,.08),transparent 55%),
+                   radial-gradient(circle at 90% 90%,rgba(139,58,47,.07),transparent 50%);
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Noto Serif JP",serif;font-weight:600;letter-spacing:.04em;line-height:1.5}
+.en{font-family:"Cormorant Garamond",serif;letter-spacing:.14em;text-transform:uppercase}
+.gold{color:var(--gold-light)}
+
+/* HERO */
+header{padding:96px 0 72px;border-bottom:1px solid var(--line);text-align:center}
+.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold-light);
+  font-size:.72rem;letter-spacing:.28em;padding:7px 18px;border-radius:2px;margin-bottom:30px}
+header h1{font-size:clamp(1.9rem,5vw,3rem);margin-bottom:18px}
+.sub-en{font-size:clamp(.85rem,2.4vw,1.05rem);color:var(--gold);margin-bottom:8px}
+.lead{color:var(--cream-dim);font-size:clamp(.92rem,2.6vw,1.05rem);max-width:640px;margin:24px auto 0}
+
+/* sections */
+section{padding:66px 0;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.72rem;letter-spacing:.26em;color:var(--gold);margin-bottom:14px}
+section h2{font-size:clamp(1.35rem,3.6vw,1.8rem);margin-bottom:8px}
+.note{color:var(--cream-dim);font-size:.9rem;margin-top:6px}
+.body{color:var(--cream-dim);margin-top:18px;font-size:.96rem}
+.body strong{color:var(--cream);font-weight:500}
+
+/* summary cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.card{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:22px 18px;text-align:center}
+.card .k{font-family:"Cormorant Garamond",serif;font-size:2.4rem;color:var(--gold-light);line-height:1}
+.card .arrow{font-size:1.05rem;color:var(--cream-dim);margin:6px 0}
+.card .lbl{font-size:.78rem;color:var(--cream-dim);letter-spacing:.08em;margin-top:8px}
+.card .delta{font-size:.74rem;margin-top:6px}
+.delta.up{color:var(--up)} .delta.down{color:var(--down)}
+
+/* compare bars */
+.metric{margin-top:26px}
+.metric .row{margin-bottom:20px}
+.metric .name{font-size:.9rem;margin-bottom:7px;display:flex;justify-content:space-between}
+.metric .name span:last-child{color:var(--cream-dim);font-size:.82rem}
+.bar{height:9px;background:rgba(255,255,255,.06);border-radius:6px;position:relative;overflow:hidden}
+.bar i{position:absolute;left:0;top:0;height:100%;border-radius:6px;display:block}
+.bar .b1{background:rgba(201,192,178,.5)}
+.bar .b2{background:linear-gradient(90deg,var(--gold),var(--gold-light));margin-top:0}
+.legend{font-size:.74rem;color:var(--cream-dim);margin-top:14px;display:flex;gap:18px;flex-wrap:wrap}
+.legend i{display:inline-block;width:14px;height:9px;border-radius:3px;margin-right:6px;vertical-align:middle}
+
+/* channel mix */
+.channel{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.chbox{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:24px 22px}
+.chbox h3{font-size:1rem;margin-bottom:4px}
+.chbox .when{font-size:.74rem;color:var(--gold);letter-spacing:.1em;margin-bottom:18px}
+.seg{margin-bottom:12px}
+.seg .t{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:5px}
+.seg .t span:last-child{color:var(--gold-light)}
+.seg .track{height:7px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden}
+.seg .track i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.seg.red .track i{background:linear-gradient(90deg,var(--accent-red),#b1564a)}
+.seg.self .track i{background:linear-gradient(90deg,#5f7d8b,#7ba0b0)}
+
+/* highlight band */
+.band{background:var(--ink-2);border:1px solid var(--gold);border-radius:8px;padding:26px;margin-top:28px}
+.band .big{font-family:"Cormorant Garamond",serif;font-size:1.9rem;color:var(--gold-light);line-height:1.2}
+.band p{color:var(--cream-dim);font-size:.92rem;margin-top:10px}
+
+/* voices */
+.voices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.voice{background:var(--ink-2);border-left:2px solid var(--gold);border-radius:0 6px 6px 0;padding:18px 20px;font-size:.9rem;color:var(--cream-dim)}
+.voice b{color:var(--gold-light);font-weight:500}
+
+/* themes */
+.themes{margin-top:26px}
+.theme-row{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.theme-row .lab{width:120px;font-size:.86rem;flex-shrink:0}
+.theme-row .tr{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden}
+.theme-row .tr i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:5px}
+.theme-row .v{width:42px;text-align:right;font-size:.8rem;color:var(--cream-dim)}
+
+/* year grid */
+.years{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+.yr{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:18px 10px;text-align:center}
+.yr .n{font-family:"Cormorant Garamond",serif;font-size:2rem;color:var(--gold-light)}
+.yr .l{font-size:.78rem;color:var(--cream-dim);margin-top:4px}
+
+/* questions (余白) */
+.q-intro{color:var(--cream-dim);font-size:.95rem;margin-top:16px}
+.qlist{margin-top:26px;display:grid;gap:14px}
+.qitem{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:22px 24px}
+.qitem .qn{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:1.1rem;margin-bottom:8px}
+.qitem h3{font-size:1.02rem;margin-bottom:8px;color:var(--cream)}
+.qitem p{color:var(--cream-dim);font-size:.88rem}
+.qitem .space{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;font-size:.76rem;color:rgba(201,192,178,.5);font-style:italic}
+
+/* footer */
+footer{padding:60px 0 70px;text-align:center}
+footer .en{color:var(--gold);font-size:.82rem;margin-bottom:10px}
+footer p{color:var(--cream-dim);font-size:.82rem;line-height:1.9}
+
+/* anim */
+.fade{opacity:0;transform:translateY(18px);animation:fadeUp .9s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}
+
+@media(max-width:680px){
+  .cards{grid-template-columns:1fr;gap:12px}
+  .channel{grid-template-columns:1fr}
+  .voices{grid-template-columns:1fr}
+  .years{grid-template-columns:repeat(2,1fr)}
+  .theme-row .lab{width:90px;font-size:.8rem}
+  header{padding:72px 0 54px}
+  section{padding:52px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="badge fade d1">INTERNAL REVIEW ／ 社内振り返り</div>
+    <div class="sub-en en fade d1">Student Study Session</div>
+    <h1 class="fade d2">学生勉強会<br>第1回 × 第2回 振り返り</h1>
+    <p class="lead fade d3">第1回（5/2・腰痛症）と第2回（6/6・自律神経）の<br>アンケートと申込データから見えた、成果と次の課題。</p>
+  </div>
+</header>
+
+<!-- 全体サマリー -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">01 ／ Overview</div>
+    <h2>2回でわかった、ひとことの結論</h2>
+    <p class="body"><strong>「量」は大きく伸び、狙っていた船水先生ルートからの脱却（＝経路の分散）が実現。</strong>さらに、過去に面接で見送った人材が自ら勉強会を探して再来し、入社を決めてくれるという<strong>採用に直結した成果</strong>も出ました。一方で、人は増えたのに座学がその層を巻き込めず、<strong>「誰に向けた座学か」が不明確だった</strong>ことが露呈しています。</p>
+    <div class="cards">
+      <div class="card fade d2"><div class="k">12<span style="font-size:1.1rem">→</span>30</div><div class="lbl">申込数</div><div class="delta up">約2.5倍</div></div>
+      <div class="card fade d3"><div class="k">3<span style="font-size:1.1rem">→</span>12</div><div class="lbl">参加校数</div><div class="delta up">4倍に多様化</div></div>
+      <div class="card fade d4"><div class="k">75<span style="font-size:1.1rem">→</span>0<span style="font-size:1rem">%</span></div><div class="lbl">船水先生ルート比率</div><div class="delta up">依存から脱却</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 数値対比 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">02 ／ Satisfaction</div>
+    <h2>満足度の対比</h2>
+    <p class="note">5段階評価の平均。グレー＝第1回(5/2)、ゴールド＝第2回(6/6)。</p>
+    <div class="metric">
+      <div class="row">
+        <div class="name"><span>総合満足度</span><span>4.9 → 4.66</span></div>
+        <div class="bar"><i class="b1" style="width:98%"></i></div>
+        <div class="bar" style="margin-top:4px"><i class="b2" style="width:93.2%"></i></div>
+      </div>
+      <div class="row">
+        <div class="name"><span>座学理解度</span><span class="down" style="color:var(--down)">4.4 → 3.83 ▼</span></div>
+        <div class="bar"><i class="b1" style="width:88%"></i></div>
+        <div class="bar" style="margin-top:4px"><i class="b2" style="width:76.6%"></i></div>
+      </div>
+      <div class="row">
+        <div class="name"><span>実技満足度</span><span class="up" style="color:var(--up)">4.5 → 4.76 ▲</span></div>
+        <div class="bar"><i class="b1" style="width:90%"></i></div>
+        <div class="bar" style="margin-top:4px"><i class="b2" style="width:95.2%"></i></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="background:rgba(201,192,178,.5)"></i>第1回 5/2（n=10）</span>
+      <span><i style="background:var(--gold)"></i>第2回 6/6（n=29）</span>
+    </div>
+    <p class="body">総合・座学は微減、実技は上昇。<strong>手を動かす体験（お灸）は層を選ばず刺さり、座学は受講層が広がるほど置いていかれやすい</strong>という対照が出ています。</p>
+  </div>
+</section>
+
+<!-- 紹介経路の構造分散（最大の成果） -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">03 ／ Channel ＊最重要</div>
+    <h2>最大の成果：紹介経路が「分散」した</h2>
+    <p class="note">第1回は紹介者名の構成比。第2回は新規25名を「本当の入口」で分類（継続5名は別掲）。</p>
+    <div class="channel">
+      <div class="chbox fade d1">
+        <h3>第1回</h3><div class="when en">5/2 ／ n=12</div>
+        <div class="seg red"><div class="t"><span>船水先生ルート</span><span>75%</span></div><div class="track"><i style="width:75%"></i></div></div>
+        <div class="seg"><div class="t"><span>なし／無記入</span><span>17%</span></div><div class="track"><i style="width:17%"></i></div></div>
+        <div class="seg"><div class="t"><span>松澤先生</span><span>8%</span></div><div class="track"><i style="width:8%"></i></div></div>
+      </div>
+      <div class="chbox fade d2">
+        <h3>第2回・新規25名の入口</h3><div class="when en">6/6 ／ 継続5名は別掲</div>
+        <div class="seg"><div class="t"><span>代表の企業説明会（3校）</span><span>40%</span></div><div class="track"><i style="width:40%"></i></div></div>
+        <div class="seg"><div class="t"><span>松田先生ルート</span><span>28%</span></div><div class="track"><i style="width:28%"></i></div></div>
+        <div class="seg"><div class="t"><span>自社の個別声かけ（植田・竹中）</span><span>16%</span></div><div class="track"><i style="width:16%"></i></div></div>
+        <div class="seg self"><div class="t"><span>参加者 → 参加者の紹介</span><span>8%</span></div><div class="track"><i style="width:8%"></i></div></div>
+        <div class="seg"><div class="t"><span>学校の先生紹介</span><span>4%</span></div><div class="track"><i style="width:4%"></i></div></div>
+        <div class="seg"><div class="t"><span>確認中（メール送付済）</span><span>4%</span></div><div class="track"><i style="width:4%"></i></div></div>
+      </div>
+    </div>
+    <div class="band">
+      <div class="big">船水先生 75% → 0%。<br>1人・1校依存から、追える経路へ。</div>
+      <p><strong>新規流入の96%は「誰が連れてきたか」を追える＝再現可能な経路</strong>でした。最大の入口は代表の企業説明会（40%）で、運任せの自走ではなく能動的な営業の成果です。継続率も45%（5/2参加11名中5名が再来）、<strong>リピーターの三輪さんが沖幱さんを紹介</strong>するなど、参加者が次を連れてくる輪も回り始めています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 採用に直結した成果 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">04 ／ Hiring Win ＊最重要</div>
+    <h2>もう一つの最大の成果：勉強会から、採用が生まれた</h2>
+    <p class="body">数字以上に大きいのが、<strong>勉強会が採用そのものを生んだ</strong>ことです。</p>
+    <div class="voices">
+      <div class="voice"><b>一度面接で見送った人材</b>が、今回この勉強会を自分で探して参加。竹中と再び接点を持ち、<b>「成竹グループに入りたい」</b>と言ってくれました。</div>
+      <div class="voice"><b>7月から採用したアルバイト</b>の人材と既存スタッフが、この場で顔合わせできました。</div>
+    </div>
+    <p class="body">勉強会の目的は採用です。一度離れた人が自ら戻り、入社まで決まった——これは集客や満足度より一段重い、<strong>勉強会が機能している何よりの証拠</strong>です。</p>
+  </div>
+</section>
+
+<!-- ターゲット不明確（問題提起） -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">05 ／ Targeting</div>
+    <h2>起きていること：人は増えたのに、座学が巻き込めなかった</h2>
+    <p class="body">座学理解度の平均は <strong>4.4 → 3.83</strong> に低下、<strong>3点以下が34%（29人中10人）</strong>。ただし「人が増えたから下がった」のではありません。<strong>人は増えたのに、座学がその層を巻き込めなかった</strong>のです。根っこにあるのは、<strong>「この座学が誰に向けたものか（ターゲット）」が不明確だった</strong>こと。人数が増えて初めて、その曖昧さが理解度の差として表に出ました。</p>
+    <p class="body">巻き込めなかった要因は、ターゲットの曖昧さに加えて、当日の伝え方にも重なっていました。</p>
+    <ul style="margin:14px 0 0;padding-left:0;list-style:none;color:var(--cream-dim);font-size:.94rem">
+      <li style="padding:11px 0;border-bottom:1px solid var(--line)"><strong style="color:var(--cream)">テーマの抽象度が高すぎた</strong> ― 前回の腰痛症に比べ、自律神経は概念的で入り口が高かった。</li>
+      <li style="padding:11px 0;border-bottom:1px solid var(--line)"><strong style="color:var(--cream)">引き込む「小話」がなかった</strong> ― 前回あった脱線・たとえ話が今回は不在で、惹きが弱かった。</li>
+      <li style="padding:11px 0;border-bottom:1px solid var(--line)"><strong style="color:var(--cream)">難しい話を、難しいまま話していた</strong> ― かみ砕き・翻訳が足りなかった。</li>
+      <li style="padding:11px 0;border-bottom:1px solid var(--line)"><strong style="color:var(--cream)">講師自身の「楽しんでいる感」が伝わらなかった</strong> ― 熱量が場に広がらず、聞く側も乗り切れなかった。</li>
+      <li style="padding:11px 0"><strong style="color:var(--cream)">時間が短かった</strong> ― 60分枠を50分で終了。アンケートでも「もう少し長く」という声があった。</li>
+    </ul>
+    <div class="voices">
+      <div class="voice">「2年生ですが、<b>1年生レベルの解説</b>でお願いしたいです」</div>
+      <div class="voice">「<b>難しかった</b>です」</div>
+      <div class="voice">「古典をほとんど勉強していないので、灸と繋がる切り口は勉強になった」</div>
+      <div class="voice">「少し眠くなる時間帯で<b>ふわーっと</b>してしまいました」</div>
+    </div>
+    <p class="body">＝ 量の問題ではなく、座学の<strong>「出口」が曖昧だった</strong>問題。次はまず、<strong>誰に・どんなアクションをしてもらいたいか（＝この座学の出口）を明確にする</strong>。出口が決まれば、抽象度・小話・時間配分といった伝え方も自ずと定まります。</p>
+  </div>
+</section>
+
+<!-- 参加者の声・好評ポイント -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">06 ／ Voices</div>
+    <h2>刺さったポイント（強みとして残したい）</h2>
+    <div class="voices">
+      <div class="voice">「<b>フレアが2回起こる</b>のは知らなかった。今後の施灸で観察したい」</div>
+      <div class="voice">「初めて自分以外の方にお灸できて<b>感激</b>しました」</div>
+      <div class="voice">「<b>古典と現代医学の結びつき</b>が面白い。解像度が高くなった感覚」</div>
+      <div class="voice">「五行の火が<b>3つある</b>という認識はなかった。大きな学びでした」</div>
+    </div>
+    <p class="body">推奨度（友人に勧めたいか）平均 <strong>4.41</strong>（推奨19・中立4・批判6）。次回参加意向は<strong>「はい45%＋できれば28%＝72%」</strong>。お灸の実技体験と「古典×現代医学の橋渡し」が、第2回の満足を支えた二本柱です。</p>
+  </div>
+</section>
+
+<!-- 学年・採用ファネル -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">07 ／ Recruiting Funnel</div>
+    <h2>採用ファネルとしての顔ぶれ（第2回）</h2>
+    <div class="years">
+      <div class="yr"><div class="n">10</div><div class="l">1年生</div></div>
+      <div class="yr"><div class="n">6</div><div class="l">2年生</div></div>
+      <div class="yr"><div class="n">10</div><div class="l">3年生</div></div>
+      <div class="yr"><div class="n">4</div><div class="l">卒業／既卒</div></div>
+    </div>
+    <p class="body">採用に一番近い<strong>3年生が10名</strong>8�加えて、<strong>既卒・卒業生が4名</strong>混ざり始めたのは、8月以降に再検討予定の「資格者層」採用の早期シグナルとして注目できます。次回テーマ需要の上位は次の通り。</p>
+    <div class="themes">
+      <div class="theme-row"><div class="lab">内科系疾患</div><div class="tr"><i style="width:100%"></i></div><div class="v">13票</div></div>
+      <div class="theme-row"><div class="lab">肩こり・頸部</div><div class="tr"><i style="width:92%"></i></div><div class="v">12票</div></div>
+      <div class="theme-row"><div class="lab">経穴の取穴</div><div class="tr"><i style="width:69%"></i></div><div class="v">9票</div></div>
+      <div class="theme-row"><div class="lab">婤人科系</div><div class="tr"><i style="width:62%"></i></div><div class="v">8票</div></div>
+      <div class="theme-row"><div class="lab">腰痛症</div><div class="tr"><i style="width:62%"></i></div><div class="v">8票</div></div>
+      <div class="theme-row"><div class="lab">スポーツ障害</div><div class="tr"><i style="width:62%"></i></div><div class="v">8票</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 代表からの問題提起 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">08 ／ The Real Problem</div>
+    <h2>代表からの問題提起：肝心の「学生との対話」が抜けている</h2>
+    <div class="band">
+      <div class="big">勉強会の目的は、採用。<br>その手段は、学生と話すこと。</div>
+      <p>勉強会は採用が目的で、その手段は、勉強会を通じて学生とコミュニケーションをとることです。ところが当日は、講師・撮影・運営……と<strong>各自が自分の役割に徹知してしまい、一番肝心な「学生一人ひとりとの対話」がおろそかになっています。</strong>役割を全うすることと、学生と話すこと——次回はこの<strong>後者を全員の最優先</strong>に置きたい。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="en">Seichiku Acupuncture Group</div>
+    <p>成竹鍼灸整骨院グループ ／ LSD Company 株式会社<br>
+    学生勉強会 第1回×第2回 振り返り（社内資料）</p>
+  </div>
+</footer>
+
+</body>
+</html>
