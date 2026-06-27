@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>判断データベース</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+<!-- ====== Login Screen ====== -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">判</div>
+    <h1>判断データベース</h1>
+    <p>植田の公開判断 ＆ 成長ランキング</p>
+    <div id="googleSignInBtn" class="google-btn-wrapper"></div>
+    <div id="loginError" class="login-error" style="display:none;"></div>
+    <div class="login-note">@seichiku.org アカウントでログインしてください</div>
+  </div>
+</div>
+
+<!-- ====== Main App (hidden until login) ====== -->
+<div id="mainApp" style="display:none;">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-logo">判</div>
+      <div class="hero-text">
+        <h1>判断データベース</h1>
+        <p>「なぜそう判断したか」を会社の学習資産に</p>
+      </div>
+      <div class="user-info" id="userInfo"></div>
+    </div>
+  </div>
+
+  <div class="intro-note">
+    <div class="card-note">
+      技術者の差は技術だけでなく <b>判断の精度・鍛錬回数</b> に表れる、という仮説から生まれた仕組みです。
+      事実・経過はカルッテに、ここには <b>判断ロジック</b> だけを蓄積します。
+      公開は「罰」ではなく <b>勝ち取るご褒美</b>。成長は『植田への接近（ギャップ改善）＋添削の反映』の
+      <b>前月比の伸び</b> で評価し、<b>正直さは点数化しません</b>（正直に出せる状態を守るため）。
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loadingIndicator" class="loading">
+    <div class="spinner"></div>
+    <p>データを読み込んでいます...</p>
+  </div>
+
+  <!-- ====== 成長ランキング ====== -->
+  <div class="section stack">
+    <div class="section-title"><span class="icon">📈</span> 成長ランキング</div>
+    <p class="section-desc">『植田への接近（ギャップ改善）＋添削の反映』の前月比の伸びで順位づけ。量＝補填の床、質＝上振れ。</p>
+    <div class="ranking-list" id="growthRanking"></div>
+  </div>
+
+  <!-- ====== 植田の公開判断 ====== -->
+  <div class="section stack">
+    <div class="section-title"><span class="icon">🧠</span> 植田の公開判断</div>
+    <p class="section-desc">植田の臨床判断を教材として公開。仮説 → 根拠 → 施術を選んだ理由 → リスク → 別案 → 答え合わせ、の流れで読めます。</p>
+    <div class="search-bar">
+      <input type="text" class="search-input" id="handanSearch" placeholder="キーワードで検索（院・種別・仮説・根拠・添削など）">
+    </div>
+    <div class="result-count" id="handanCount"></div>
+    <div class="case-grid" id="handanGrid"></div>
+    <div class="empty-state" id="handanEmpty" style="display:none;">
+      <div class="icon">🧠</div>
+      <p>植田の公開判断がまだありません。<br>判断ログの入力が始まると、ここに教材として表示されます。</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">&copy; 2026 判断データベース（社内限定）</div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
