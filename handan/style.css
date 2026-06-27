@@ -24,7 +24,9 @@
 /* 独立LP：セクションを常時表示で縦並び */
 .section.stack { display: block; padding-top: 18px; padding-bottom: 18px; }
 .intro-note { max-width:1100px; margin: 0 auto; padding: 0 20px; }
-.intro-note .card-note { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); border-left: 4px solid var(--accent); padding: 16px 18px; font-size: 13.5px; color: var(--text); line-height: 1.8; margin-top: 18px; }
+.intro-note .card-note { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); border-left: 4px solid var(--accent); padding: 18px 20px; font-size: 13.5px; color: var(--text); line-height: 1.85; margin-top: 18px; }
+.intro-note .card-note p + p { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.intro-note .card-note p b:first-child { color: var(--primary-dark); }
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
