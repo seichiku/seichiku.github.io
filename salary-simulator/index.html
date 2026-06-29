@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>給与シミュレーター｜成竹グループ</title>
+<style>
+:root {
+  --navy:#1B2A4A; --navy2:#2D4A7A; --tc:#C0654A; --tc2:#D4845C;
+  --cream:#F5EEE1; --cream2:#E2D8CA; --orange:#E08860; --blue:#7A9CC0;
+  --green:#5C9A6B; --warn:#B5462F; --muted:#8A9BA8; --white:#FFFFFF;
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--cream); color:var(--navy); font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN','YuGothic','Yu Gothic','Meiryo',sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh; }
+
+.hdr { background:var(--navy); color:white; text-align:center; padding:32px 20px 28px; }
+.hdr h1 { font-size:21px; font-weight:800; letter-spacing:.07em; margin-bottom:8px; }
+.hdr p { font-size:12px; opacity:.65; line-height:2; }
+
+.wrap { max-width:600px; margin:0 auto; padding:18px 14px 60px; }
+.card { background:white; border-radius:18px; padding:22px 20px; margin-bottom:14px; box-shadow:0 2px 14px rgba(27,42,74,.07); }
+.howto { background:var(--navy); color:#fff; border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.howto-h { font-size:13px; font-weight:800; letter-spacing:.04em; margin-bottom:7px; }
+.howto p { font-size:13px; line-height:1.9; opacity:.92; }
+.howto strong { color:var(--cream); font-weight:800; }
+.lbl { font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:14px; }
+
+.rev-top { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:10px; }
+.rev-top .title { font-size:15px; font-weight:600; }
+.rev-big { font-size:48px; font-weight:900; color:var(--tc); line-height:1; letter-spacing:-.02em; }
+.rev-big small { font-size:19px; font-weight:700; }
+
+.slider-area { position:relative; margin:6px 0 0; }
+input[type=range] { -webkit-appearance:none; width:100%; height:8px; background:var(--cream2); border-radius:4px; outline:none; cursor:pointer; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:30px; height:30px; border-radius:50%; background:var(--tc); cursor:pointer; box-shadow:0 3px 12px rgba(192,101,74,.45); transition:transform .1s; }
+input[type=range]:active::-webkit-slider-thumb { transform:scale(1.15); }
+input[type=range]::-moz-range-thumb { width:30px; height:30px; border-radius:50%; background:var(--tc); border:none; cursor:pointer; }
+
+.t-marker { position:absolute; top:0; width:3px; height:8px; background:var(--navy); border-radius:2px; pointer-events:none; transform:translateX(-50%); }
+.t-marker::after { content:'▲ 120万（発火点）'; position:absolute; top:12px; left:50%; transform:translateX(-50%); font-size:10px; font-weight:700; color:var(--navy); white-space:nowrap; }
+.slider-ends { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:26px; }
+.slider-ends.tight { margin-top:8px; }
+
+.inp-row { display:flex; align-items:center; gap:10px; background:var(--cream); border-radius:10px; padding:10px 14px; margin-top:12px; }
+.inp-row span { font-size:13px; flex:1; color:var(--muted); }
+.inp-row input[type=number] { width:80px; text-align:center; font-size:18px; font-weight:700; border:2px solid var(--cream2); border-radius:8px; padding:5px; background:white; color:var(--navy); -moz-appearance:textfield; }
+.inp-row input[type=number]:focus { outline:none; border-color:var(--tc); }
+.inp-row .unit { font-size:13px; color:var(--muted); }
+
+.days-row { display:flex; align-items:center; gap:10px; border-top:1px solid var(--cream2); margin-top:14px; padding-top:14px; }
+.days-row label { font-size:13px; color:var(--muted); flex:1; }
+.days-row input { width:52px; text-align:center; font-size:17px; font-weight:700; border:2px solid var(--cream2); border-radius:8px; padding:5px; background:white; color:var(--navy); }
+.days-row input:focus { outline:none; border-color:var(--tc); }
+.days-row .unit { font-size:13px; color:var(--muted); }
+
+.hint { font-size:12px; color:var(--muted); line-height:1.8; margin-top:12px; }
+.hint strong { color:var(--navy); font-weight:700; }
+
+/* 労働分配率 STAR */
+.lpr-card { background:linear-gradient(135deg,#fff8f5,#ffeee8); border:2px solid var(--tc); }
+.lpr-top { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px; }
+.lpr-top .t { font-size:13px; font-weight:700; color:var(--navy); }
+.lpr-val { font-size:52px; font-weight:900; color:var(--tc); line-height:1; letter-spacing:-.02em; }
+.lpr-val small { font-size:22px; font-weight:800; }
+.badge { display:inline-block; padding:6px 16px; border-radius:999px; font-size:14px; font-weight:800; color:#fff; margin-top:6px; }
+
+.gauge { position:relative; height:12px; border-radius:999px; margin:18px 0 4px; background:linear-gradient(90deg,var(--green) 0%,var(--green) 36%,#d6b24a 50%,var(--orange) 70%,var(--warn) 100%); }
+.gauge .target { position:absolute; top:-4px; width:2px; height:20px; background:var(--navy); transform:translateX(-50%); }
+.gauge .target::after { content:'40%上限'; position:absolute; top:22px; left:50%; transform:translateX(-50%); font-size:10px; font-weight:700; color:var(--navy); white-space:nowrap; }
+.gauge .mark { position:absolute; top:-6px; width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid var(--navy); transform:translate(-50%,1px); transition:left .15s; box-shadow:0 2px 6px rgba(0,0,0,.25); }
+.gscale { display:flex; justify-content:space-between; font-size:10px; color:var(--muted); margin-top:24px; }
+
+.answer { background:white; border-radius:12px; padding:16px; margin-top:18px; text-align:center; }
+.answer .a-lbl { font-size:12px; color:var(--muted); font-weight:700; }
+.answer .a-val { font-size:34px; font-weight:900; color:var(--tc); line-height:1.1; margin:4px 0; letter-spacing:-.02em; }
+.answer .a-val small { font-size:17px; font-weight:800; }
+
+/* 比較ブロック */
+.cmp { margin-top:14px; padding-top:6px; border-top:1px solid var(--cream2); text-align:left; }
+.cmprow { display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-bottom:1px dashed var(--cream2); }
+.cmprow:last-of-type { border-bottom:none; }
+.cmprow .k { font-size:13px; color:var(--muted); font-weight:600; }
+.cmprow .v { font-size:21px; font-weight:900; color:var(--navy); font-variant-numeric:tabular-nums; }
+.cmprow .v small { font-size:13px; font-weight:700; }
+.cmprow .v.tc { color:var(--tc); }
+.cmprow .v.pos { color:var(--green); }
+.cmprow .v.neg { color:var(--warn); }
+.a-sub { font-size:12.5px; color:var(--muted); line-height:1.85; margin-top:12px; text-align:left; }
+.a-sub strong { color:var(--navy); font-weight:700; }
+
+.caveat { background:#fff; border:1.5px solid var(--cream2); border-left:4px solid var(--navy); border-radius:0 10px 10px 0; padding:12px 14px; margin-top:12px; font-size:12px; line-height:1.85; color:var(--muted); text-align:left; }
+.caveat strong { color:var(--navy); font-weight:700; }
+
+/* STRUCTURE BAR */
+.bar-wrap { height:58px; border-radius:12px; overflow:hidden; display:flex; margin-bottom:8px; }
+.bar-cost { background:var(--navy); height:100%; display:flex; align-items:center; padding:0 12px; color:white; font-size:12px; font-weight:700; white-space:nowrap; overflow:hidden; flex-shrink:0; transition:flex-basis .28s ease; }
+.bar-surplus { background:linear-gradient(90deg,var(--tc),var(--tc2)); flex:1; height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:12px; font-weight:700; white-space:nowrap; overflow:hidden; transition:opacity .28s; }
+.bar-foot { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); }
+.fire-box { background:linear-gradient(135deg,#fff8f5,#ffeee8); border:2px solid var(--tc); border-radius:12px; padding:16px; text-align:center; margin-top:12px; display:none; }
+.fire-main { font-size:19px; font-weight:800; color:var(--tc); margin-bottom:4px; }
+.fire-sub { font-size:12px; color:var(--muted); }
+
+/* DISTRIBUTION */
+.surplus-banner { display:flex; justify-content:space-between; align-items:center; background:var(--cream); border-radius:12px; padding:14px 16px; margin-bottom:18px; }
+.surplus-banner .s-label { font-size:14px; font-weight:600; }
+.surplus-banner .s-amount { font-size:34px; font-weight:900; color:var(--tc); letter-spacing:-.02em; }
+.surplus-banner .s-amount small { font-size:16px; font-weight:700; }
+.dist-bar { display:flex; height:46px; border-radius:10px; overflow:hidden; margin-bottom:12px; }
+.dist-seg { height:100%; display:flex; align-items:center; justify-content:center; text-align:center; color:white; font-size:11px; font-weight:700; line-height:1.35; overflow:hidden; }
+.ds0 { background:var(--navy); flex:50; } .ds1 { background:var(--tc); flex:20; } .ds2 { background:var(--orange); flex:20; } .ds3 { background:var(--blue); flex:10; }
+.legend { display:grid; grid-template-columns:1fr 1fr; gap:8px 14px; }
+.legend-item { display:flex; align-items:center; gap:8px; font-size:13px; }
+.leg-dot { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
+.legend-item .pct { margin-left:auto; font-size:11px; color:var(--muted); }
+
+.results-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.rc { background:var(--cream); border-radius:12px; padding:15px 13px; }
+.rc.full { grid-column:1 / -1; }
+.rc.star { background:linear-gradient(135deg,#fff6f3,#ffe8e0); border:2px solid var(--tc); }
+.rc-lbl { font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; margin-bottom:7px; }
+.rc-val { font-size:28px; font-weight:900; color:var(--navy); line-height:1; margin-bottom:5px; }
+.rc.star .rc-val { color:var(--tc); font-size:34px; }
+.rc-sub { font-size:12px; color:var(--muted); line-height:1.7; }
+.rc-sub strong { color:var(--navy); font-weight:700; }
+
+.msg { background:white; border-left:4px solid var(--navy); border-radius:0 12px 12px 0; padding:14px 16px; margin-bottom:10px; font-size:14px; line-height:1.85; box-shadow:0 1px 8px rgba(27,42,74,.05); }
+.msg.priv { border-left-color:var(--tc); background:linear-gradient(135deg,#fff8f5,#ffeee8); }
+details { background:white; border-radius:12px; padding:14px 16px; box-shadow:0 1px 8px rgba(27,42,74,.05); margin-bottom:10px; }
+summary { cursor:pointer; font-size:13px; font-weight:700; color:var(--navy); }
+details .inner { font-size:12.5px; color:var(--muted); line-height:1.95; margin-top:12px; }
+details .inner b { color:var(--navy); }
+.ftr { text-align:center; padding:20px 16px 30px; font-size:11px; color:var(--muted); line-height:2.2; }
+
+@media (max-width:420px) {
+  .rev-big { font-size:38px; } .rev-big small { font-size:16px; }
+  .lpr-val { font-size:42px; } .surplus-banner .s-amount { font-size:28px; }
+  .answer .a-val { font-size:28px; } .rc-val { font-size:22px; } .rc.star .rc-val { font-size:28px; } .hdr h1 { font-size:18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <h1>給与シミュレーター</h1>
+  <p>成竹鍼灸整骨院グループ｜報酬・組織設計<br>いまの売上から「認められる額面の上限」がわかります</p>
+</header>
+
+<div class="wrap">
+
+  <!-- 使い方の案内 -->
+  <div class="howto">
+    <div class="howto-h">📝 使い方</div>
+    <p>まず <strong>① いまの個人売上</strong> と <strong>② いまの額面（支給額）</strong> を入れてください。<br>あなたの売上で <strong>「認められる額面の上限」</strong> と、いまの額面との差（取れる余地／超過）が出ます。</p>
+  </div>
+
+  <!-- ① 個人売上（主役・先に入れる） -->
+  <div class="card">
+    <div class="lbl">① いまの個人売上を入れる（月額）</div>
+    <div class="rev-top"><span class="title">個人月商</span></div>
+    <div class="rev-big" id="revBig">100<small>万円</small></div>
+    <div class="slider-area">
+      <input type="range" id="revSlider" min="70" max="300" value="100" step="1">
+      <div class="t-marker" id="tMarker"></div>
+    </div>
+    <div class="slider-ends"><span>70万</span><span>300万</span></div>
+    <div class="inp-row">
+      <span>数値で直接入力</span>
+      <input type="number" id="revInput" value="100" min="70" max="300">
+      <span class="unit">万円</span>
+    </div>
+    <div class="days-row">
+      <label for="daysInp">稼働日数（月）</label>
+      <input type="number" id="daysInp" value="20" min="1" max="31">
+      <span class="unit">日</span>
+    </div>
+  </div>
+
+  <!-- ② 今の額面 -->
+  <div class="card">
+    <div class="lbl">② いまの額面（支給額）を入れる</div>
+    <div class="rev-top"><span class="title">現在の額面</span></div>
+    <div class="rev-big" id="payBig">30<small>万円</small></div>
+    <div class="slider-area">
+      <input type="range" id="paySlider" min="20" max="60" value="30" step="0.5">
+    </div>
+    <div class="slider-ends tight"><span>20万</span><span>60万</span></div>
+    <div class="inp-row">
+      <span>数値で直接入力</span>
+      <input type="number" id="payInput" value="30" min="20" max="60" step="0.5">
+      <span class="unit">万円</span>
+    </div>
+    <p class="hint" id="costHint"></p>
+  </div>
+
+  <!-- ③ 労働分配率 & 認められる額面の上限（STAR） -->
+  <div class="card lpr-card">
+    <div class="lpr-top"><span class="t">あなたの 個人労働分配率</span></div>
+    <div class="lpr-val" id="lprVal">36.7<small>%</small></div>
+    <span class="badge" id="badge" style="background:var(--green)">✅ 40%以下クリア</span>
+    <div class="gauge">
+      <div class="target" style="left:40%"></div>
+      <div class="mark" id="gMark" style="left:27%"></div>
+    </div>
+    <div class="gscale"><span>低い＝余裕◎</span><span></span><span>40%超＝要改善</span></div>
+
+    <div class="answer">
+      <div class="a-lbl">いまの売上で「認められる」額面の上限（労働分配率40%）</div>
+      <div class="a-val" id="ansVal">約34<small>万円</small></div>
+
+      <div class="cmp">
+        <div class="cmprow"><span class="k">認められる額面の上限</span><span class="v tc" id="limPay">—</span></div>
+        <div class="cmprow"><span class="k">いまの額面（支給額）</span><span class="v" id="curPay">—</span></div>
+        <div class="cmprow"><span class="k" id="gapK">上限まで（額面の余地）</span><span class="v" id="gapPay">—</span></div>
+      </div>
+
+      <div class="a-sub" id="ansSub"></div>
+      <div class="caveat">※ <strong>売上が届く＝自動で昇給、ではありません。</strong>上限は「その売上なら会社基準（労働分配率40%以下）でそこまでの額面が認められる」という線です。実際の昇給は<strong>半期査定で最大+1万円/回</strong>、しかも<strong>院予算100%達成・規律・貢献</strong>が条件で、段階的に上がります。</div>
+    </div>
+  </div>
+
+  <!-- ④ 月商の構造 -->
+  <div class="card">
+    <div class="lbl">③ 月商の構造</div>
+    <div class="bar-wrap">
+      <div class="bar-cost" id="barCost">120万まで＝会社のコスト（配分なし）</div>
+      <div class="bar-surplus" id="barSurplus">超えた分＝余剰（配分対象）</div>
+    </div>
+    <div class="bar-foot"><span>0</span><span>120万（発火点）</span><span id="barRight"></span></div>
+    <div class="fire-box" id="fireBox">
+      <div class="fire-main">🔥 あと <span id="fireAmt">—</span> 万円で発火します</div>
+      <div class="fire-sub">月商120万を超えると、賞与・昇給・目的休暇の配分がスタート</div>
+    </div>
+  </div>
+
+  <!-- ⑤ 余剰の配分 -->
+  <div id="resultsSection" style="display:none">
+    <div class="card">
+      <div class="surplus-banner">
+        <div class="s-label">年間余剰（配分対象）</div>
+        <div class="s-amount" id="surplusAmt">—<small>万円</small></div>
+      </div>
+      <div class="lbl">内訳（固定ルール 50 / 20 / 20 / 10）</div>
+      <div class="dist-bar">
+        <div class="dist-seg ds0">会社留保<br>50%</div>
+        <div class="dist-seg ds1">目的休暇<br>20%</div>
+        <div class="dist-seg ds2">賞与<br>20%</div>
+        <div class="dist-seg ds3">昇給<br>10%</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="leg-dot" style="background:var(--navy)"></div><span>会社留保</span><span class="pct">50%</span></div>
+        <div class="legend-item"><div class="leg-dot" style="background:var(--tc)"></div><span>目的休暇</span><span class="pct">20%</span></div>
+        <div class="legend-item"><div class="leg-dot" style="background:var(--orange)"></div><span>賞与</span><span class="pct">20%</span></div>
+        <div class="legend-item"><div class="leg-dot" style="background:var(--blue)"></div><span>昇給</span><span class="pct">10%</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">あなたへの配分（年間）</div>
+      <div class="results-grid">
+        <div class="rc full star">
+          <div class="rc-lbl">🏖️ 目的休暇（20%）</div>
+          <div class="rc-val" id="vacDaysVal">—</div>
+          <div class="rc-sub"><strong id="vacAmt">—</strong> ／ 日当 <span id="dailyWage">—</span> 万円</div>
+        </div>
+        <div class="rc"><div class="rc-lbl">🎉 賞与（20%）</div><div class="rc-val" id="bonusAmt">—</div></div>
+        <div class="rc"><div class="rc-lbl">📈 昇給（10%）</div><div class="rc-val" id="raiseAmt">—</div><div class="rc-sub">月額 +<strong id="monthlyRaise">—</strong> 万円</div></div>
+        <div class="rc full"><div class="rc-lbl">🏢 会社留保（50%）</div><div class="rc-val" id="reserveAmt">—</div><div class="rc-sub">設備投資・採用・経営バッファとして使用</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="msg">いまの売上が、認められる額面の上限を決めます。額面を上げたいなら、まず売上を伸ばすのが順序です。</div>
+  <div class="msg priv">🔒 ここで出る数字はあなた個人用。金額は本人と竹中だけが見ます。送信されません。</div>
+
+  <details>
+    <summary>計算の前提・制度ルールを見る</summary>
+    <div class="inner">
+      ・<b>個人労働分配率 ＝ 社保込給与（額面 × 116.2%）÷ 個人月商</b>。<b>会社方針＝40%以下</b>（40%が上限）。<br>
+      ・<b>認められる額面の上限 ＝ 個人月商 × 40% ÷ 116.2%</b>。この線までなら40%以下に収まります。<br>
+      ・上限に届く＝自動で昇給ではありません。昇給は<b>半期査定で最大+1万円/回</b>・院予算100%達成・規律・貢献が条件で段階的。<br>
+      ・<b>余剰 ＝（月商 − 120万）× 0.98</b>。120万円（損益分岐点）を超えた分のみが原資。配分は 会社50 / 目的休暇20 / 賞与20 / 昇給10。<br>
+      ・係数：社保込116.2%、粗利率98%、損益分岐点120万円/月。教育目標は月商150万円。<br>
+      ・本ツールは報酬・組織設計v1に基づく目安です。最終判定は半期査定（規律・財務・貢献の3軸）で決定します。
+    </div>
+  </details>
+
+</div>
+
+<footer class="ftr">
+  成竹鍼灸整骨院グループ｜報酬・組織設計（v1）<br>
+  他人との比較・ランキングはありません。個人計算のみ。
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var THRESHOLD = 1200000, RATIO = 0.98, COEF = 1.162, TARGET = 40;
+  var PAY_MIN = 20, PAY_MAX = 60, REV_MIN = 70, REV_MAX = 300;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var revSlider=$('revSlider'), revInput=$('revInput'), revBig=$('revBig'), daysInp=$('daysInp');
+  var paySlider=$('paySlider'), payInput=$('payInput'), payBig=$('payBig'), costHint=$('costHint');
+  var lprVal=$('lprVal'), badge=$('badge'), gMark=$('gMark'), ansVal=$('ansVal'), ansSub=$('ansSub');
+  var limPay=$('limPay'), curPay=$('curPay'), gapK=$('gapK'), gapPay=$('gapPay');
+  var barCost=$('barCost'), barSurplus=$('barSurplus'), barRight=$('barRight'), fireBox=$('fireBox'), fireAmt=$('fireAmt');
+  var resultsSection=$('resultsSection'), surplusAmt=$('surplusAmt');
+  var vacDaysVal=$('vacDaysVal'), vacAmt=$('vacAmt'), dailyWage=$('dailyWage');
+  var bonusAmt=$('bonusAmt'), raiseAmt=$('raiseAmt'), monthlyRaise=$('monthlyRaise'), reserveAmt=$('reserveAmt');
+
+  var threshPct = (120 - REV_MIN) / (REV_MAX - REV_MIN) * 100;
+  function positionMarker() { var w=revSlider.offsetWidth; if(w===0) return; tMarker.style.left=(15+(w-30)*threshPct/100)+'px'; }
+  var tMarker = $('tMarker');
+  positionMarker(); window.addEventListener('resize', positionMarker);
+
+  function fmtMain(yen){ var m=yen/10000; return (m>=10)?Math.round(m)+'万円':m.toFixed(1)+'万円'; }
+  function fmtSmall(yen){ return (yen/10000).toFixed(1); }
+  function gaugePos(lpr){ var p=(lpr-30)/(55-30)*100; return Math.max(2,Math.min(98,p)); }
+
+  function calc() {
+    var revMan = parseFloat(revSlider.value);
+    var payMan = parseFloat(paySlider.value);
+    var revY = revMan * 10000;
+    var days = Math.max(1, parseInt(daysInp.value) || 20);
+
+    revBig.innerHTML = revMan + '<small>万円</small>'; revInput.value = revMan; barRight.textContent = revMan + '万';
+    payBig.innerHTML = payMan + '<small>万円</small>'; payInput.value = payMan;
+
+    var costMan = payMan * COEF;
+    var lpr = costMan / revMan * 100;
+    var limit = revMan * (TARGET / 100) / COEF;   // 認められる額面の上限（万）
+    var gap = limit - payMan;                       // +：額面が上限を下回る（余地）／−：超過
+
+    costHint.innerHTML = '社保込コスト ＝ <strong>' + payMan + '万 × 116.2% ＝ 約' + costMan.toFixed(1) + '万円</strong>';
+    lprVal.innerHTML = lpr.toFixed(1) + '<small>%</small>';
+    gMark.style.left = gaugePos(lpr) + '%';
+    ansVal.innerHTML = '約' + limit.toFixed(1) + '<small>万円</small>';
+
+    limPay.innerHTML = '約' + limit.toFixed(1) + '<small>万円</small>';
+    curPay.innerHTML = payMan + '<small>万円</small>';
+    if (gap >= 0.1) {
+      gapK.textContent = '上限まで（取れる余地）';
+      gapPay.className = 'v pos';
+      gapPay.innerHTML = '+' + gap.toFixed(1) + '<small>万円</small>';
+    } else if (gap <= -0.1) {
+      gapK.textContent = '上限を超過';
+      gapPay.className = 'v neg';
+      gapPay.innerHTML = '−' + Math.abs(gap).toFixed(1) + '<small>万円</small>';
+    } else {
+      gapK.textContent = '上限ぴったり';
+      gapPay.className = 'v';
+      gapPay.innerHTML = '±0<small>万円</small>';
+    }
+
+    var needRev = payMan * COEF / (TARGET / 100); // 今の額面を40%以下にするのに必要な売上
+    if (lpr < 39.5) {
+      badge.style.background = 'var(--green)';
+      badge.textContent = '✅ 40%以下クリア';
+      ansSub.innerHTML = '売上' + revMan + '万なら、額面は <strong>約' + limit.toFixed(1) + '万まで</strong> 会社基準（40%以下）に収まります。いまの額面' + payMan + '万はその上限を <strong>' + gap.toFixed(1) + '万 下回って</strong> いて、労働分配率は ' + lpr.toFixed(1) + '%。余地はありますが、昇給は半期査定で最大+1万円/回・院予算達成が条件で段階的です。';
+    } else if (lpr <= 40.5) {
+      badge.style.background = 'var(--navy)';
+      badge.textContent = '⚠️ 40%上限ぴったり';
+      ansSub.innerHTML = 'いまの額面' + payMan + '万は、売上' + revMan + '万で <strong>ちょうど上限（労働分配率40%）</strong>。これ以上の額面を認めるには、まず売上を伸ばす必要があります。';
+    } else if (lpr <= 45) {
+      badge.style.background = 'var(--orange)';
+      badge.textContent = '⚠️ 40%超（要改善）';
+      ansSub.innerHTML = 'いまの額面' + payMan + '万は売上' + revMan + '万に対し労働分配率 ' + lpr.toFixed(1) + '%＝上限40%超。認められる額面の上限は約' + limit.toFixed(1) + '万で、いまは <strong>' + Math.abs(gap).toFixed(1) + '万 超過</strong>。売上を <strong>約' + Math.round(needRev) + '万</strong> まで伸ばせば40%以下に収まります。';
+    } else {
+      badge.style.background = 'var(--warn)';
+      badge.textContent = '🔧 大幅に超過（要改善）';
+      ansSub.innerHTML = 'いまの額面' + payMan + '万は売上' + revMan + '万に対し労働分配率 ' + lpr.toFixed(1) + '%＝上限40%を大きく超過。認められる上限は約' + limit.toFixed(1) + '万、<strong>' + Math.abs(gap).toFixed(1) + '万 超過</strong>。売上 <strong>約' + Math.round(needRev) + '万</strong> が必要です。';
+    }
+
+    if (revY <= THRESHOLD) {
+      barCost.style.flexBasis = '100%'; barSurplus.style.display = 'none';
+      fireAmt.textContent = ((THRESHOLD - revY) / 10000).toFixed(0);
+      fireBox.style.display = 'block'; resultsSection.style.display = 'none';
+    } else {
+      barCost.style.flexBasis = (THRESHOLD / revY * 100).toFixed(2) + '%';
+      barSurplus.style.display = 'flex'; fireBox.style.display = 'none'; resultsSection.style.display = 'block';
+      var surplus = (revY - THRESHOLD) * RATIO * 12;
+      var reserve = surplus*0.50, vacation = surplus*0.20, bonus = surplus*0.20, raise = surplus*0.10;
+      var daily = revY/days, vDays = vacation/daily, raiseM = raise/12;
+      surplusAmt.innerHTML = Math.round(surplus/10000) + '<small>万円</small>';
+      vacDaysVal.innerHTML = vDays.toFixed(1) + '<small style="font-size:0.52em;font-weight:700;margin-left:4px">日間</small>';
+      vacAmt.textContent = fmtMain(vacation); dailyWage.textContent = fmtSmall(daily);
+      bonusAmt.textContent = fmtMain(bonus); raiseAmt.textContent = fmtMain(raise);
+      monthlyRaise.textContent = fmtSmall(raiseM); reserveAmt.textContent = fmtMain(reserve);
+    }
+  }
+
+  function clampSnap(v, mn, mx, step){ v=Math.max(mn,Math.min(mx,v)); return Math.round(v/step)*step; }
+  revSlider.addEventListener('input', calc);
+  revInput.addEventListener('change', function(){ var v=parseFloat(revInput.value); if(isNaN(v))return; v=clampSnap(v,REV_MIN,REV_MAX,1); revSlider.value=v; calc(); });
+  revInput.addEventListener('input', function(){ var v=parseFloat(this.value); if(!isNaN(v)&&v>=REV_MIN&&v<=REV_MAX){ revSlider.value=v; calc(); } });
+  paySlider.addEventListener('input', calc);
+  payInput.addEventListener('change', function(){ var v=parseFloat(payInput.value); if(isNaN(v))return; v=clampSnap(v,PAY_MIN,PAY_MAX,0.5); paySlider.value=v; calc(); });
+  payInput.addEventListener('input', function(){ var v=parseFloat(this.value); if(!isNaN(v)&&v>=PAY_MIN&&v<=PAY_MAX){ paySlider.value=v; calc(); } });
+  daysInp.addEventListener('input', calc); daysInp.addEventListener('change', calc);
+
+  calc();
+})();
+</script>
+</body>
+</html>
