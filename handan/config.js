@@ -12,7 +12,7 @@ const CONFIG = {
   // handan/apps-script/Code.gs をデプロイして得た /exec URL を貼る。
   // スプレッドシートの読み取りはこのサーバー側で行い、ブラウザには
   // spreadsheets 権限を一切要求しない（＝未確認アプリ警告を回避）。
-  APPS_SCRIPT_URL: 'YOUR_APPS_SCRIPT_WEB_APP_URL',
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyjaFFrYwbVYeXsXeeSxaKUbtpoBT_3pSvHZtZBmmJX5pKwGPZgnFffLlmcrGtw7Od0/exec',
 
   // ログインを許可するドメイン（空配列 [] なら全Googleアカウント許可）
   // ※ 正式な判定は Apps Script 側でも行う（クライアント側は早期チェック用）。
