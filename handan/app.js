@@ -2,87 +2,73 @@
 // 判断データベース LP — メインアプリケーション
 // 植田 公開判断ミラー（顧客No.等を除外したSS）を読み、
 // 成長ランキング＋植田の公開判断を表示する。@seichiku.org ログイン限定。
+//
+// 認証は Google Sign-In（ID確認）のみ。スプレッドシートの読み取りは
+// Apps Script ウェブアプリ経由で行い、ブラウザには機密スコープを一切
+// 要求しない（＝「このアプリはGoogleで確認されていません」警告を回避）。
 // ============================================================
 
-let accessToken = null;
 let handanRecords = [];   // 植田の公開判断
 let growthRanking = [];   // 成長ランキング
-let tokenClient;
 
-// ── Google Sign-In ──
+// ── Google Sign-In（ID token）──
 window.onload = function () {
   if (!CONFIG.GOOGLE_CLIENT_ID || CONFIG.GOOGLE_CLIENT_ID.indexOf('YOUR_') === 0) {
     showLoginError('config.js の GOOGLE_CLIENT_ID を設定してください');
     return;
   }
+  if (!CONFIG.APPS_SCRIPT_URL || CONFIG.APPS_SCRIPT_URL.indexOf('YOUR_') === 0) {
+    showLoginError('config.js の APPS_SCRIPT_URL を設定してください');
+    return;
+  }
 
-  google.accounts.oauth2.initTokenClient({
+  google.accounts.id.initialize({
     client_id: CONFIG.GOOGLE_CLIENT_ID,
-    scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
-    callback: handleTokenResponse,
-    error_callback: (err) => showLoginError('ログインに失敗しました: ' + (err.message || err.type)),
+    callback: handleCredential,
+    auto_select: false,
   });
-
-  document.getElementById('googleSignInBtn').innerHTML = `
-    <button class="google-btn" onclick="requestLogin()">
-      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-      Googleアカウントでログイン
-    </button>
-  `;
+  google.accounts.id.renderButton(
+    document.getElementById('googleSignInBtn'),
+    { theme: 'outline', size: 'large', type: 'standard', text: 'signin_with', shape: 'pill', locale: 'ja' }
+  );
 
   const searchEl = document.getElementById('handanSearch');
   if (searchEl) searchEl.addEventListener('input', filterHandan);
 };
 
-function requestLogin() {
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CONFIG.GOOGLE_CLIENT_ID,
-    scope: 'https://www.googleapis.com/auth/spreadsheets.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
-    callback: handleTokenResponse,
-  });
-  tokenClient.requestAccessToken();
-}
-
-async function handleTokenResponse(response) {
-  if (response.error) {
-    showLoginError('認証エラー: ' + response.error);
+async function handleCredential(response) {
+  const credential = response && response.credential;
+  if (!credential) {
+    showLoginError('ログインに失敗しました。もう一度お試しください。');
     return;
   }
-  accessToken = response.access_token;
 
-  try {
-    const userRes = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-      headers: { 'Authorization': 'Bearer ' + accessToken }
-    });
-    const user = await userRes.json();
-
-    if (CONFIG.ALLOWED_DOMAINS.length > 0) {
-      const domain = (user.email || '').split('@')[1];
-      if (!CONFIG.ALLOWED_DOMAINS.includes(domain)) {
-        showLoginError(`${domain} ドメインではログインできません。@seichiku.org アカウントを使用してください。`);
-        accessToken = null;
-        return;
-      }
+  // クライアント側の早期チェック（正式な検証は Apps Script 側で実施）
+  const claims = decodeJwt(credential);
+  if (claims && CONFIG.ALLOWED_DOMAINS.length > 0) {
+    const domain = (claims.email || '').split('@')[1];
+    if (!CONFIG.ALLOWED_DOMAINS.includes(domain)) {
+      showLoginError(`${domain} ドメインではログインできません。@seichiku.org アカウントを使用してください。`);
+      google.accounts.id.disableAutoSelect();
+      return;
     }
-
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
-    document.getElementById('userInfo').innerHTML = `
-      <img src="${user.picture || ''}" alt="" class="user-avatar">
-      <span class="user-name">${escHtml(user.name || '')}</span>
-      <button class="logout-btn" onclick="logout()">ログアウト</button>
-    `;
-
-    await loadData();
-  } catch (err) {
-    showLoginError('ユーザー情報の取得に失敗しました');
   }
+
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('mainApp').style.display = 'block';
+  document.getElementById('userInfo').innerHTML = `
+    <img src="${(claims && claims.picture) || ''}" alt="" class="user-avatar">
+    <span class="user-name">${escHtml((claims && claims.name) || '')}</span>
+    <button class="logout-btn" onclick="logout()">ログアウト</button>
+  `;
+
+  await loadData(credential);
 }
 
 function logout() {
-  const t = accessToken;
-  accessToken = null;
-  if (t) google.accounts.oauth2.revoke(t);
+  google.accounts.id.disableAutoSelect();
+  handanRecords = [];
+  growthRanking = [];
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('mainApp').style.display = 'none';
 }
@@ -93,27 +79,57 @@ function showLoginError(msg) {
   el.style.display = 'block';
 }
 
-// ── Data Loading ──
-async function fetchSheet(spreadsheetId, sheetName, range) {
-  const fullRange = `${sheetName}!${range}`;
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${encodeURIComponent(fullRange)}`;
-  const res = await fetch(url, { headers: { 'Authorization': 'Bearer ' + accessToken } });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error?.message || 'シートの読み込みに失敗');
+// JWT（ID token）のペイロードをデコード（署名検証はサーバー側で実施）
+function decodeJwt(token) {
+  try {
+    const part = token.split('.')[1];
+    const b64 = part.replace(/-/g, '+').replace(/_/g, '/');
+    const json = decodeURIComponent(
+      atob(b64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
+    );
+    return JSON.parse(json);
+  } catch (e) {
+    return null;
   }
-  const data = await res.json();
-  return data.values || [];
 }
 
-async function loadData() {
+// ── Data Loading ──
+// Apps Script ウェブアプリに ID token を渡し、公開判断＋成長ランキングを取得する。
+// Content-Type を text/plain にすることで CORS プリフライト（OPTIONS）を回避する。
+async function fetchFromAppsScript(credential) {
+  const res = await fetch(CONFIG.APPS_SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: credential,
+  });
+  if (!res.ok) throw new Error('サーバーへの接続に失敗しました');
+  return res.json();
+}
+
+async function loadData(credential) {
   const loading = document.getElementById('loadingIndicator');
   loading.style.display = 'flex';
   try {
+    const data = await fetchFromAppsScript(credential);
+
+    if (!data || !data.ok) {
+      const code = data && data.error;
+      if (code === 'domain_forbidden' || code === 'aud_mismatch' ||
+          code === 'invalid_token' || code === 'email_unverified') {
+        // 認証系エラー：ログイン画面へ戻す
+        document.getElementById('mainApp').style.display = 'none';
+        document.getElementById('loginScreen').style.display = 'flex';
+        showLoginError('ログインが確認できませんでした。@seichiku.org アカウントで再度お試しください。');
+        google.accounts.id.disableAutoSelect();
+        return;
+      }
+      throw new Error(code || 'データの取得に失敗しました');
+    }
+
     // 公開判断（植田）
     const jCfg = CONFIG.SHEETS.PUBLIC_JUDGMENT;
     const jc = jCfg.columns;
-    const jRows = await fetchSheet(CONFIG.MIRROR_SPREADSHEET_ID, jCfg.name, jCfg.range);
+    const jRows = data.publicJudgment || [];
     handanRecords = (jRows.length <= 1 ? [] : jRows.slice(1))
       .filter(row => (row[jc.staff] || '').trim() !== '')   // ヘッダ/プレースホルダ除外
       .map(row => ({
@@ -132,7 +148,7 @@ async function loadData() {
     // 成長ランキング（先頭のタイトル/注記行を除外）
     const rCfg = CONFIG.SHEETS.GROWTH_RANKING;
     const rc = rCfg.columns;
-    const rRows = await fetchSheet(CONFIG.MIRROR_SPREADSHEET_ID, rCfg.name, rCfg.range);
+    const rRows = data.growthRanking || [];
     growthRanking = rRows
       .filter(row => {
         const name = (row[rc.staff] || '').trim();

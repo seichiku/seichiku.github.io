@@ -4,15 +4,25 @@
 
 const CONFIG = {
   // Google OAuth Client ID（みんなの実績と同一・同一オリジンで流用可）
+  // ※ ID確認（Sign in with Google）専用に使用。機密スコープは要求しないため
+  //    「このアプリはGoogleで確認されていません」警告は表示されない。
   GOOGLE_CLIENT_ID: '248673786507-mdqci7it6nokcerj001k226k6fungjeu.apps.googleusercontent.com',
 
+  // Apps Script ウェブアプリのURL（データ中継API）
+  // handan/apps-script/Code.gs をデプロイして得た /exec URL を貼る。
+  // スプレッドシートの読み取りはこのサーバー側で行い、ブラウザには
+  // spreadsheets 権限を一切要求しない（＝未確認アプリ警告を回避）。
+  APPS_SCRIPT_URL: 'YOUR_APPS_SCRIPT_WEB_APP_URL',
+
   // ログインを許可するドメイン（空配列 [] なら全Googleアカウント許可）
+  // ※ 正式な判定は Apps Script 側でも行う（クライアント側は早期チェック用）。
   ALLOWED_DOMAINS: ['seichiku.org'],
 
   // 植田 公開判断ミラー スプレッドシートID
   // 判断ログDB（非公開・竹中＋植田）から「公開用（植田）」「成長ランキング」だけを
   // IMPORTRANGE で写したミラー。顧客No.等の患者特定情報はミラー時点で除外済み。
-  // ※このミラーをログインユーザー（@seichiku.org）に閲覧共有しておくこと。
+  // ※ 読み取りは Apps Script（デプロイ主＝ミラー所有者の権限）で行うため、
+  //    各ログインユーザーへの個別共有は不要。この ID は Apps Script 側にも設定する。
   MIRROR_SPREADSHEET_ID: '17L_Bx75HJT1uv-DibxhwfCTU6vvEn3SLuBBHGBMYv3k',
 
   SHEETS: {

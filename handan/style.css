@@ -41,7 +41,7 @@ body {
 .login-logo { width: 72px; height: 72px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px; font-weight: 700; color: #fff; }
 .login-card h1 { font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
 .login-card > p { font-size: 14px; color: var(--text-light); margin-bottom: 32px; }
-.google-btn-wrapper { margin-bottom: 16px; }
+.google-btn-wrapper { margin-bottom: 16px; display: flex; justify-content: center; }
 .google-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px; border: 2px solid var(--border); border-radius: 8px; background: #fff; font-size: 15px; font-weight: 500; font-family: inherit; color: var(--text); cursor: pointer; transition: all 0.2s; }
 .google-btn:hover { border-color: var(--primary); box-shadow: var(--shadow); }
 .login-error { color: #dc2626; font-size: 13px; margin-bottom: 12px; padding: 8px 12px; background: #fef2f2; border-radius: 8px; }
