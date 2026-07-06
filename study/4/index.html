@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成竹・鍼灸学生勉強会 ｜ 第4回 風邪</title>
+<meta name="description" content="第4回 成竹・鍼灸学生勉強会。風邪を五行分類と現代解釈で読み解く座学と、お灸の実技。2026年8月1日(土)19:00〜21:00、成竹塩浜鍼灸整骨院にて。先着30名・参加無料。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1612;
+    --paper:#f5efe2;
+    --paper-2:#ece2cd;
+    --vermilion:#b8412a;
+    --vermilion-deep:#8c2e1d;
+    --moxa:#8a6a3a;
+    --gold:#a37a2c;
+    --sumi:#2b2520;
+    --line:#c9b896;
+    --muted:#6b5e4a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.85;font-size:15px;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(184,65,42,.04), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(138,106,58,.05), transparent 45%);
+  }
+  .mincho{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif}
+  .serif-en{font-family:"Cormorant Garamond",serif;font-style:italic}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .narrow{max-width:760px;margin:0 auto;padding:0 28px}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 28px;border-bottom:1px solid var(--line);
+    background:rgba(245,239,226,.85);backdrop-filter:blur(6px);
+    position:sticky;top:0;z-index:50;
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--vermilion);color:var(--paper);
+    display:grid;place-items:center;font-family:"Shippori Mincho",serif;font-weight:700;
+    box-shadow:inset 0 0 0 2px rgba(245,239,226,.3);
+  }
+  .brand-text{line-height:1.2}
+  .brand-name{font-family:"Shippori Mincho",serif;font-weight:600;font-size:14px;letter-spacing:.04em}
+  .brand-sub{font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:3px}
+  .top-cta{
+    font-size:12px;padding:9px 20px;
+    background:var(--ink);color:var(--paper);
+    text-decoration:none;border:1px solid var(--ink);
+    transition:all .2s;letter-spacing:.1em;
+  }
+  .top-cta:hover{background:var(--vermilion);border-color:var(--vermilion)}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;padding:90px 0 110px;overflow:hidden}
+  .hero-eyebrow{
+    text-align:center;font-size:11px;letter-spacing:.45em;
+    color:var(--vermilion-deep);margin-bottom:18px;
+  }
+  .hero-eyebrow .grp{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.15em;display:block;margin-bottom:8px;color:var(--muted)}
+  .hero-no{
+    text-align:center;font-family:"Shippori Mincho",serif;
+    font-size:14px;letter-spacing:.5em;color:var(--vermilion);
+    margin-bottom:36px;
+  }
+  .hero-no::before,.hero-no::after{content:"━";display:inline-block;color:var(--line);margin:0 14px;letter-spacing:0;transform:translateY(-3px)}
+  .hero h1{
+    font-family:"Shippori Mincho",serif;font-weight:600;text-align:center;
+    font-size:clamp(34px,5.2vw,62px);line-height:1.32;letter-spacing:.04em;
+    color:var(--sumi);margin-bottom:24px;
+  }
+  .hero h1 .em{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    color:var(--vermilion);font-weight:500;letter-spacing:.01em;
+    display:inline-block;padding:0 .15em;
+  }
+  .hero-sub{
+    text-align:center;font-size:16px;color:#3d342a;
+    max-width:38ch;margin:0 auto 56px;line-height:1.9;
+  }
+  .hero-meta{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    max-width:780px;margin:0 auto;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .hero-meta .m{
+    padding:22px 16px;text-align:center;
+    border-right:1px solid var(--line);
+  }
+  .hero-meta .m:last-child{border-right:none}
+  .hero-meta .label{font-size:10px;letter-spacing:.3em;color:var(--muted);margin-bottom:8px}
+  .hero-meta .val{font-family:"Shippori Mincho",serif;font-weight:600;font-size:17px;color:var(--sumi);line-height:1.4}
+  .hero-meta .val small{display:block;font-size:11px;color:var(--muted);margin-top:3px;font-weight:400;letter-spacing:.05em}
+  .free-badge{
+    display:block;width:fit-content;margin:48px auto 0;
+    font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:.6em;
+    padding:12px 28px;border:1px solid var(--vermilion);color:var(--vermilion);
+    background:rgba(255,255,255,.4);
+  }
+  .scroll-cue{
+    text-align:center;margin-top:48px;
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    font-size:11px;letter-spacing:.4em;color:var(--muted);
+  }
+  .scroll-cue .line{display:block;width:1px;height:42px;background:var(--line);margin:14px auto 0}
+
+  /* ===== Section base ===== */
+  section{padding:100px 0;position:relative}
+  .sec-head{margin-bottom:60px;text-align:center}
+  .sec-eyebrow{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    font-size:18px;color:var(--vermilion);margin-bottom:14px;letter-spacing:.05em;
+  }
+  .sec-title{
+    font-family:"Shippori Mincho",serif;font-weight:600;
+    font-size:clamp(26px,3.4vw,38px);line-height:1.55;letter-spacing:.04em;
+    color:var(--sumi);
+  }
+  .sec-title .em{color:var(--vermilion);font-style:italic;font-family:"Cormorant Garamond",serif;font-weight:500}
+
+  /* ===== Concept ===== */
+  .concept{background:linear-gradient(180deg,transparent,rgba(236,226,205,.4))}
+  .concept-body p{font-size:15px;line-height:2.1;margin-bottom:1.4em;color:#2e2620}
+  .concept-body p strong{
+    font-weight:600;color:var(--vermilion-deep);
+    background:linear-gradient(transparent 65%,rgba(184,65,42,.15) 65%);
+    padding:0 2px;
+  }
+  .concept-aside{
+    margin-top:60px;padding:36px 40px;
+    background:var(--paper);border:1px solid var(--line);
+    position:relative;
+  }
+  .concept-aside::before{
+    content:"";position:absolute;top:-1px;left:-1px;width:30px;height:30px;
+    border-top:2px solid var(--vermilion);border-left:2px solid var(--vermilion);
+  }
+  .concept-aside::after{
+    content:"";position:absolute;bottom:-1px;right:-1px;width:30px;height:30px;
+    border-bottom:2px solid var(--vermilion);border-right:2px solid var(--vermilion);
+  }
+  .concept-aside p{font-size:14.5px;line-height:2;color:#3d342a;margin:0}
+
+  /* ===== Program ===== */
+  .program-grid{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start}
+  .day-card{
+    background:var(--ink);color:var(--paper);padding:32px 24px;
+    text-align:center;position:sticky;top:88px;
+  }
+  .day-card .month{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:.15em;opacity:.7}
+  .day-card .day{font-family:"Shippori Mincho",serif;font-size:84px;line-height:1;font-weight:600;margin:8px 0}
+  .day-card .dow{font-family:"Shippori Mincho",serif;font-size:17px;letter-spacing:.4em;color:var(--vermilion);margin-bottom:16px}
+  .day-card .yr{font-size:10px;letter-spacing:.3em;opacity:.6;border-top:1px solid rgba(245,239,226,.2);padding-top:12px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px}
+  .timeline{position:relative;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:var(--line)}
+  .t-item{position:relative;padding-bottom:38px}
+  .t-item::before{
+    content:"";position:absolute;left:-26px;top:10px;width:14px;height:14px;
+    border-radius:50%;background:var(--paper);border:2px solid var(--vermilion);
+  }
+  .t-item:last-child{padding-bottom:0}
+  .t-time{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:24px;color:var(--vermilion-deep);font-weight:500;margin-bottom:6px;letter-spacing:.02em}
+  .t-title{font-family:"Shippori Mincho",serif;font-size:19px;font-weight:600;margin-bottom:8px;color:var(--sumi)}
+  .t-desc{font-size:14px;color:#4a3f33;line-height:1.85}
+
+  /* ===== Information ===== */
+  .info{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .info-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px}
+  .info-list{list-style:none}
+  .info-list li{
+    display:grid;grid-template-columns:110px 1fr;gap:24px;
+    padding:22px 0;border-bottom:1px dashed var(--line);
+  }
+  .info-list li:first-child{padding-top:0}
+  .info-list li:last-child{border-bottom:none}
+  .info-label{font-family:"Shippori Mincho",serif;font-size:13px;color:var(--vermilion-deep);letter-spacing:.4em;padding-top:4px}
+  .info-value{font-size:15px;color:var(--sumi);line-height:1.85}
+  .info-value strong{font-family:"Shippori Mincho",serif;font-size:19px;display:block;margin-bottom:4px;font-weight:600}
+
+  .seat-meter{
+    background:var(--paper);border:1px solid var(--line);padding:34px 32px;
+    height:fit-content;position:sticky;top:88px;
+  }
+  .seat-meter .seat-eyebrow{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;color:var(--vermilion);letter-spacing:.1em;margin-bottom:6px}
+  .seat-meter h4{font-family:"Shippori Mincho",serif;font-size:15px;letter-spacing:.3em;color:var(--muted);margin-bottom:14px;font-weight:500}
+  .seat-meter .num{
+    font-family:"Shippori Mincho",serif;font-size:78px;line-height:1;font-weight:600;color:var(--vermilion);
+  }
+  .seat-meter .num small{font-size:20px;color:var(--sumi);margin-left:6px;font-weight:400}
+  .dots{display:grid;grid-template-columns:repeat(15,1fr);gap:5px;margin-top:24px}
+  .dot{aspect-ratio:1;background:var(--vermilion);border-radius:50%;opacity:.85}
+  .seat-meter .note{font-size:12.5px;color:var(--muted);margin-top:18px;line-height:1.85}
+  .seat-meter .note strong{color:var(--vermilion-deep);font-weight:600}
+
+  /* ===== Lecturer ===== */
+  .lecturer{background:var(--paper);border-bottom:1px solid var(--line);padding:80px 0}
+  .lecturer-inner{
+    max-width:880px;margin:0 auto;padding:0 28px;
+    display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:center;
+  }
+  .lecturer-photo{
+    width:240px;height:240px;border-radius:50%;
+    object-fit:cover;border:1px solid var(--line);
+    box-shadow:0 24px 50px -28px rgba(0,0,0,.35);
+  }
+  .lecturer-text .label{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    font-size:15px;color:var(--vermilion);letter-spacing:.1em;margin-bottom:8px;
+  }
+  .lecturer-text h3{
+    font-family:"Shippori Mincho",serif;font-weight:600;
+    font-size:26px;letter-spacing:.06em;color:var(--sumi);
+    margin-bottom:6px;line-height:1.4;
+  }
+  .lecturer-text .role{font-size:13px;color:var(--muted);letter-spacing:.15em;margin-bottom:18px}
+  .lecturer-text p{font-size:14.5px;color:#3d342a;line-height:1.95;margin-bottom:.9em}
+  .lecturer-text p:last-child{margin-bottom:0}
+
+  /* ===== Notes ===== */
+  .notes-list{list-style:none;max-width:760px;margin:0 auto}
+  .notes-list li{
+    position:relative;padding:20px 0 20px 36px;
+    border-bottom:1px dashed var(--line);font-size:14.5px;color:#3d342a;line-height:1.95;
+  }
+  .notes-list li:last-child{border-bottom:none}
+  .notes-list li::before{
+    content:"";position:absolute;left:8px;top:30px;width:8px;height:8px;
+    border-radius:50%;background:var(--vermilion);
+  }
+
+  /* ===== CTA ===== */
+  .cta{background:var(--ink);color:var(--paper);text-align:center;padding:120px 0}
+  .cta .sec-eyebrow{color:var(--vermilion)}
+  .cta h2{
+    font-family:"Shippori Mincho",serif;font-size:clamp(28px,3.6vw,42px);
+    margin-bottom:18px;line-height:1.5;font-weight:600;letter-spacing:.04em;
+  }
+  .cta .lede{font-size:14.5px;opacity:.75;margin-bottom:36px;max-width:48ch;margin-inline:auto;line-height:1.95}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:18px;
+    padding:22px 56px;background:var(--vermilion);color:var(--paper);
+    text-decoration:none;font-family:"Shippori Mincho",serif;font-size:17px;letter-spacing:.5em;
+    border:1px solid var(--vermilion);transition:all .25s;font-weight:600;
+  }
+  .cta-btn:hover{background:transparent;border-color:var(--paper)}
+  .cta-btn .arr{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:0}
+  .cta-foot{font-size:12px;color:rgba(245,239,226,.5);margin-top:24px;letter-spacing:.1em}
+
+  .seats-note{font-size:22px;letter-spacing:.3em;margin-bottom:28px;color:var(--paper);min-height:1.6em;font-weight:600}
+  .seats-note .num{font-size:56px;font-weight:700;font-family:"Cormorant Garamond",serif;letter-spacing:.02em;margin:0 .12em;color:#e8c87a;line-height:1;vertical-align:-4px;text-shadow:0 2px 18px rgba(232,200,122,.35)}
+  .cta-btn.is-full{pointer-events:none;cursor:default;opacity:.45;background:transparent;border-color:rgba(245,239,226,.4);color:rgba(245,239,226,.65)}
+
+  /* ===== Footer ===== */
+  footer{padding:48px 0 40px;font-size:12px;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot .brand-name{font-size:13px}
+  .foot-en{font-family:"Cormorant Garamond",serif;font-style:italic}
+
+  @media (max-width:860px){
+    section{padding:72px 0}
+    .hero{padding:60px 0 70px}
+    .hero-meta{grid-template-columns:repeat(2,1fr)}
+    .hero-meta .m{border-bottom:1px solid var(--line)}
+    .hero-meta .m:nth-child(2){border-right:none}
+    .hero-meta .m:nth-child(3),.hero-meta .m:nth-child(4){border-bottom:none}
+    .program-grid,.info-grid{grid-template-columns:1fr;gap:40px}
+    .lecturer{padding:60px 0}
+    .lecturer-inner{grid-template-columns:1fr;gap:24px;text-align:center}
+    .lecturer-photo{width:180px;height:180px;margin:0 auto}
+    .lecturer-text{text-align:left}
+    .day-card,.seat-meter{position:static}
+    .info-list li{grid-template-columns:90px 1fr;gap:14px}
+    .topbar{padding:14px 18px}
+    .top-cta{padding:8px 14px;font-size:11px}
+    .brand-name{font-size:12px}
+    .brand-sub{font-size:9px}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark mincho">竹</div>
+    <div class="brand-text">
+      <div class="brand-name">成竹鍼灸整骨院グループ</div>
+      <div class="brand-sub">SEICHIKU ACUPUNCTURE CLINIC GROUP</div>
+    </div>
+  </div>
+  <a href="#apply" class="top-cta mincho">参加申込</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="grp">Seichiku Acupuncture Clinic Group</span>
+      成 竹 ・ 鍼 灸 学 生 勉 強 会
+    </div>
+    <div class="hero-no mincho">第 4 回</div>
+    <h1 class="mincho">
+      風邪をわかりやすく<br>
+      <span class="em">五行分類と現代解釈</span>
+    </h1>
+    <p class="hero-sub">
+      風邪を五行で読み解く座学と、<br>
+      臨床で活きるお灸の実技
+    </p>
+
+    <div class="hero-meta">
+      <div class="m">
+        <div class="label">DATE</div>
+        <div class="val mincho">August 1, 2026<small>2026年8月1日</small></div>
+      </div>
+      <div class="m">
+        <div class="label">DAY</div>
+        <div class="val mincho">土曜日<small>Saturday</small></div>
+      </div>
+      <div class="m">
+        <div class="label">TIME</div>
+        <div class="val mincho">19:00 – 21:00<small>2 hours</small></div>
+      </div>
+      <div class="m">
+        <div class="label">CAPACITY</div>
+        <div class="val mincho">先着30名<small>First-come basis</small></div>
+      </div>
+    </div>
+
+    <div class="free-badge mincho">参 加 無 料</div>
+
+    <div class="scroll-cue">SCROLL<span class="line"></span></div>
+  </div>
+</section>
+
+<!-- LECTURER -->
+<section class="lecturer">
+  <div class="lecturer-inner">
+    <img src="https://seichiku.github.io/study/2/ueda.jpg" alt="講師 植田 祐司" class="lecturer-photo" loading="lazy">
+    <div class="lecturer-text">
+      <div class="label">Lecturer</div>
+      <h3 class="mincho">植田 祐司</h3>
+      <div class="role">成竹鍼灸整骨院グループ プロダクト責任者 ／ 鍼灸師</div>
+      <p>成竹鍼灸整骨院グループ プロダクト責任者の鍼灸師・植田 祐司です。</p>
+      <p>彼は<strong style="color:var(--vermilion-deep);font-weight:600">古典を守ることを大切にしていて</strong>、臨床現場で数多くの患者と向き合いながら、東洋医学の枠組みと現代医学を結び合わせた見立てを実践しています。</p>
+      <p>教科書だけでは伝えきれない<strong style="color:var(--vermilion-deep);font-weight:600">「現場で活きる見立てと技術」</strong>を、古典のストーリーとともに丁寧に紐解いていきます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section class="concept">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Concept</div>
+      <h2 class="sec-title mincho">「風邪」を、<br><span class="em">五行分類</span>と<span class="em">現代解釈</span>で読み解く</h2>
+    </div>
+
+    <div class="narrow concept-body">
+      <p>風邪は、誰もが経験するいちばん身近な不調。<br>けれど「鍼灸で風邪にどう向き合うか」を学ぶ機会は、学校ではほとんどありません。</p>
+      <p>第4回の勉強会では、<strong>五行分類による風邪の見立て</strong>と<strong>現代医学的な解釈</strong>の両面からわかりやすく解説。古典が風邪をどう捉えてきたのか、現代の言葉とどうつながるのか——臨床家の見立てを、成竹グループから直接お伝えします。</p>
+      <p>実技パートでは、手を動かして学ぶ<strong>お灸の実技</strong>を、講師のデモと実践を通じて体験できます。</p>
+
+      <div class="concept-aside">
+        <p>座学の詳しい切り口は、決定次第このページでご案内します。<br>過去3回の勉強会では、古典を物語で読み解く座学と、学校ではなかなか経験できない実技が特に好評でした。第4回もどうぞご期待ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Program</div>
+      <h2 class="sec-title mincho">当日の流れ</h2>
+    </div>
+
+    <div class="program-grid">
+      <div class="day-card">
+        <div class="month">August</div>
+        <div class="day mincho">01</div>
+        <div class="dow mincho">土</div>
+        <div class="yr">2026</div>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">19:00</div>
+          <div class="t-title mincho">オープニング</div>
+          <div class="t-desc">趣旨説明・本日の流れご案内</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">19:10</div>
+          <div class="t-title mincho">座学｜風邪の五行分類と現代解釈 <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--vermilion);font-weight:500;letter-spacing:.05em;margin-left:6px">60 min.</span></div>
+          <div class="t-desc">風邪を五行分類による見立てと現代医学的な解釈の両面から読み解く（詳しい切り口は決定次第、このページでご案内します）</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">20:10</div>
+          <div class="t-title mincho">実技｜お灸 <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--vermilion);font-weight:500;letter-spacing:.05em;margin-left:6px">50 min.</span></div>
+          <div class="t-desc">お灸の実技／講師デモ → 参加者実践 → フィードバック</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">21:00</div>
+          <div class="t-title mincho">終了・クロージング</div>
+          <div class="t-desc">本日のまとめ・質疑応答・次回勉強会のご案内</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFORMATION -->
+<section class="info">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Information</div>
+      <h2 class="sec-title mincho">開催概要</h2>
+    </div>
+
+    <div class="info-grid">
+      <ul class="info-list">
+        <li>
+          <div class="info-label">日 時</div>
+          <div class="info-value"><strong class="mincho">2026年8月1日(土)</strong>19:00 〜 21:00（2時間）</div>
+        </li>
+        <li>
+          <div class="info-label">場 所</div>
+          <div class="info-value"><strong class="mincho">成竹塩浜鍼灸整骨院</strong>東京都江東区塩浜2-11-19</div>
+        </li>
+        <li>
+          <div class="info-label">内 容</div>
+          <div class="info-value">座学｜風邪の五行分類と現代解釈<br>実技｜お灸</div>
+        </li>
+        <li>
+          <div class="info-label">対 象</div>
+          <div class="info-value">鍼灸学生</div>
+        </li>
+        <li>
+          <div class="info-label">定 員</div>
+          <div class="info-value"><strong class="mincho">先着30名</strong>定員に達し次第、受付を締切ります</div>
+        </li>
+        <li>
+          <div class="info-label">参加費</div>
+          <div class="info-value"><strong class="mincho">無 料</strong></div>
+        </li>
+      </ul>
+
+      <div class="seat-meter">
+        <div class="seat-eyebrow">Seats</div>
+        <h4 class="mincho">定 員</h4>
+        <div class="num mincho">30<small>名</small></div>
+        <div class="dots" id="dots"></div>
+        <p class="note">本会は<strong>先着順</strong>で受付しております。<br>ご検討中の方はお早めにお申し込みください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Notes</div>
+      <h2 class="sec-title mincho">参加にあたってのお願い</h2>
+    </div>
+
+    <ul class="notes-list">
+      <li>申し込みは事前のGoogleフォームへの回答をもって受付完了となります</li>
+      <li>勉強会の内容は動画撮影を行います。撮影した映像は成竹グループの教育・広報目的で使用する場合があります</li>
+      <li>当日は動きやすい服装でお越しください（実技があります）</li>
+      <li>お灸の実技がありますので、火傷等に配慮した服装・準備でご参加ください</li>
+      <li>キャンセルの場合は事前にご連絡をお願いします</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="apply">
+  <div class="wrap">
+    <div class="sec-eyebrow">Apply</div>
+    <h2 class="mincho">参 加 申 し 込 み</h2>
+    <p class="lede">Googleフォームよりお申し込みください<br>※ フォーム回答をもって受付完了となります</p>
+    <div class="seats-note mincho" id="seats-left" aria-live="polite"></div>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6C2vutreTJj_0-GF-BIArJR995TQbxN77PrwwymTAUeFd7A/viewform" class="cta-btn" id="apply-btn" target="_blank" rel="noopener">申 し 込 む<span class="arr">→</span></a>
+    <div class="cta-foot serif-en">First 30 applicants only — 先着30名様限定</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <div class="brand-mark mincho" style="width:30px;height:30px;font-size:14px">竹</div>
+      <div class="brand-text">
+        <div class="brand-name mincho">成竹鍼灸整骨院グループ</div>
+        <div class="brand-sub foot-en">Seichiku Acupuncture Clinic Group</div>
+      </div>
+    </div>
+    <div>© 2026 成竹鍼灸整骨院グループ ／ LSD Company 株式会社</div>
+  </div>
+</footer>
+
+<script>
+  const dotsEl = document.getElementById('dots');
+  for(let i=0;i<30;i++){
+    const d = document.createElement('div');
+    d.className = 'dot';
+    dotsEl.appendChild(d);
+  }
+</script>
+
+<script>
+(function(){
+  // 第4回用の残席API（フォーム管理GASのデプロイ後にURLを設定する）
+  var API_URL = '';
+  var el = document.getElementById('seats-left');
+  var btn = document.getElementById('apply-btn');
+  if (!API_URL || !el) return;
+  fetch(API_URL, {cache: 'no-store'})
+    .then(function(r){ if (!r.ok) throw new Error('bad status'); return r.json(); })
+    .then(function(d){
+      if (!d || typeof d.seats_left !== 'number') throw new Error('bad payload');
+      if (d.seats_left <= 0) {
+        el.textContent = '満席となりました';
+        if (btn) {
+          btn.classList.add('is-full');
+          btn.setAttribute('aria-disabled', 'true');
+          btn.addEventListener('click', function(ev){ ev.preventDefault(); });
+        }
+      } else {
+        el.innerHTML = '残り <span class="num">' + d.seats_left + '</span> 名';
+      }
+    })
+    .catch(function(){ el.textContent = ''; });
+})();
+</script>
+</body>
+</html>
