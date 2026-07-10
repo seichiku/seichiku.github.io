@@ -201,7 +201,8 @@
   }
   .seat-meter .num small{font-size:20px;color:var(--sumi);margin-left:6px;font-weight:400}
   .dots{display:grid;grid-template-columns:repeat(15,1fr);gap:5px;margin-top:24px}
-  .dot{aspect-ratio:1;background:var(--vermilion);border-radius:50%;opacity:.85}
+  .dot{aspect-ratio:1;background:var(--vermilion);border-radius:50%;opacity:.85;transition:background .4s,opacity .4s}
+  .dot.is-taken{background:var(--muted);opacity:.22}
   .seat-meter .note{font-size:12.5px;color:var(--muted);margin-top:18px;line-height:1.85}
   .seat-meter .note strong{color:var(--vermilion-deep);font-weight:600}
 
@@ -523,8 +524,8 @@
 
 <script>
 (function(){
-  // 第4回用の残席API（フォーム管理GASのデプロイ後にURLを設定する）
-  var API_URL = '';
+  // 第4回用の残席API（スプレッドシート「8/1勉強会」タブの申込件数から算出）
+  var API_URL = 'https://script.google.com/macros/s/AKfycbwZ5_JHJRfYFRgscyzvF1IkspYbFiXec0uLw1xsefRib5AlDNlIzl5Z5_QKczXQdXI5Wg/exec';
   var el = document.getElementById('seats-left');
   var btn = document.getElementById('apply-btn');
   if (!API_URL || !el) return;
@@ -532,6 +533,12 @@
     .then(function(r){ if (!r.ok) throw new Error('bad status'); return r.json(); })
     .then(function(d){
       if (!d || typeof d.seats_left !== 'number') throw new Error('bad payload');
+      if (typeof d.applied === 'number') {
+        var dots = document.querySelectorAll('#dots .dot');
+        for (var i = 0; i < d.applied && i < dots.length; i++) {
+          dots[i].classList.add('is-taken');
+        }
+      }
       if (d.seats_left <= 0) {
         el.textContent = '満席となりました';
         if (btn) {
