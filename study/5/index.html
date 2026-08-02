@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>成竹・鍼灸学生勉強会 ｜ 第5回 生理痛</title>
-<meta name="description" content="第5回 成竹・鍼灸学生勉強会。生理痛と、それに関連する五行5つの症状（腹痛・イライラ・食欲・疲労感・腰痛）を五行分類と現代解釈で読み解く座学と、三陰交など婦人科の要穴を使うお灸の実技。2026年9月5日(土)19:00〜21:00、成竹塩浜鍼灸整骨院にて。先着30名・参加無料。">
+<meta name="description" content="第5回 成竹・鍼灸学生勉強会。生理痛を五行分類と現代解釈で読み解く座学と、臨床で活きるお灸の実技。2026年9月5日(土)19:00〜21:00、成竹塩浜鍼灸整骨院にて。先着30名・参加無料。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -20,11 +20,6 @@
     --sumi:#2b2520;
     --line:#c9b896;
     --muted:#6b5e4a;
-    --moku:#4a7c59;
-    --ka:#b8412a;
-    --do:#a37a2c;
-    --gon:#7d7566;
-    --sui:#2f4858;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -135,10 +130,6 @@
     color:var(--sumi);
   }
   .sec-title .em{color:var(--vermilion);font-style:italic;font-family:"Cormorant Garamond",serif;font-weight:500}
-  .sec-lede{
-    text-align:center;font-size:14.5px;color:var(--muted);
-    max-width:44ch;margin:20px auto 0;line-height:1.95;
-  }
 
   /* ===== Concept ===== */
   .concept{background:linear-gradient(180deg,transparent,rgba(236,226,205,.4))}
@@ -162,47 +153,6 @@
     border-bottom:2px solid var(--vermilion);border-right:2px solid var(--vermilion);
   }
   .concept-aside p{font-size:14.5px;line-height:2;color:#3d342a;margin:0}
-
-  /* ===== Gogyo (5 elements) ===== */
-  .gogyo{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .gogyo-grid{
-    display:grid;grid-template-columns:repeat(5,1fr);gap:0;
-    border:1px solid var(--line);background:var(--paper);
-  }
-  .g-card{
-    padding:36px 20px 32px;text-align:center;
-    border-right:1px solid var(--line);position:relative;
-    transition:background .25s;
-  }
-  .g-card:last-child{border-right:none}
-  .g-card:hover{background:rgba(255,255,255,.55)}
-  .g-card::before{
-    content:"";position:absolute;top:0;left:0;right:0;height:3px;
-    background:var(--c);
-  }
-  .g-el{
-    width:62px;height:62px;margin:0 auto 18px;border-radius:50%;
-    display:grid;place-items:center;
-    font-family:"Shippori Mincho",serif;font-size:28px;font-weight:600;
-    color:#fff;background:var(--c);
-    box-shadow:0 10px 22px -12px var(--c);
-  }
-  .g-zo{
-    font-family:"Shippori Mincho",serif;font-size:12px;letter-spacing:.3em;
-    color:var(--muted);margin-bottom:12px;
-  }
-  .g-sym{
-    font-family:"Shippori Mincho",serif;font-size:24px;font-weight:600;
-    color:var(--sumi);letter-spacing:.08em;margin-bottom:14px;line-height:1.4;
-  }
-  .g-desc{font-size:13px;color:#4a3f33;line-height:1.9;text-align:left}
-  .gogyo-note{
-    margin-top:34px;text-align:center;font-size:14px;color:#3d342a;line-height:2;
-  }
-  .gogyo-note strong{
-    font-weight:600;color:var(--vermilion-deep);
-    background:linear-gradient(transparent 65%,rgba(184,65,42,.15) 65%);padding:0 2px;
-  }
 
   /* ===== Program ===== */
   .program-grid{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start}
@@ -328,13 +278,6 @@
     .hero-meta .m:nth-child(2){border-right:none}
     .hero-meta .m:nth-child(3),.hero-meta .m:nth-child(4){border-bottom:none}
     .program-grid,.info-grid{grid-template-columns:1fr;gap:40px}
-    .gogyo-grid{grid-template-columns:1fr}
-    .g-card{border-right:none;border-bottom:1px solid var(--line);padding:28px 24px;display:grid;grid-template-columns:62px 1fr;gap:22px;text-align:left;align-items:start}
-    .g-card:last-child{border-bottom:none}
-    .g-card::before{width:3px;height:auto;bottom:0;right:auto}
-    .g-el{margin:0}
-    .g-zo{margin-bottom:6px}
-    .g-sym{font-size:21px;margin-bottom:8px}
     .lecturer{padding:60px 0}
     .lecturer-inner{grid-template-columns:1fr;gap:24px;text-align:center}
     .lecturer-photo{width:180px;height:180px;margin:0 auto}
@@ -374,8 +317,8 @@
       <span class="em">五行分類と現代解釈</span>
     </h1>
     <p class="hero-sub">
-      生理痛と、それに関連する五行5つの症状を読み解く座学と、<br>
-      三陰交など婦人科の要穴を使うお灸の実技
+      生理痛を五行で読み解く座学と、<br>
+      臨床で活きるお灸の実技
     </p>
 
     <div class="hero-meta">
@@ -428,62 +371,13 @@
 
     <div class="narrow concept-body">
       <p>生理痛は、多くの女性が当たり前のように抱えている不調。<br>けれど臨床で向き合うと、訴えは「お腹が痛い」だけではありません。</p>
-      <p>イライラする、食欲がなくなる、身体が重だるい、腰が痛い——<strong>生理痛のまわりには、いくつもの症状が同時に現れます</strong>。この「バラバラに見える症状」を、ひとつの筋道でとらえるための道具が五行です。</p>
-      <p>第5回では、<strong>生理痛と、それに関連する五行5つの症状</strong>を軸に、東洋医学の見立てと現代医学的な解釈の両面からわかりやすく解説。実技パートでは、<strong>三陰交など婦人科の要穴を使うお灸</strong>を、講師のデモと実践を通じて体験できます。</p>
+      <p><strong>生理のまわりには、いくつもの症状が同時に現れます</strong>。この「バラバラに見える症状」を、ひとつの筋道でとらえるための道具が五行です。</p>
+      <p>第5回では、<strong>生理痛の見立て</strong>を、五行分類と<strong>現代医学的な解釈</strong>の両面からわかりやすく解説。実技パートでは、手を動かして学ぶ<strong>お灸の実技</strong>を、講師のデモと実践を通じて体験できます。</p>
 
       <div class="concept-aside">
-        <p>婦人科系のテーマは、第3回・第4回のアンケートで2回連続して上位に入ったリクエストです。<br>過去4回の勉強会では、古典を物語で読み解く座学と、学校ではなかなか経験できない実技が特に好評でした。第5回もどうぞご期待ください。</p>
+        <p>座学の詳しい切り口は、決定次第このページでご案内します。<br>婦人科系のテーマは、第3回・第4回のアンケートで2回連続して上位に入ったリクエストです。過去4回の勉強会では、古典を物語で読み解く座学と、学校ではなかなか経験できない実技が特に好評でした。第5回もどうぞご期待ください。</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- GOGYO -->
-<section class="gogyo">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-eyebrow">Five Elements</div>
-      <h2 class="sec-title mincho">生理痛に、<span class="em">五つの顔</span>がある</h2>
-      <p class="sec-lede">同じ「生理痛」でも、患者さんによって出てくる症状は違います。<br>五行に並べると、その違いが見立てに変わります。</p>
-    </div>
-
-    <div class="gogyo-grid">
-      <div class="g-card" style="--c:var(--moku)">
-        <div class="g-el mincho">木</div>
-        <div class="g-zo">肝 ・ 胆</div>
-        <div class="g-sym mincho">腹 痛</div>
-        <div class="g-desc">下腹部の張るような痛み。気の巡りが滞ると痛みになる——生理痛の中心にある訴えを、まずここから読み解きます。</div>
-      </div>
-      <div class="g-card" style="--c:var(--ka)">
-        <div class="g-el mincho">火</div>
-        <div class="g-zo">心 ・ 小腸</div>
-        <div class="g-sym mincho">イライラ</div>
-        <div class="g-desc">生理前後に落ち着かない、怒りっぽくなる。情緒の乱れを「気持ちの問題」で終わらせず、身体の側から診ます。</div>
-      </div>
-      <div class="g-card" style="--c:var(--do)">
-        <div class="g-el mincho">土</div>
-        <div class="g-zo">脾 ・ 胃</div>
-        <div class="g-sym mincho">食 欲</div>
-        <div class="g-desc">食べられない／逆に止まらない。生理まわりで揺れる食欲の変化を、消化吸収の視点からとらえます。</div>
-      </div>
-      <div class="g-card" style="--c:var(--gon)">
-        <div class="g-el mincho">金</div>
-        <div class="g-zo">肺 ・ 大腸</div>
-        <div class="g-sym mincho">疲 労 感</div>
-        <div class="g-desc">だるい、力が入らない、息が浅い。生理期間中に消耗する「気」の問題としての疲労感を扱います。</div>
-      </div>
-      <div class="g-card" style="--c:var(--sui)">
-        <div class="g-el mincho">水</div>
-        <div class="g-zo">腎 ・ 膀胱</div>
-        <div class="g-sym mincho">腰 痛</div>
-        <div class="g-desc">重だるい腰の痛み、冷え。婦人科と切り離せない腎の視点から、腰痛の見立てをつなげます。</div>
-      </div>
-    </div>
-
-    <p class="gogyo-note">
-      この5つを並べて診ることで、<strong>「どの患者さんに、どこを使うか」</strong>が見えてきます。<br>
-      当日は五行それぞれの見立てと、現代医学的にはどう説明できるのかをセットで解説します。
-    </p>
   </div>
 </section>
 
@@ -512,12 +406,12 @@
         <div class="t-item">
           <div class="t-time">19:10</div>
           <div class="t-title mincho">座学｜生理痛の五行分類と現代解釈 <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--vermilion);font-weight:500;letter-spacing:.05em;margin-left:6px">60 min.</span></div>
-          <div class="t-desc">生理痛と、それに関連する五行5つの症状（木＝腹痛／火＝イライラ／土＝食欲／金＝疲労感／水＝腰痛）を、五行分類による見立てと現代医学的な解釈の両面から読み解く</div>
+          <div class="t-desc">生理痛を、五行分類による見立てと現代医学的な解釈の両面から読み解く（詳しい切り口は決定次第、このページでご案内します）</div>
         </div>
         <div class="t-item">
           <div class="t-time">20:10</div>
-          <div class="t-title mincho">実技｜お灸（婦人科の要穴） <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--vermilion);font-weight:500;letter-spacing:.05em;margin-left:6px">50 min.</span></div>
-          <div class="t-desc">三陰交など婦人科の要穴を使うお灸の実技／取穴 → 講師デモ → 参加者実践 → フィードバック</div>
+          <div class="t-title mincho">実技｜お灸 <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--vermilion);font-weight:500;letter-spacing:.05em;margin-left:6px">50 min.</span></div>
+          <div class="t-desc">お灸の実技／講師デモ → 参加者実践 → フィードバック</div>
         </div>
         <div class="t-item">
           <div class="t-time">21:00</div>
@@ -549,7 +443,7 @@
         </li>
         <li>
           <div class="info-label">内 容</div>
-          <div class="info-value">座学｜生理痛の五行分類と現代解釈<br>実技｜お灸（三陰交など婦人科の要穴）</div>
+          <div class="info-value">座学｜生理痛の五行分類と現代解釈<br>実技｜お灸</div>
         </li>
         <li>
           <div class="info-label">対 象</div>
@@ -588,7 +482,7 @@
       <li>申し込みは事前のGoogleフォームへの回答をもって受付完了となります</li>
       <li>勉強会の内容は動画撮影を行います。撮影した映像は成竹グループの教育・広報目的で使用する場合があります</li>
       <li>当日は動きやすい服装でお越しください（実技があります）</li>
-      <li>お灸の実技がありますので、火傷等に配慮した服装・準備でご参加ください。下腿（三陰交まわり）に触れる実技があるため、裾をまくりやすい服装だとスムーズです</li>
+      <li>お灸の実技がありますので、火傷等に配慮した服装・準備でご参加ください（腕や脚を出しやすい服装だとスムーズです）</li>
       <li>男女どなたでもご参加いただけます（婦人科系のテーマですが、性別を問わず臨床で必要になる内容です）</li>
       <li>キャンセルの場合は事前にご連絡をお願いします</li>
     </ul>
@@ -632,7 +526,7 @@
 <script>
 (function(){
   // 第5回用の残席API（スプレッドシート「9/5勉強会」タブの申込件数から算出）
-  var API_URL = '';
+  var API_URL = 'https://script.google.com/macros/s/AKfycbzDKHGsOXB0MxrH_wiuxJJtZ5ewl0nOHwCdEss_9xtKBpNDe4VhhD2UQh7lqe7vWImm8A/exec';
   var el = document.getElementById('seats-left');
   var btn = document.getElementById('apply-btn');
   if (!API_URL || !el) return;
