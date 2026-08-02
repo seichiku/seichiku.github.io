@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>成竹・鍼灸学生勉強会 ｜ 第5回 生理痛</title>
-<meta name="description" content="第5回 成竹・鍼灸学生勉強会。生理痛を五行分類と現代解釈で読み解く座学と、臨床で活きるお灸の実技。2026年9月5日(土)19:00〜21:00、成竹塩浜鍼灸整骨院にて。先着30名・参加無料。">
+<meta name="description" content="第5回 成竹・鍼灸学生勉強会。生理痛を木・火・土・金・水の五行分類と現代解釈で読み解く座学と、臨床で活きるお灸の実技。2026年9月5日(土)19:00〜21:00、成竹塩浜鍼灸整骨院にて。先着30名・参加無料。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -20,6 +20,11 @@
     --sumi:#2b2520;
     --line:#c9b896;
     --muted:#6b5e4a;
+    --moku:#4a7c59;
+    --ka:#b8412a;
+    --do:#a37a2c;
+    --gon:#7d7566;
+    --sui:#2f4858;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -154,6 +159,52 @@
   }
   .concept-aside p{font-size:14.5px;line-height:2;color:#3d342a;margin:0}
 
+  .sec-lede{
+    text-align:center;font-size:14.5px;color:var(--muted);
+    max-width:46ch;margin:20px auto 0;line-height:1.95;
+  }
+
+  /* ===== Gogyo (5 elements) ===== */
+  .gogyo{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .gogyo-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+    border:1px solid var(--line);background:var(--paper);
+  }
+  .g-card{
+    padding:34px 18px 30px;text-align:center;
+    border-right:1px solid var(--line);position:relative;
+    transition:background .25s;
+  }
+  .g-card:last-child{border-right:none}
+  .g-card:hover{background:rgba(255,255,255,.55)}
+  .g-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--c);
+  }
+  .g-el{
+    width:58px;height:58px;margin:0 auto 16px;border-radius:50%;
+    display:grid;place-items:center;
+    font-family:"Shippori Mincho",serif;font-size:26px;font-weight:600;
+    color:#fff;background:var(--c);
+    box-shadow:0 10px 22px -12px var(--c);
+  }
+  .g-yomi{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    font-size:13px;color:var(--muted);letter-spacing:.08em;margin-bottom:12px;
+  }
+  .g-zo{
+    font-family:"Shippori Mincho",serif;font-size:16px;font-weight:600;
+    color:var(--sumi);letter-spacing:.12em;margin-bottom:10px;
+  }
+  .g-key{font-size:13px;color:#4a3f33;line-height:1.85}
+  .gogyo-note{
+    margin-top:34px;text-align:center;font-size:14.5px;color:#3d342a;line-height:2;
+  }
+  .gogyo-note strong{
+    font-weight:600;color:var(--vermilion-deep);
+    background:linear-gradient(transparent 65%,rgba(184,65,42,.15) 65%);padding:0 2px;
+  }
+
   /* ===== Program ===== */
   .program-grid{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start}
   .day-card{
@@ -278,6 +329,13 @@
     .hero-meta .m:nth-child(2){border-right:none}
     .hero-meta .m:nth-child(3),.hero-meta .m:nth-child(4){border-bottom:none}
     .program-grid,.info-grid{grid-template-columns:1fr;gap:40px}
+    .gogyo-grid{grid-template-columns:1fr}
+    .g-card{border-right:none;border-bottom:1px solid var(--line);padding:22px 24px;display:grid;grid-template-columns:58px 1fr;gap:20px;text-align:left;align-items:center}
+    .g-card:last-child{border-bottom:none}
+    .g-card::before{width:3px;height:auto;bottom:0;right:auto}
+    .g-el{margin:0}
+    .g-yomi{margin-bottom:4px}
+    .g-zo{margin-bottom:4px}
     .lecturer{padding:60px 0}
     .lecturer-inner{grid-template-columns:1fr;gap:24px;text-align:center}
     .lecturer-photo{width:180px;height:180px;margin:0 auto}
@@ -378,6 +436,56 @@
         <p>座学の詳しい切り口は、決定次第このページでご案内します。<br>婦人科系のテーマは、第3回・第4回のアンケートで2回連続して上位に入ったリクエストです。過去4回の勉強会では、古典を物語で読み解く座学と、学校ではなかなか経験できない実技が特に好評でした。第5回もどうぞご期待ください。</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- GOGYO -->
+<section class="gogyo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Five Elements</div>
+      <h2 class="sec-title mincho"><span class="em">五行</span>という、<br>見立てのものさし</h2>
+      <p class="sec-lede">東洋医学は、からだを <strong>木・火・土・金・水</strong> という五つの性質に分けてとらえます。<br>この五つは、それぞれ臓腑と結びついています。</p>
+    </div>
+
+    <div class="gogyo-grid">
+      <div class="g-card" style="--c:var(--moku)">
+        <div class="g-el mincho">木</div>
+        <div class="g-yomi">moku</div>
+        <div class="g-zo mincho">肝 ・ 胆</div>
+        <div class="g-key">のびやかに、めぐらせる</div>
+      </div>
+      <div class="g-card" style="--c:var(--ka)">
+        <div class="g-el mincho">火</div>
+        <div class="g-yomi">ka</div>
+        <div class="g-zo mincho">心 ・ 小腸</div>
+        <div class="g-key">あたため、こころを収める</div>
+      </div>
+      <div class="g-card" style="--c:var(--do)">
+        <div class="g-el mincho">土</div>
+        <div class="g-yomi">do</div>
+        <div class="g-zo mincho">脾 ・ 胃</div>
+        <div class="g-key">受け入れ、力に変える</div>
+      </div>
+      <div class="g-card" style="--c:var(--gon)">
+        <div class="g-el mincho">金</div>
+        <div class="g-yomi">gon</div>
+        <div class="g-zo mincho">肺 ・ 大腸</div>
+        <div class="g-key">取り込み、不要を手放す</div>
+      </div>
+      <div class="g-card" style="--c:var(--sui)">
+        <div class="g-el mincho">水</div>
+        <div class="g-yomi">sui</div>
+        <div class="g-zo mincho">腎 ・ 膀胱</div>
+        <div class="g-key">たくわえ、根を支える</div>
+      </div>
+    </div>
+
+    <p class="gogyo-note">
+      同じ「生理痛」でも、患者さんによって出てくる訴えは違います。<br>
+      その違いが<strong>五つのどこに寄っているのか</strong>——それが見えると、見立てが変わります。<br>
+      当日は、生理痛をこの五行のものさしでどう読むのかを、臨床の例に沿って解説します。
+    </p>
   </div>
 </section>
 
