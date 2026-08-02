@@ -330,12 +330,18 @@
     .hero-meta .m:nth-child(3),.hero-meta .m:nth-child(4){border-bottom:none}
     .program-grid,.info-grid{grid-template-columns:1fr;gap:40px}
     .gogyo-grid{grid-template-columns:1fr}
-    .g-card{border-right:none;border-bottom:1px solid var(--line);padding:22px 24px;display:grid;grid-template-columns:58px 1fr;gap:20px;text-align:left;align-items:center}
+    .g-card{
+      border-right:none;border-bottom:1px solid var(--line);
+      padding:20px 22px 20px 26px;
+      display:flex;align-items:center;gap:18px;text-align:left;
+    }
     .g-card:last-child{border-bottom:none}
-    .g-card::before{width:3px;height:auto;bottom:0;right:auto}
-    .g-el{margin:0}
-    .g-yomi{margin-bottom:4px}
-    .g-zo{margin-bottom:4px}
+    .g-card::before{width:4px;height:auto;top:0;bottom:0;left:0;right:auto}
+    .g-el{width:50px;height:50px;flex:0 0 50px;margin:0;font-size:23px}
+    .g-body{flex:1;min-width:0}
+    .g-yomi{margin-bottom:2px;font-size:12px}
+    .g-zo{margin-bottom:4px;font-size:15px;white-space:nowrap}
+    .g-key{font-size:13.5px}
     .lecturer{padding:60px 0}
     .lecturer-inner{grid-template-columns:1fr;gap:24px;text-align:center}
     .lecturer-photo{width:180px;height:180px;margin:0 auto}
@@ -451,33 +457,43 @@
     <div class="gogyo-grid">
       <div class="g-card" style="--c:var(--moku)">
         <div class="g-el mincho">木</div>
-        <div class="g-yomi">moku</div>
-        <div class="g-zo mincho">肝 ・ 胆</div>
-        <div class="g-key">のびやかに、めぐらせる</div>
+        <div class="g-body">
+          <div class="g-yomi">moku</div>
+          <div class="g-zo mincho">肝 ・ 胆</div>
+          <div class="g-key">のびやかに、めぐらせる</div>
+        </div>
       </div>
       <div class="g-card" style="--c:var(--ka)">
         <div class="g-el mincho">火</div>
-        <div class="g-yomi">ka</div>
-        <div class="g-zo mincho">心 ・ 小腸</div>
-        <div class="g-key">あたため、こころを収める</div>
+        <div class="g-body">
+          <div class="g-yomi">ka</div>
+          <div class="g-zo mincho">心 ・ 小腸</div>
+          <div class="g-key">あたため、こころを収める</div>
+        </div>
       </div>
       <div class="g-card" style="--c:var(--do)">
         <div class="g-el mincho">土</div>
-        <div class="g-yomi">do</div>
-        <div class="g-zo mincho">脾 ・ 胃</div>
-        <div class="g-key">受け入れ、力に変える</div>
+        <div class="g-body">
+          <div class="g-yomi">do</div>
+          <div class="g-zo mincho">脾 ・ 胃</div>
+          <div class="g-key">受け入れ、力に変える</div>
+        </div>
       </div>
       <div class="g-card" style="--c:var(--gon)">
         <div class="g-el mincho">金</div>
-        <div class="g-yomi">gon</div>
-        <div class="g-zo mincho">肺 ・ 大腸</div>
-        <div class="g-key">取り込み、不要を手放す</div>
+        <div class="g-body">
+          <div class="g-yomi">gon</div>
+          <div class="g-zo mincho">肺 ・ 大腸</div>
+          <div class="g-key">取り込み、不要を手放す</div>
+        </div>
       </div>
       <div class="g-card" style="--c:var(--sui)">
         <div class="g-el mincho">水</div>
-        <div class="g-yomi">sui</div>
-        <div class="g-zo mincho">腎 ・ 膀胱</div>
-        <div class="g-key">たくわえ、根を支える</div>
+        <div class="g-body">
+          <div class="g-yomi">sui</div>
+          <div class="g-zo mincho">腎 ・ 膀胱</div>
+          <div class="g-key">たくわえ、根を支える</div>
+        </div>
       </div>
     </div>
 
