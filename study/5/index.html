@@ -315,6 +315,27 @@
   .seats-note .num{font-size:56px;font-weight:700;font-family:"Cormorant Garamond",serif;letter-spacing:.02em;margin:0 .12em;color:#e8c87a;line-height:1;vertical-align:-4px;text-shadow:0 2px 18px rgba(232,200,122,.35)}
   .cta-btn.is-full{pointer-events:none;cursor:default;opacity:.45;background:transparent;border-color:rgba(245,239,226,.4);color:rgba(245,239,226,.65)}
 
+  /* ===== Archive (YouTube) ===== */
+  .archive{background:linear-gradient(180deg,rgba(236,226,205,.5),transparent);text-align:center}
+  .archive .sec-head{margin-bottom:32px}
+  .archive-lede{font-size:14.5px;color:var(--muted);max-width:44ch;margin:0 auto 40px;line-height:2}
+  .yt-btn{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:18px 44px;background:transparent;color:var(--ink);
+    border:1px solid var(--ink);text-decoration:none;
+    font-family:"Shippori Mincho",serif;font-size:15px;letter-spacing:.28em;font-weight:600;
+    transition:all .25s;
+  }
+  .yt-btn:hover{background:var(--vermilion);border-color:var(--vermilion);color:var(--paper)}
+  .yt-btn .play{
+    width:0;height:0;
+    border-left:10px solid var(--vermilion);
+    border-top:6px solid transparent;border-bottom:6px solid transparent;
+    transition:border-left-color .25s;
+  }
+  .yt-btn:hover .play{border-left-color:var(--paper)}
+  .archive-note{font-size:12px;color:var(--muted);margin-top:22px;letter-spacing:.08em}
+
   /* ===== Footer ===== */
   footer{padding:48px 0 40px;font-size:12px;color:var(--muted)}
   .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
@@ -622,6 +643,19 @@
     <div class="seats-note mincho" id="seats-left" aria-live="polite"></div>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSftiiwWkdxulHIOxD_kxa8uAMlTdPtc7z8F39iWAlafKkUi1A/viewform" class="cta-btn" id="apply-btn" target="_blank" rel="noopener">申 し 込 む<span class="arr">→</span></a>
     <div class="cta-foot serif-en">First 30 applicants only — 先着30名様限定</div>
+  </div>
+</section>
+
+<!-- ARCHIVE (YouTube) -->
+<section class="archive">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Archive</div>
+      <h2 class="sec-title mincho">過去の勉強会のご紹介</h2>
+    </div>
+    <p class="archive-lede">過去の勉強会の講義の様子を、YouTubeチャンネル<br>「<strong>使える鍼灸　成竹</strong>」で公開しています。<br>会の雰囲気や講義の内容を、ぜひ動画でご覧ください。</p>
+    <a class="yt-btn" href="https://www.youtube.com/@seichiku-shinkyu/videos" target="_blank" rel="noopener"><span class="play"></span>YouTube で見る</a>
+    <div class="archive-note">第4回「風邪の東洋医学」の講義動画などを公開中</div>
   </div>
 </section>
 
