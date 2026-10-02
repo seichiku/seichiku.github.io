@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>初回施術アンケート 7月×8月×9月 3院レポート｜成竹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#B8964A; --gold-light:#D4AF6A; --ink:#1A1612; --ink-2:#221D17;
+  --cream:#FAF7F2; --cream-dim:#C9C0B2; --accent-red:#8B3A2F; --line:rgba(184,150,74,.22);
+  --up:#7BA05B; --down:#C96A4E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink); color:var(--cream);
+  font-family:"Noto Sans JP",sans-serif; font-weight:300;
+  line-height:1.85; letter-spacing:.02em; overflow-x:hidden;
+  background-image:radial-gradient(circle at 20% 0%,rgba(184,150,74,.08),transparent 55%),
+                   radial-gradient(circle at 90% 90%,rgba(139,58,47,.07),transparent 50%);
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Noto Serif JP",serif;font-weight:600;letter-spacing:.04em;line-height:1.5}
+.en{font-family:"Cormorant Garamond",serif;letter-spacing:.14em;text-transform:uppercase}
+.gold{color:var(--gold-light)}
+
+header{padding:96px 0 72px;border-bottom:1px solid var(--line);text-align:center}
+.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold-light);
+  font-size:.72rem;letter-spacing:.28em;padding:7px 18px;border-radius:2px;margin-bottom:30px}
+header h1{font-size:clamp(1.9rem,5vw,3rem);margin-bottom:18px}
+.sub-en{font-size:clamp(.85rem,2.4vw,1.05rem);color:var(--gold);margin-bottom:8px}
+.lead{color:var(--cream-dim);font-size:clamp(.92rem,2.6vw,1.05rem);max-width:640px;margin:24px auto 0}
+
+section{padding:66px 0;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.72rem;letter-spacing:.26em;color:var(--gold);margin-bottom:14px}
+section h2{font-size:clamp(1.35rem,3.6vw,1.8rem);margin-bottom:8px}
+.note{color:var(--cream-dim);font-size:.9rem;margin-top:6px}
+.body{color:var(--cream-dim);margin-top:18px;font-size:.96rem}
+.body strong{color:var(--cream);font-weight:500}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.card{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:22px 18px;text-align:center}
+.card .k{font-family:"Cormorant Garamond",serif;font-size:2.1rem;color:var(--gold-light);line-height:1.15}
+.card.bad .k{color:var(--down)}
+.card .lbl{font-size:.78rem;color:var(--cream-dim);letter-spacing:.08em;margin-top:8px}
+.card .delta{font-size:.74rem;margin-top:6px}
+.delta.up{color:var(--up)} .delta.down{color:var(--down)}
+
+/* store rate blocks */
+.stores{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.st{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:22px 20px}
+.st h3{font-size:1.05rem;margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline}
+.st h3 span{font-size:.74rem;color:var(--gold);letter-spacing:.1em}
+.seg{margin-bottom:12px}
+.seg .t{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:5px}
+.seg .t span:last-child{color:var(--gold-light)}
+.seg .track{height:7px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden}
+.seg .track i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.seg.red .track i{background:linear-gradient(90deg,var(--accent-red),#b1564a)}
+.seg.self .track i{background:linear-gradient(90deg,#5f7d8b,#7ba0b0)}
+.seg.ok .track i{background:linear-gradient(90deg,#5f8b5f,var(--up))}
+.st .miss{font-size:.8rem;color:var(--down);margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
+
+.band{background:var(--ink-2);border:1px solid var(--gold);border-radius:8px;padding:26px;margin-top:28px}
+.band.red{border-color:var(--accent-red)}
+.band .big{font-family:"Cormorant Garamond",serif;font-size:1.9rem;color:var(--gold-light);line-height:1.2}
+.band.red .big{color:var(--down)}
+.band p{color:var(--cream-dim);font-size:.92rem;margin-top:10px}
+
+/* satisfaction table */
+table{width:100%;border-collapse:collapse;margin-top:26px;font-size:.9rem}
+th,td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
+th{font-weight:500;color:var(--gold);font-size:.78rem;letter-spacing:.08em}
+td:first-child,th:first-child{text-align:left}
+td .d{font-size:.74rem;display:block}
+td .d.up{color:var(--up)} td .d.down{color:var(--down)}
+tr.total td{color:var(--cream);font-weight:500;border-top:1px solid var(--gold)}
+.tbl-wrap{overflow-x:auto}
+
+/* ranking */
+.rank{margin-top:26px}
+.rank-row{display:grid;grid-template-columns:44px 1fr 90px;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.rank-row .no{font-family:"Cormorant Garamond",serif;font-size:1.8rem;color:var(--gold-light);text-align:center}
+.rank-row .no.top{color:var(--gold)}
+.rank-row .who{font-size:1rem}
+.rank-row .who small{display:block;color:var(--cream-dim);font-size:.76rem;margin-top:2px}
+.rank-row .sc{font-family:"Cormorant Garamond",serif;font-size:1.9rem;color:var(--gold-light);text-align:right;line-height:1}
+.rank-row .sc small{display:block;font-family:"Noto Sans JP",sans-serif;font-size:.68rem;color:var(--cream-dim);letter-spacing:.06em}
+.rank-row.low .sc{color:var(--down)}
+
+/* voices */
+.voices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.voice{background:var(--ink-2);border-left:2px solid var(--gold);border-radius:0 6px 6px 0;padding:16px 18px;font-size:.88rem;color:var(--cream-dim)}
+.voice b{color:var(--gold-light);font-weight:500}
+.voice.bad{border-left-color:var(--accent-red)}
+.voice.bad b{color:var(--down)}
+.voice .who{display:block;font-size:.72rem;color:var(--gold);margin-top:6px;letter-spacing:.08em}
+h3.store{font-size:1.05rem;margin-top:34px;color:var(--gold-light)}
+h3.store span{font-size:.76rem;color:var(--cream-dim);margin-left:10px;font-family:"Noto Sans JP",sans-serif;font-weight:300}
+
+.ilist{margin:14px 0 0;padding-left:0;list-style:none;color:var(--cream-dim);font-size:.94rem}
+.ilist li{padding:11px 0;border-bottom:1px solid var(--line)}
+.ilist li:last-child{border-bottom:none}
+.ilist strong{color:var(--cream);font-weight:500}
+.ok{color:var(--up);font-weight:500}
+.ng{color:var(--down);font-weight:500}
+
+footer{padding:60px 0 70px;text-align:center}
+footer .en{color:var(--gold);font-size:.82rem;margin-bottom:10px}
+footer p{color:var(--cream-dim);font-size:.82rem;line-height:1.9}
+
+.fade{opacity:0;transform:translateY(18px);animation:fadeUp .9s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}
+
+
+tr.grp td{border-top:1px solid var(--gold)}
+tr.tot td{color:var(--cream);font-weight:500}
+td.m{color:var(--cream-dim);font-size:.82rem}
+td .d.up,td .d.down{display:inline;margin-left:4px}
+.st.all{margin-top:30px}
+details.fold{margin-top:34px;border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+details.fold summary{cursor:pointer;color:var(--gold-light);font-size:.92rem;letter-spacing:.06em}
+
+@media(max-width:680px){
+  .cards,.stores{grid-template-columns:1fr;gap:12px}
+  .voices{grid-template-columns:1fr}
+  header{padding:72px 0 54px}
+  section{padding:52px 0}
+  .rank-row{grid-template-columns:36px 1fr 80px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="badge fade d1">INTERNAL REPORT ／ 社内レポート</div>
+    <div class="sub-en en fade d1">First-Visit Survey</div>
+    <h1 class="fade d2">初回施術アンケート<br>7月 × 8月 × 9月<br>3院レポート</h1>
+    <p class="lead fade d3">南砂・塩浜・東砂の初回施術アンケート（2026年7月〜9月）を数値化。<br>回収率・満足度・施術者別評価・患者の声。</p>
+  </div>
+</header>
+
+<!-- 01 結論 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">01 ／ Overview</div>
+    <h2>ひとことの結論</h2>
+    <p class="body"><strong>満足度は高いまま。回収率は9月に51%まで落ちた。</strong>3ヶ月で新患・再診149人のうち、アンケートに答えたのは95人。<strong>54人分の声が消えている。</strong></p>
+    <div class="cards">
+      <div class="card bad fade d2"><div class="k">64<span style="font-size:1rem">%</span></div><div class="lbl">アンケート回収率（7〜9月）</div><div class="delta down">7月72% → 8月69% → 9月51%</div></div>
+      <div class="card bad fade d3"><div class="k">54<span style="font-size:1rem">人</span></div><div class="lbl">未回答＝消えた声</div><div class="delta down">149人中（うち9月が26人）</div></div>
+      <div class="card fade d4"><div class="k">4.78</div><div class="lbl">総合満足度（5点満点・n=95）</div><div class="delta up">5点が81%・9月も4.78</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 回収率 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">02 ／ Response Rate ＊最重要</div>
+    <h2>回収率：9月は3院とも下がった</h2>
+    <p class="note">分母＝日計表の新患＋再診。分子＝アンケート回答数。</p>
+    <div class="st all fade d1">
+      <h3>全社 <span>ALL</span></h3>
+      <div class="seg"><div class="t"><span>7月</span><span>34/47＝72%</span></div><div class="track"><i style="width:72%"></i></div></div>
+      <div class="seg"><div class="t"><span>8月</span><span>34/49＝69%</span></div><div class="track"><i style="width:69%"></i></div></div>
+      <div class="seg red"><div class="t"><span>9月</span><span>27/53＝51%</span></div><div class="track"><i style="width:51%"></i></div></div>
+    </div>
+    <div class="stores">
+      <div class="st fade d1">
+        <h3>南砂 <span>MINAMISUNA</span></h3>
+        <div class="seg"><div class="t"><span>7月</span><span>10/12＝83%</span></div><div class="track"><i style="width:83%"></i></div></div>
+        <div class="seg red"><div class="t"><span>8月</span><span>11/21＝52%</span></div><div class="track"><i style="width:52%"></i></div></div>
+        <div class="seg red"><div class="t"><span>9月</span><span>8/22＝36%</span></div><div class="track"><i style="width:36%"></i></div></div>
+        <div class="miss">未回答 26人（7月2・8月10・9月14）</div>
+      </div>
+      <div class="st fade d2">
+        <h3>塩浜 <span>SHIOHAMA</span></h3>
+        <div class="seg"><div class="t"><span>7月</span><span>16/20＝80%</span></div><div class="track"><i style="width:80%"></i></div></div>
+        <div class="seg ok"><div class="t"><span>8月</span><span>15/16＝94%</span></div><div class="track"><i style="width:94%"></i></div></div>
+        <div class="seg red"><div class="t"><span>9月</span><span>14/21＝67%</span></div><div class="track"><i style="width:67%"></i></div></div>
+        <div class="miss">未回答 12人（7月4・8月1・9月7）</div>
+      </div>
+      <div class="st fade d3">
+        <h3>東砂 <span>HIGASHISUNA</span></h3>
+        <div class="seg red"><div class="t"><span>7月</span><span>8/15＝53%</span></div><div class="track"><i style="width:53%"></i></div></div>
+        <div class="seg red"><div class="t"><span>8月</span><span>8/12＝67%</span></div><div class="track"><i style="width:67%"></i></div></div>
+        <div class="seg red"><div class="t"><span>9月</span><span>5/10＝50%</span></div><div class="track"><i style="width:50%"></i></div></div>
+        <div class="miss">未回答 16人（7月7・8月4・9月5）</div>
+      </div>
+    </div>
+    <div class="band red">
+      <div class="big">9月は2人に1人が未回答。<br>南砂は3ヶ月連続で低下（83→52→36%）。</div>
+      <p>前回レポートの目標は「9月は3院とも90%以上」。<strong>3院とも未達</strong>で、8月に94%だった塩浜も67%に戻った。一方で「担当の先生がわからない」は<strong>8月3人 → 9月0人</strong>。名乗りは届いた。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 満足度 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">03 ／ Satisfaction</div>
+    <h2>満足度（5点満点・月別）</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>院</th><th>月（回答数）</th><th>総合</th><th>説明</th><th>安心感</th><th>清潔感</th><th>指名意向</th><th>5点率</th></tr></thead>
+      <tbody>
+        <tr><td>南砂</td><td class="m">7月（10）</td><td>4.70</td><td>5.00</td><td>4.90</td><td>4.50</td><td>5.00</td><td>70%</td></tr>
+        <tr><td></td><td class="m">8月（11）</td><td>4.82</td><td>4.91</td><td>4.91</td><td>4.91</td><td>4.82</td><td>91%</td></tr>
+        <tr><td></td><td class="m">9月（8）</td><td>5.00<span class="d up">▲</span></td><td>5.00</td><td>5.00</td><td>4.75</td><td>4.75</td><td>100%</td></tr>
+        <tr class="grp"><td>塩浜</td><td class="m">7月（16）</td><td>4.81</td><td>4.81</td><td>4.94</td><td>4.69</td><td>5.00</td><td>81%</td></tr>
+        <tr><td></td><td class="m">8月（15）</td><td>4.53</td><td>4.53</td><td>4.53</td><td>4.47</td><td>4.73</td><td>60%</td></tr>
+        <tr><td></td><td class="m">9月（14）</td><td>4.86<span class="d up">▲</span></td><td>5.00<span class="d up">▲</span></td><td>4.93<span class="d up">▲</span></td><td>4.86<span class="d up">▲</span></td><td>4.86<span class="d up">▲</span></td><td>86%</td></tr>
+        <tr class="grp"><td>東砂</td><td class="m">7月（8）</td><td>5.00</td><td>5.00</td><td>5.00</td><td>4.88</td><td>5.00</td><td>100%</td></tr>
+        <tr><td></td><td class="m">8月（8）</td><td>5.00</td><td>5.00</td><td>5.00</td><td>4.88</td><td>5.00</td><td>100%</td></tr>
+        <tr><td></td><td class="m">9月（5）</td><td>4.20<span class="d down">▼</span></td><td>4.80<span class="d down">▼</span></td><td>5.00</td><td>4.20<span class="d down">▼</span></td><td>5.00</td><td>40%</td></tr>
+        <tr class="total"><td>全社</td><td class="m">7月（34）</td><td>4.82</td><td>4.91</td><td>4.94</td><td>4.68</td><td>5.00</td><td>82%</td></tr>
+        <tr class="tot"><td></td><td class="m">8月（34）</td><td>4.74</td><td>4.76</td><td>4.76</td><td>4.71</td><td>4.82</td><td>79%</td></tr>
+        <tr class="tot"><td></td><td class="m">9月（27）</td><td>4.78</td><td>4.96</td><td>4.96</td><td>4.70</td><td>4.85</td><td>81%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">指名意向は「担当の先生」設問を追加した7/14以降の回答のみ。▲▼は前月比。</p>
+    <div class="band">
+      <div class="big">塩浜は9月に全項目が回復（説明5.00）。<br>南砂は総合が全員5点。東砂は総合4.20に低下。</div>
+      <p>東砂9月は回答5件（4点2人・3点1人、清潔感1点が1件）。<strong>回収率が50%前後の月は「答えた人だけの点数」</strong>で、1件で大きく動く。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 施術者別 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">04 ／ Ranking</div>
+    <h2>施術者別評価（7/14〜9/30）</h2>
+    <p class="note">総合平均＝総合・説明・安心感・指名意向の4項目平均。同点は回答数順。</p>
+    <div class="rank">
+      <div class="rank-row fade d1"><div class="no top">1</div><div class="who">白田（南砂4・東砂2）<small>回答6件・指名5点率100%</small></div><div class="sc">5.00<small>総合平均</small></div></div>
+      <div class="rank-row fade d1"><div class="no top">2</div><div class="who">加藤（南砂）<small>回答11件・指名5点率100%・総合4.91</small></div><div class="sc">4.98<small>総合平均</small></div></div>
+      <div class="rank-row fade d2"><div class="no top">3</div><div class="who">中谷（塩浜）<small>回答17件（最多）・指名5点 16/17・総合4.94</small></div><div class="sc">4.94<small>総合平均</small></div></div>
+      <div class="rank-row fade d2"><div class="no">4</div><div class="who">石本（南砂）<small>回答7件・指名5点 6/7・総合5.00</small></div><div class="sc">4.93<small>総合平均</small></div></div>
+      <div class="rank-row fade d3"><div class="no">5</div><div class="who">植田（東砂）<small>回答16件・指名5点率100%・総合4.75</small></div><div class="sc">4.92<small>総合平均</small></div></div>
+      <div class="rank-row low fade d3"><div class="no">6</div><div class="who">篠田（塩浜）<small>回答17件（最多）・指名5点 14/17・総合4.53</small></div><div class="sc">4.65<small>総合平均</small></div></div>
+    </div>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>施術者</th><th>回答数</th><th>総合</th><th>説明</th><th>安心感</th><th>指名意向</th><th>指名5点</th><th>9月の総合平均（件数）</th></tr></thead>
+      <tbody>
+        <tr><td>白田</td><td>6</td><td>5.00</td><td>5.00</td><td>5.00</td><td>5.00</td><td>6/6</td><td>5.00（2）</td></tr>
+        <tr><td>加藤</td><td>11</td><td>4.91</td><td>5.00</td><td>5.00</td><td>5.00</td><td>11/11</td><td>5.00（3）</td></tr>
+        <tr><td>中谷</td><td>17</td><td>4.94</td><td>4.94</td><td>5.00</td><td>4.88</td><td>16/17</td><td>4.94（9）</td></tr>
+        <tr><td>石本</td><td>7</td><td>5.00</td><td>5.00</td><td>5.00</td><td>4.71</td><td>6/7</td><td>4.83（3）</td></tr>
+        <tr><td>植田</td><td>16</td><td>4.75</td><td>4.94</td><td>5.00</td><td>5.00</td><td>16/16</td><td>4.75（5）</td></tr>
+        <tr><td>篠田</td><td>17</td><td>4.53</td><td>4.65</td><td>4.59</td><td>4.82</td><td>14/17</td><td>4.85（5）</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="band">
+      <div class="big">回答数は中谷・篠田の17件が最多。<br>篠田は8月4.48 → 9月4.85に回復（説明5.00）。</div>
+      <p>9月の回答数は中谷9件、植田・篠田5件、石本・加藤3件、白田2件。<strong>まず回収数で競う。</strong>点数はそのあと。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 患者の声 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">05 ／ Voices</div>
+    <h2>患者の声（9月の良かった点・改善点）</h2>
+
+    <h3 class="store">南砂 <span>良かった点</span></h3>
+    <div class="voices">
+      <div class="voice">「<b>しっかり説明</b>いただきましたので安心できました」<span class="who">9月・石本</span></div>
+      <div class="voice">「説明がわかりやすかった。<b>距離感がちょうどよかった</b>。」<span class="who">9月・白田</span></div>
+      <div class="voice">「話やすい　<b>施術が上手</b>」<span class="who">9月・白田</span></div>
+      <div class="voice">「<b>説明が丁寧</b>でした」<span class="who">9月・加藤</span></div>
+    </div>
+    <h3 class="store">南砂 <span>改善点</span></h3>
+    <div class="voices">
+      <div class="voice bad">「<b>予約の時間通りにスタート</b>すれば良い」<span class="who">9月・加藤</span></div>
+      <div class="voice bad">「<b>気をつけた方がいい動作</b>を教えてもらえるとよかったかもしれません。」<span class="who">9月・白田</span></div>
+      <div class="voice bad">総合5点だが<b>指名意向3点</b>（改善点は「特になし」）<span class="who">9月・石本</span></div>
+    </div>
+
+    <h3 class="store">塩浜 <span>良かった点</span></h3>
+    <div class="voices">
+      <div class="voice">「治療の説明や<b>質問に丁寧にわかりやすく答えて</b>くださった」<span class="who">9月・中谷</span></div>
+      <div class="voice">「<b>足のもみほぐしで軽くなった</b>感じがしたので」<span class="who">9月・中谷</span></div>
+      <div class="voice">「<b>わかりやすく説明</b>してくれるところ」<span class="who">9月・中谷</span></div>
+      <div class="voice">「きちんと<b>症状や施術の説明</b>をしてくださるところ」<span class="who">9月・篠田</span></div>
+      <div class="voice">「<b>説明を詳しく</b>してくれてわかりやすいので。」<span class="who">9月・篠田</span></div>
+      <div class="voice">「<b>丁寧な対応と詳しい説明</b>」<span class="who">9月・篠田</span></div>
+    </div>
+    <h3 class="store">塩浜 <span>改善点</span></h3>
+    <div class="voices">
+      <div class="voice bad">9月の改善要望は<b>なし</b>（8月は「待ち時間」「もう少し長く」）<span class="who">参考</span></div>
+      <div class="voice bad">総合5点だが<b>指名意向3点</b>（コメントなし）<span class="who">9月・中谷</span></div>
+    </div>
+
+    <h3 class="store">東砂 <span>良かった点</span></h3>
+    <div class="voices">
+      <div class="voice">「<b>枕を使えるまで回復しようと目標を目指してくれた</b>から嬉しかったです」<span class="who">9月・植田</span></div>
+      <div class="voice">「<b>全てが上手い</b>」<span class="who">9月・植田</span></div>
+      <div class="voice">「<b>滑らかな動きとトーク</b>」<span class="who">9月・植田</span></div>
+    </div>
+    <h3 class="store">東砂 <span>改善点</span></h3>
+    <div class="voices">
+      <div class="voice bad">「院内清潔だったのですが電気マッサージ中の<b>タバコ？の臭い</b>が気になってしまいました。」（清潔感1点）<span class="who">9月・植田</span></div>
+      <div class="voice bad">「<b>2時間くらいやって欲しい</b>」<span class="who">9月・植田</span></div>
+      <div class="voice bad"><b>総合3点</b>（説明・安心・指名は5点・コメントなし）<span class="who">9月・植田</span></div>
+    </div>
+
+    <details class="fold">
+      <summary>7〜8月の声を見る</summary>
+    <h3 class="store">南砂 <span>良かった点（7〜8月）</span></h3>
+    <div class="voices">
+      <div class="voice">「<b>原因究明が明確</b>である」<span class="who">8月・加藤</span></div>
+      <div class="voice">「<b>スポーツ(トライアスロン)に詳しく</b>、相談をしやすかった」<span class="who">8月・加藤</span></div>
+      <div class="voice">「痛みがある部分をピンポイントで治療。<b>痛みが移動してないか、会話しながら確認</b>していただいた」<span class="who">8月・白田</span></div>
+      <div class="voice">「<b>針と電気</b>がとても良かった」<span class="who">8月・石本</span></div>
+      <div class="voice">「<b>なるべく安くなるように提案</b>してくれた」<span class="who">7月</span></div>
+      <div class="voice">「自分の日頃の立ち方など<b>特徴が理解できた</b>」<span class="who">7月</span></div>
+    </div>
+    <h3 class="store">南砂 <span>改善点（7〜8月）</span></h3>
+    <div class="voices">
+      <div class="voice bad">「<b>タバコの臭い</b>が気になる」（清潔感2点）<span class="who">7月</span></div>
+      <div class="voice bad">「<b>ベッドや待合が狭く</b>感じるが、施術に支障はなかった」<span class="who">7月・加藤</span></div>
+      <div class="voice bad">「<b>もう少し強めにマッサージ</b>していただけると幸いです」<span class="who">8月・加藤</span></div>
+      <div class="voice bad">総合3点・指名3点・<b>担当「わからない」</b>（コメントなし）<span class="who">8月</span></div>
+    </div>
+
+    <h3 class="store">塩浜 <span>良かった点（7〜8月）</span></h3>
+    <div class="voices">
+      <div class="voice">「優しく説明して頂けたので安心して受ける事ができました。<b>マッサージもイタ気持ち良くて治りました</b>」<span class="who">7月・篠田</span></div>
+      <div class="voice">「いつも、<b>こちらの反応や希望を確認しながら</b>進めていただけてありがたい」<span class="who">8月・篠田</span></div>
+      <div class="voice">「<b>鍼もしっかり説明</b>してもらったので安心でした」<span class="who">8月・篠田</span></div>
+      <div class="voice">「分かりやすい説明と施術で、<b>また来たいと思った</b>」<span class="who">7月・中谷</span></div>
+      <div class="voice">「<b>施術前後の状態を教えて頂いた</b>点」<span class="who">7月・中谷</span></div>
+      <div class="voice">「明るく物が整理されていて<b>清潔感があった</b>」<span class="who">7月</span></div>
+    </div>
+    <h3 class="store">塩浜 <span>改善点（7〜8月）</span></h3>
+    <div class="voices">
+      <div class="voice bad">「<b>もう少し長くマッサージ</b>してほしいです」<span class="who">7月</span></div>
+      <div class="voice bad">「マッサージの<b>時間がもう少しあれば</b>良かった」<span class="who">7月</span></div>
+      <div class="voice bad">「<b>タバコのにおい</b>が気になった」<span class="who">7月</span></div>
+      <div class="voice bad">「<b>待ち時間</b>」（説明3点）<span class="who">8月・篠田</span></div>
+      <div class="voice bad">「一概には言えないかもだけど、<b>もうちょっと長い方が良かった</b>かな」<span class="who">8月・篠田</span></div>
+      <div class="voice bad"><b>全項目3点</b>・指名4点（コメントなし）<span class="who">8月・篠田</span></div>
+    </div>
+
+    <h3 class="store">東砂 <span>良かった点（7〜8月）</span></h3>
+    <div class="voices">
+      <div class="voice">「施術の<b>アプローチの理由や意味のご説明</b>があったので、安心できた」<span class="who">7月・植田</span></div>
+      <div class="voice">「トレーニングについて、<b>実生活に使えそうなこと</b>も教えてくれた」<span class="who">7月・植田</span></div>
+      <div class="voice">「張りの<b>根本原因を丁寧に探そう</b>としてくれていたこと」<span class="who">8月・植田</span></div>
+      <div class="voice">「先生の明確で分かりやすい説明、<b>話し方の安心感</b>」<span class="who">8月・植田</span></div>
+      <div class="voice">「忙しい中<b>急な予約にも</b>できる限りやってくれた」<span class="who">7月・植田</span></div>
+      <div class="voice">「説明も解りやすく、<b>安心して受けられた</b>」<span class="who">7月・白田</span></div>
+    </div>
+    <h3 class="store">東砂 <span>改善点（7〜8月）</span></h3>
+    <div class="voices">
+      <div class="voice bad">7〜8月の改善要望は<b>なし</b><span class="who">参考</span></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<!-- 06 次の一手 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow en">06 ／ Next</div>
+    <h2>次の一手（3つだけ）</h2>
+    <ul class="ilist">
+      <li><span class="ng">★最優先</span>　<strong>回収率を戻す</strong> ― 9月は51%。初回の会計前にその場で回答。19時の「予診表チェック係」で当日ゼロ未回答を確認。基準は塩浜8月の94%。</li>
+      <li><span class="ng">★</span>　<strong>タバコの臭い</strong> ― 7月（南砂・塩浜）に続き9月は東砂で清潔感1点。3院すべてで指摘済み。喫煙後の消臭を全院ルール化。</li>
+      <li><span class="ok">継続</span>　<strong>名乗る</strong> ― 「担当の先生がわからない」は8月3人 → 9月0人。このまま続ける。</li>
+    </ul>
+    <div class="band">
+      <div class="big">満足度は仕上がっている。<br>足りないのは「聞く」こと。</div>
+      <p>10月も3院とも<strong>回収率90%以上</strong>が目標。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="en">Seichiku Acupuncture Group</div>
+    <p>成竹鍼灸整骨院グループ ／ LSD Company 株式会社<br>
+    初回施術アンケート 7月×8月×9月 3院レポート（社内資料）</p>
+  </div>
+</footer>
+
+</body>
+</html>
