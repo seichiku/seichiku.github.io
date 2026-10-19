@@ -273,10 +273,20 @@
     (() => {
       const RONDO = 'https://rondo.takenakahiroshi.workers.dev/api/subscribe';
       const SCENARIO = 'hoken';
-      // 院別の印: ?src=minamisuna|higashisuna|shiohama → Rondo の source に lp:hoken:<院> で残す(それ以外は lp:hoken)
+      // 流入の印 → Rondo の source に lp:hoken[:院[:経路[:月号]]] で残す
+      //   ?src=minamisuna|higashisuna|shiohama  院(白名単)
+      //   ?ch=hand|post                         経路(hand=会計時に手渡し / post=郵送)。院が無いときは捨てる
+      //   ?m=YYYYMM                              紙ニュースレターの月号(例 202611)。経路が無いときは捨てる
+      // 例: ?src=minamisuna&ch=hand&m=202611 → lp:hoken:minamisuna:hand:202611
+      // Rondo 側(/api/subscribe)は source を無加工で contacts.source に保存する(文字数・形式の制限なし・rondo-dist src/worker.mjs subscribeCore)。
+      // 集計(分析シート「ニュースレター効果」)は ':' で割って [2]=院 [3]=経路 [4]=月号 と読む
       const CLINICS = ['minamisuna', 'higashisuna', 'shiohama'];
-      const param = new URLSearchParams(location.search).get('src') || '';
-      const src = CLINICS.includes(param) ? param : '';
+      const CHANNELS = ['hand', 'post'];
+      const q = new URLSearchParams(location.search);
+      const clinic = CLINICS.includes(q.get('src') || '') ? q.get('src') : '';
+      const ch = clinic && CHANNELS.includes(q.get('ch') || '') ? q.get('ch') : '';
+      const m = ch && /^20\d{4}$/.test(q.get('m') || '') ? q.get('m') : '';
+      const src = [clinic, ch, m].filter(Boolean).join(':');
       document.getElementById('rondo-src').value = src;
 
       const form = document.getElementById('rondo-subscribe');
