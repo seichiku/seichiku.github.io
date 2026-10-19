@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>あなたの保険、ちゃんと使えていますか｜成竹鍼灸整骨院グループ</title>
+  <meta name="description" content="整骨院・鍼灸院の保険は、病院の保険と仕組みが違います。使える時・使えない時、保険者からの照会文書の答え方を、週1通・無料でお届けします。成竹鍼灸整骨院グループ代表 竹中浩。">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #04137D;
+      --navy-dark: #020b52;
+      --gold: #c9a227;
+      --cream: #faf7f1;
+      --ink: #151a29;
+      --sub: #49505f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: var(--cream); color: var(--ink); line-height: 1.8; font-weight: 500;
+    }
+    .hero {
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+      color: #fff; padding: 44px 20px 92px; text-align: center;
+    }
+    .eyebrow {
+      display: inline-block; font-size: .78rem; letter-spacing: .12em;
+      border: 1px solid rgba(255,255,255,.45); border-radius: 999px;
+      padding: 5px 14px; margin-bottom: 18px; color: #fdf6dd;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2.2rem); line-height: 1.45;
+      margin: 0 auto 14px; max-width: 640px; font-weight: 800;
+    }
+    h1 .em { color: #ffd966; }
+    .hero p {
+      margin: 0 auto; max-width: 540px; font-size: .95rem; color: #dfe4f5;
+    }
+    .badges {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px;
+    }
+    .badge {
+      background: rgba(255,255,255,.12); border-radius: 8px;
+      padding: 7px 14px; font-size: .82rem; font-weight: 700;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    .card {
+      background: #fff; border-radius: 16px; padding: 28px 22px 22px;
+      box-shadow: 0 10px 30px rgba(4, 19, 125, .10);
+      margin-top: -56px; position: relative;
+    }
+    .card h2 { font-size: 1.05rem; margin: 0 0 4px; color: var(--navy); }
+    .card .sub { font-size: .85rem; color: var(--sub); margin: 0 0 18px; }
+    label { display: block; font-size: .85rem; font-weight: 700; margin-bottom: 6px; }
+    label .opt { font-weight: 500; color: var(--sub); font-size: .78rem; margin-left: 4px; }
+    input[type="email"], input[type="text"].name {
+      width: 100%; padding: 14px; font-size: 1.05rem;
+      border: 1.5px solid #ccd3dd; border-radius: 10px; margin-bottom: 14px;
+      font-family: inherit;
+    }
+    input[type="email"]:focus, input[type="text"].name:focus { outline: 2px solid var(--navy); border-color: var(--navy); }
+    .cf-turnstile { margin-bottom: 14px; }
+    button {
+      width: 100%; padding: 17px; font-size: 1.08rem; font-weight: 800;
+      color: #fff; background: linear-gradient(180deg, #0a1f9e, var(--navy));
+      border: 0; border-radius: 12px; cursor: pointer;
+      box-shadow: 0 6px 16px rgba(4,19,125,.35); font-family: inherit;
+    }
+    button:disabled { opacity: .6; cursor: default; }
+    #rondo-status { font-size: .92rem; margin: 12px 0 0; min-height: 1.4em; }
+    #rondo-status.ok { color: #0b6b2e; font-weight: 700; }
+    #rondo-status.ng { color: #b3261e; }
+    .consent {
+      font-size: .78rem; color: var(--sub); line-height: 1.7;
+      border-top: 1px dashed #dde2ea; margin-top: 16px; padding-top: 12px;
+    }
+    .consent b { color: var(--ink); }
+    section { padding: 40px 0 0; }
+    .sec-title { text-align: center; font-size: 1.25rem; color: var(--navy); margin: 0 0 6px; font-weight: 800; }
+    .sec-lead { text-align: center; font-size: .9rem; color: var(--sub); margin: 0 0 20px; }
+    .points { list-style: none; margin: 0; padding: 0; counter-reset: n; }
+    .points li {
+      counter-increment: n; background: #fff; border-radius: 12px;
+      padding: 14px 16px 14px 58px; margin-bottom: 10px; position: relative;
+      box-shadow: 0 2px 8px rgba(4,19,125,.06); font-size: .95rem;
+    }
+    .points li::before {
+      content: counter(n); position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%;
+      background: var(--navy); color: #ffd966; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; font-size: .95rem;
+    }
+    .points b { color: var(--navy); display: block; }
+    .points span { font-size: .86rem; color: var(--sub); }
+    .why {
+      background: #fff; border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0;
+      padding: 18px 20px; font-size: .95rem; box-shadow: 0 2px 8px rgba(4,19,125,.06);
+    }
+    .why p { margin: 0 0 10px; }
+    .why p:last-child { margin: 0; }
+    .author {
+      display: flex; gap: 16px; align-items: center; background: #fff;
+      border-radius: 12px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(4,19,125,.06);
+    }
+    .author .avatar {
+      flex: 0 0 80px; width: 80px; height: 80px; border-radius: 50%;
+      overflow: hidden; border: 3px solid #fff;
+      box-shadow: 0 2px 10px rgba(4,19,125,.25);
+    }
+    .author .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .author .name { font-weight: 800; color: var(--navy); }
+    .author .desc { font-size: .82rem; color: var(--sub); margin-top: 2px; }
+    .cta-bottom { text-align: center; padding: 36px 0 48px; }
+    .cta-bottom a {
+      display: inline-block; text-decoration: none; color: #fff; font-weight: 800;
+      background: linear-gradient(180deg, #0a1f9e, var(--navy));
+      padding: 16px 42px; border-radius: 12px; font-size: 1.05rem;
+      box-shadow: 0 6px 16px rgba(4,19,125,.35);
+    }
+    footer { text-align: center; font-size: .75rem; color: var(--sub); padding: 0 16px 40px; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <span class="eyebrow">成竹鍼灸整骨院グループ・保険のニュースレター（無料）</span>
+    <h1>あなたの保険、<br><span class="em">ちゃんと使えていますか</span></h1>
+    <p>整骨院・鍼灸院の保険は、病院の保険と仕組みが違います。<br>保険者（健康保険組合など）から届く「照会文書」に正しく答えられるように、週1通でお届けします。</p>
+    <div class="badges">
+      <span class="badge">無料</span>
+      <span class="badge">週1通・朝7時</span>
+      <span class="badge">1通3分で読めます</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="touroku">
+      <h2>メールアドレスだけで始められます</h2>
+      <p class="sub">登録すると確認メールが届き、リンクを押した直後に1通目をお届けします。</p>
+      <form id="rondo-subscribe" novalidate>
+        <label for="rondo-email">メールアドレス</label>
+        <input
+          id="rondo-email"
+          name="email"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          spellcheck="false"
+          placeholder="you@example.com"
+          required
+        >
+        <label for="rondo-name">お名前<span class="opt">（任意）</span></label>
+        <input
+          id="rondo-name"
+          name="name"
+          type="text"
+          class="name"
+          autocomplete="name"
+          maxlength="30"
+          placeholder="例）成竹 花子"
+        >
+        <input type="hidden" name="src" id="rondo-src" value="">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAESMH6mbmnjgDq27"></div>
+        <div aria-hidden="true" style="position:absolute;left:-10000px">
+          <label for="rondo-website">Website</label>
+          <input id="rondo-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit">確認メールを受け取る</button>
+        <p id="rondo-status" role="status" aria-live="polite"></p>
+      </form>
+      <p class="consent">
+        登録すると、<b>成竹鍼灸整骨院グループ（発行者：代表 竹中浩）</b>から<b>週1回</b>、保険に関するメールが届きます。確認メールのリンクを押した方にだけ配信します。<b>配信はいつでも</b>メール内のリンクから<b>解除できます</b>。メールアドレスはこの配信以外に使いません。
+      </p>
+    </div>
+
+    <section>
+      <h2 class="sec-title">届くメールで分かること</h2>
+      <p class="sec-lead">制度の説明と、成竹の考え方を分けて書きます。</p>
+      <ol class="points">
+        <li><b>保険が使える時・使えない時</b><span>ケガと慢性の痛みの線引き、鍼灸で保険が使える症状、同意書のこと</span></li>
+        <li><b>保険者からの「照会文書」の答え方</b><span>「いつ・どこで・どうして」の書き方。迷った時は院に聞いてよいこと</span></li>
+        <li><b>保険が通らない「返戻」を減らすコツ</b><span>受付で聞かれる理由、署名の意味、領収書の見方</span></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 class="sec-title">なぜ、お届けするのか</h2>
+      <div class="why">
+        <p>保険者からの照会文書に、ご本人が「分からない」「覚えていない」と答えると、正しく受けた施術でも保険が通らないことがあります。</p>
+        <p>制度を知っていれば、ご自身の権利を正しく使えます。使えない時も、理由が分かれば納得して選べます。そのための1年間の読み物です。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec-title">書いている人</h2>
+      <div class="author">
+        <div class="avatar"><img src="../takenaka.jpg" alt="竹中浩の写真" width="480" height="480" loading="lazy"></div>
+        <div>
+          <div class="name">竹中 浩（たけなか ひろし）</div>
+          <div class="desc">成竹鍼灸整骨院グループ代表。東京都江東区で南砂・東砂・塩浜の3院を運営。出典は厚生労働省・保険者の公式文書に限り、毎通の末尾に記します。</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-bottom">
+      <a href="#touroku">確認メールを受け取る</a>
+    </div>
+  </div>
+
+  <footer>
+    配信はいつでもメール内のリンクから解除できます。<br>
+    発行者: 成竹鍼灸整骨院グループ 代表 竹中浩｜<a href="https://seichiku.com/" style="color:inherit">公式サイト</a>
+  </footer>
+
+  <script>
+    (() => {
+      const RONDO = 'https://rondo.takenakahiroshi.workers.dev/api/subscribe';
+      const SCENARIO = 'hoken';
+      // 院別の印: ?src=minamisuna|higashisuna|shiohama → Rondo の source に lp:hoken:<院> で残す(それ以外は lp:hoken)
+      const CLINICS = ['minamisuna', 'higashisuna', 'shiohama'];
+      const param = new URLSearchParams(location.search).get('src') || '';
+      const src = CLINICS.includes(param) ? param : '';
+      document.getElementById('rondo-src').value = src;
+
+      const form = document.getElementById('rondo-subscribe');
+      const status = document.getElementById('rondo-status');
+      const button = form.querySelector('button[type="submit"]');
+      const LABEL = button.textContent;
+      const say = (text, cls) => { status.textContent = text; status.className = cls || ''; };
+      const MESSAGES = {
+        turnstile: 'ロボットでないことの確認ができませんでした。もう一度お試しください。',
+        invalid_email: 'メールアドレスの形を確かめてください。',
+        invalid_name: 'お名前は30文字まで。URL やメールアドレスは入れられません。',
+        scenario: 'ただいま登録を受け付けていません。',
+        unfilled: 'ただいま登録を受け付けていません。',
+        service_not_configured: 'ただいま登録を受け付けていません。',
+        unavailable: 'ただいま確認メールを送れません。しばらくしてからお試しください。',
+        rate_limited: '短い時間に登録が続いたため、受け付けを止めています。しばらくしてからお試しください。',
+        daily: '今日の登録の受け付けが上限に達しました。明日の朝9時以降に、もう一度お試しください。',
+      };
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const email = String(data.get('email') || '').trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          say(MESSAGES.invalid_email, 'ng');
+          document.getElementById('rondo-email').focus();
+          return;
+        }
+        const cfToken = data.get('cf-turnstile-response');
+        if (!cfToken) {
+          say('「私は人間です」の確認を完了してから、もう一度お試しください。', 'ng');
+          return;
+        }
+        const name = String(data.get('name') || '').trim();
+        button.disabled = true;
+        button.textContent = '送信中…';
+        say('');
+        try {
+          const response = await fetch(RONDO, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              ...(name ? { name } : {}),
+              website: data.get('website'),
+              cfToken,
+              scenario: SCENARIO,
+              source: 'lp:' + SCENARIO + (src ? ':' + src : ''),
+            }),
+          });
+          let body = null;
+          try { body = await response.json(); } catch { /* 本文なし */ }
+          if (!response.ok || !body || body.ok !== true) {
+            const key = body && body.reason === 'daily' ? 'daily' : (body && body.error) || '';
+            say(MESSAGES[key] || '送信できませんでした。通信状態を確認し、もう一度お試しください。', 'ng');
+            if (window.turnstile) window.turnstile.reset();
+            return;
+          }
+          form.reset();
+          document.getElementById('rondo-src').value = src;
+          say('確認メールを送りました。受信箱のリンクを開くと、1通目がすぐ届きます。届かない時は迷惑メールフォルダもご確認ください。', 'ok');
+          if (window.turnstile) window.turnstile.reset();
+        } catch {
+          say('送信できませんでした。通信状態を確認し、もう一度お試しください。', 'ng');
+          if (window.turnstile) window.turnstile.reset();
+        } finally {
+          button.disabled = false;
+          button.textContent = LABEL;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
