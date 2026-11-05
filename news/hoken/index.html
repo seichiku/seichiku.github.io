@@ -150,7 +150,7 @@
   </style>
 </head>
 <body>
-  <div class="hero">
+  <div class="hero" data-sec="hero">
     <span class="eyebrow">成竹鍼灸整骨院グループ・保険のニュースレター（無料）</span>
     <h1>あなたの保険、<br><span class="em">ちゃんと使えていますか</span></h1>
     <p>整骨院・鍼灸院の保険は、病院の保険と仕組みが違います。そのため多くの患者さまが、<b>保険の仕組みを理解しないまま損をしています</b>。使えるはずの保険を使わなかったり、使えない場面で困ったり。</p>
@@ -166,7 +166,7 @@
   <div class="wrap">
     <img class="ph top" src="scene1.jpg" alt="整骨院の受付で保険証を出しながら迷っている患者さま" width="1200" height="685" loading="eager">
 
-    <section>
+    <section data-sec="loss">
       <h2 class="sec-title">こんな「損」をしていませんか</h2>
       <p class="sec-lead">どれも、院で実際によくあることです。</p>
       <ul class="loss">
@@ -177,7 +177,7 @@
       <div class="note"><b>逆に、保険が使えない場面もあります。</b>慢性的な肩こりや疲れ、ケガではない痛みは、整骨院では保険の対象外です。「使える時」と「使えない時」の両方を知ることが、損をしない近道です。</div>
     </section>
 
-    <section>
+    <section data-sec="points">
       <img class="ph" src="scene2.jpg" alt="自宅で健康保険組合からの封書を開けて困っている様子" width="1200" height="685" loading="lazy" style="margin-bottom: 30px;">
       <h2 class="sec-title">このニュースレターで分かること</h2>
       <p class="sec-lead">制度の説明と、成竹の考え方を分けて書きます。出典は厚生労働省・保険者の公式文書に限ります。</p>
@@ -195,7 +195,7 @@
       </ol>
     </section>
 
-    <section>
+    <section data-sec="how">
       <h2 class="sec-title">届き方</h2>
       <div class="how">
         <dl>
@@ -206,7 +206,7 @@
       </div>
     </section>
 
-    <section>
+    <section data-sec="author">
       <img class="ph" src="scene3.jpg" alt="施術後に先生と笑顔で話す患者さま" width="1200" height="685" loading="lazy" style="margin-bottom: 30px;">
       <h2 class="sec-title">書いている人</h2>
       <div class="author">
@@ -224,7 +224,7 @@
       </div>
     </section>
 
-    <div class="card" id="touroku">
+    <div class="card" id="touroku" data-sec="form">
       <h2>メールアドレスだけで始められます</h2>
       <p class="sub">登録すると確認メールが届き、リンクを押した直後に1通目をお届けします。</p>
       <form id="rondo-subscribe" novalidate>
@@ -255,7 +255,7 @@
           <label for="rondo-website">Website</label>
           <input id="rondo-website" name="website" type="text" tabindex="-1" autocomplete="off">
         </div>
-        <button type="submit">確認メールを受け取る</button>
+        <button type="submit" data-rondo-cta data-rondo-label="確認メールを受け取る">確認メールを受け取る</button>
         <p id="rondo-status" role="status" aria-live="polite"></p>
       </form>
       <p class="consent">
@@ -366,5 +366,7 @@
       });
     })();
   </script>
+  <!-- Rondo LP分析（ヒートマップ）2026-11-05。このページは @media 無しの可変レイアウトなので data-sp-max は省略（768px未満をスマホとして数える）。URLクエリ・入力値・表示テキストは送らない -->
+  <script src="https://rondo.takenakahiroshi.workers.dev/heat.js" data-page="hoken" defer></script>
 </body>
 </html>
