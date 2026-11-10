@@ -279,13 +279,15 @@
       //   ?m=YYYYMM                              紙ニュースレターの月号(例 202611)。経路が無いときは捨てる
       // 例: ?src=minamisuna&ch=hand&m=202611 → lp:hoken:minamisuna:hand:202611
       //   ?src=blog|hp|ig                        院外の経路(2026-11-05〜)。ブログ記事末尾のCTAは src=blog
+      //   ?src=gbp|fb                            Googleビジネスの投稿・FBページの投稿(2026-11-10〜)。gbp・fb・ig は p=院名 で院別に数える
+      // 例: ?src=gbp&p=minamisuna → lp:hoken:gbp:minamisuna
       //   ?p=記事スラッグ|記事ID|院名               院外の経路のときだけ。どの記事(投稿)から登録されたか。英数字とハイフンのみ
       // 例: ?src=blog&p=koto-shinkyu-hoken → lp:hoken:blog:koto-shinkyu-hoken
       // Rondo 側(/api/subscribe)は source を無加工で contacts.source に保存する(文字数・形式の制限なし・rondo-dist src/worker.mjs subscribeCore)。
       // 集計(分析シート「ニュースレター効果」)は ':' で割って [2]=院 [3]=経路 [4]=月号 と読む。[2] が院外の経路(blog等)の読者は院なし扱い
       const CLINICS = ['minamisuna', 'higashisuna', 'shiohama'];
       const CHANNELS = ['hand', 'post'];
-      const EXTERNAL = ['blog', 'hp', 'ig'];
+      const EXTERNAL = ['blog', 'hp', 'ig', 'gbp', 'fb'];
       const q = new URLSearchParams(location.search);
       const srcRaw = q.get('src') || '';
       const clinic = CLINICS.includes(srcRaw) ? srcRaw : '';
